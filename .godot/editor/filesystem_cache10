@@ -1,5 +1,5 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1785048900
+::res://::1785050676
 aston_db9.tscn::PackedScene/PackedScene::7422556213708327541::1784919252::0::1::::<><><>0<>0<><>::uid://ffvs8ga7wgmd::::res://Scripts/camera.gd<>uid://bq4u8syx73uiv::::res://SFX/freesound_community-audi-v8-acceleration-sound-6067.wav<>uid://cbyhxjdmmxqg3::::res://SFX/brake.mp3<>uid://dkqrbnoypkxrd::::res://SFX/skid.mp3
 audi_a8.tscn::PackedScene/PackedScene::4017700870543264684::1784919252::0::1::::<><><>0<>0<><>::uid://ffvs8ga7wgmd::::res://Scripts/camera.gd<>uid://bq4u8syx73uiv::::res://SFX/freesound_community-audi-v8-acceleration-sound-6067.wav<>uid://cbyhxjdmmxqg3::::res://SFX/brake.mp3<>uid://dkqrbnoypkxrd::::res://SFX/skid.mp3
 audi_tt.tscn::PackedScene/PackedScene::601921826692948676::1784919252::0::1::::<><><>0<>0<><>::uid://ffvs8ga7wgmd::::res://Scripts/camera.gd<>uid://bq4u8syx73uiv::::res://SFX/freesound_community-audi-v8-acceleration-sound-6067.wav<>uid://cbyhxjdmmxqg3::::res://SFX/brake.mp3<>uid://dkqrbnoypkxrd::::res://SFX/skid.mp3
@@ -35,7 +35,7 @@ race_results.gd::GDScript/GDScript::4521338802104354928::1784919253::0::1::::<>N
 track_name.gd::GDScript/GDScript::8757337582718622616::1784919253::0::1::::<>Node<><>0<>0<><>::
 track_registry.gd::GDScript/GDScript::2729592444150128222::1784919253::0::1::::<>Node<><>0<>0<><>::
 WhatsApp Image 2026-07-23 at 14.45.46.jpeg::CompressedTexture2D/CompressedTexture2D::3741314663861296332::1784919252::1784919252::1::::<><><>0<>0<>c85981c212ea11ec682f62450135ba6d<>res://.godot/imported/WhatsApp Image 2026-07-23 at 14.45.46.jpeg-a04583eeb2688d8082061777b417703b.ctex::
-::res://Scenes/::1785003162
+::res://Scenes/::1785048949
 aston_db9.tscn::PackedScene/PackedScene::2942269834879165477::1784996268::0::1::::<><><>0<>0<><>::uid://c7j4r626feeqh::::res://Scripts/aston_db9_2007.gd<>uid://ffvs8ga7wgmd::::res://Scripts/camera.gd<>uid://cbyhxjdmmxqg3::::res://SFX/brake.mp3<>uid://bq4u8syx73uiv::::res://SFX/freesound_community-audi-v8-acceleration-sound-6067.wav<>uid://dkqrbnoypkxrd::::res://SFX/skid.mp3
 audi_a5_tdi.tscn::PackedScene/PackedScene::1711376544093276218::1784996274::0::1::::<><><>0<>0<><>::uid://cb2jjs3ko7oqh::::res://Scripts/audi_a_5_tdi.gd<>uid://ffvs8ga7wgmd::::res://Scripts/camera.gd<>uid://bq4u8syx73uiv::::res://SFX/freesound_community-audi-v8-acceleration-sound-6067.wav<>uid://cbyhxjdmmxqg3::::res://SFX/brake.mp3<>uid://dkqrbnoypkxrd::::res://SFX/skid.mp3
 audi_a8.tscn::PackedScene/PackedScene::260973396008591591::1784996270::0::1::::<><><>0<>0<><>::uid://c3pyr47qwkgbe::::res://Scripts/audi_a8_42_2004.gd<>uid://ffvs8ga7wgmd::::res://Scripts/camera.gd<>uid://bq4u8syx73uiv::::res://SFX/freesound_community-audi-v8-acceleration-sound-6067.wav<>uid://cbyhxjdmmxqg3::::res://SFX/brake.mp3<>uid://dkqrbnoypkxrd::::res://SFX/skid.mp3
@@ -101,7 +101,7 @@ sagaris.tscn::PackedScene/PackedScene::4787058931149170421::1784996269::0::1::::
 saleen_s7.tscn::PackedScene/PackedScene::6955994687654808332::1784996271::0::1::::<><><>0<>0<><>::uid://57lc1ws0njq3::::res://Scripts/saleen_s_7.gd<>uid://ffvs8ga7wgmd::::res://Scripts/camera.gd<>uid://bq4u8syx73uiv::::res://SFX/freesound_community-audi-v8-acceleration-sound-6067.wav<>uid://cbyhxjdmmxqg3::::res://SFX/brake.mp3<>uid://dkqrbnoypkxrd::::res://SFX/skid.mp3
 speedometer.tscn::PackedScene/PackedScene::2897955308308535763::1784996267::0::1::::<><><>0<>0<><>::uid://noe1aoudj6qy::::res://Scripts/speedometer.gd
 start.tscn::PackedScene/PackedScene::6391465524715370481::1784996272::0::1::::<><><>0<>0<><>::uid://62iyhpkxrkb::::res://Scripts/start.gd
-track_select.gd::GDScript::5845367372738895868::1785003162::0::1::::<>CanvasLayer<><>0<>0<><>::
+track_select.gd::GDScript::5845367372738895868::1785048949::0::1::::<>CanvasLayer<><>0<>0<><>::
 track_select.tscn::PackedScene/PackedScene::7186334375977497459::1784996279::0::1::::<><><>0<>0<><>::uid://cpjsl1xfvb5j1::::res://Scenes/track_select.gd
 tvr t 440r.tscn::PackedScene/PackedScene::1533106675575229889::1784996270::0::1::::<><><>0<>0<><>::uid://cliqof4l4sw3v::::res://Scenes/tvr_t_440r_2002.gd<>uid://ffvs8ga7wgmd::::res://Scripts/camera.gd<>uid://cbyhxjdmmxqg3::::res://SFX/brake.mp3<>uid://bq4u8syx73uiv::::res://SFX/freesound_community-audi-v8-acceleration-sound-6067.wav<>uid://dkqrbnoypkxrd::::res://SFX/skid.mp3
 tvr_t_440r_2002.gd::GDScript/GDScript::5562430450391324581::1784919269::0::1::::<>CarController<><>0<>0<><>::
@@ -169,26 +169,18 @@ skid.mp3::AudioStreamMP3/AudioStreamMP3::7895215211737247329::1784919267::178491
 ::res://Songs/::1784919272
 menu_track.mp3::AudioStreamMP3/AudioStreamMP3::6397107869108803633::1784919272::1784919272::1::::<><><>0<>0<>ab99ad7e191deeb583f889f6c8ffeb18<>res://.godot/imported/menu_track.mp3-647ed1a4f4fcf01e49aee23dc9433882.mp3str::
 race_track.mp3::AudioStreamMP3/AudioStreamMP3::932176500361512999::1784919272::1784919272::1::::<><><>0<>0<>8c8cab2acfeab08b9d4e050df1896cad<>res://.godot/imported/race_track.mp3-9b96d18e37ff2066066115d11ed6c890.mp3str::
-::res://Tracks/::1785003162
+::res://Tracks/::1785048949
 barrier_2.gd::GDScript/GDScript::8367939222729351383::1784919272::0::1::::<>CharacterBody3D<><>0<>0<><>::
 barrier_3.gd::GDScript/GDScript::4531900344579424116::1784919272::0::1::::<>CharacterBody3D<><>0<>0<><>::
-bogota_airport.tscn::PackedScene::4429161203479252848::1785003162::0::1::::<><><>0<>0<><>::uid://frkq58mu2pgw::::res://Scripts/barrier_1.gd<>uid://b5tj0bpuxvh85::::res://Tracks/barrier_3.gd<>uid://b2kju75u5owy3::::res://Tracks/crates.gd<>uid://ctoruhqvvt26d::::res://lap_line.gd
+bogota_airport.tscn::PackedScene::4429161203479252848::1785048949::0::1::::<><><>0<>0<><>::uid://frkq58mu2pgw::::res://Scripts/barrier_1.gd<>uid://b5tj0bpuxvh85::::res://Tracks/barrier_3.gd<>uid://b2kju75u5owy3::::res://Tracks/crates.gd<>uid://ctoruhqvvt26d::::res://lap_line.gd
 chernobyl.tscn::PackedScene/PackedScene::2564326864016197945::1784996279::0::1::::<><><>0<>0<><>::uid://frkq58mu2pgw::::res://Scripts/barrier_1.gd<>uid://dthur0h1nvj6s::::res://Tracks/lap_line.gd
 crates.gd::GDScript/GDScript::4302747136314281460::1784919272::0::1::::<>CharacterBody3D<><>0<>0<><>::
 lap_line.gd::GDScript/GDScript::8508546747928964172::1784919272::0::1::::<>Area3D<><>0<>0<><>::
-::res://Urban Drive/::1784988610
 ::res://Urban drive main/::1785002090
 ::res://Urban Drive v0.1.app/::1784919511
 ::res://Urban Drive v0.1.app/Contents/::1784919514
 ::res://Urban Drive v0.1.app/Contents/_CodeSignature/::1784919514
 ::res://Urban Drive v0.1.app/Contents/Frameworks/::1784919511
-::res://Urban Drive v0.1.app/Contents/MacOS/::1784919516
+::res://Urban Drive v0.1.app/Contents/MacOS/::1785049990
 ::res://Urban Drive v0.1.app/Contents/Resources/::1784919514
 icon.icns::OtherFile/OtherFile::-1::1784919513::0::1::::<><><>0<>0<><>::
-::res://urban driver/::1785002105
-::res://Urban-drive-/::1785003153
-::res://Urban-Drive-main/::1785003127
-force.txt::TextFile::-1::1785003127::0::1::::<><><>0<>0<><>::
-::res://Urban-Drive-main/Urban Drive/::1785003126
-::res://Urban-Drive-main/Urban-Drive-main/::1785003127
-::res://UrbanDrive/::1785003366
