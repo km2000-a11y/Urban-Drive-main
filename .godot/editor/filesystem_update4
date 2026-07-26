@@ -61,3 +61,5 @@ res://Scenes/ford_cobra.tscn
 res://Scenes/zonda.tscn
 res://Scenes/cop_chase_hud.tscn
 res://Tracks/chernobyl.tscn
+res://Scripts/base_car.gd
+res://normal_race_manager.gd

@@ -267,59 +267,51 @@ func _sorted_cars() -> Array:
 	var total_wp := player_car.waypoints.size()
 	var cars := []
 
-	# ---------------------------------------------------------
-	# LAP INCREMENT FOR POSITION (wrap-around detection)
-	# ---------------------------------------------------------
-	# Only increment when crossing from last WP → WP 0
-	# Lap line handles FINISH, not position.
-	# WRAP DETECTION ONLY FOR POSITION, NOT LAPS
-	var player_wrapped :bool= (player_car.current_wp == 0 and last_wp[player_car] == total_wp - 1)
+	for car in [player_car] + ai_cars:
+		var wp :int= car.current_wp
+		var lap :int= car_laps[car]
 
-	var ai_wrapped := {}
-	for ai in ai_cars:
-		ai_wrapped[ai] = (ai.current_wp == 0 and last_wp[ai] == total_wp - 1)
+		# --- VALIDATION: Reject impossible jumps ---
+		var last :int= last_wp.get(car, wp)
+		var diff :int= wp - last
 
+		# If car jumped more than 3 waypoints instantly, ignore it
+		if abs(diff) > 3 and not (wp == 0 and last == total_wp - 1):
+			wp = last  # freeze progress for this frame
 
-	# ---------------------------------------------------------
-	# BUILD SORTABLE DATA
-	# ---------------------------------------------------------
-	cars.append({
-		"car": player_car,
-		"progress": car_laps[player_car] * total_wp + player_car.current_wp,
-		"dist": _distance_to_next_wp(player_car)
-	})
+		# --- VALIDATION: Reject backwards movement ---
+		if diff < -1 and not (wp == 0 and last == total_wp - 1):
+			wp = last
 
-	for ai in ai_cars:
+		# --- PROGRESS CALCULATION ---
+		var progress := lap * total_wp + wp
+
+		# --- DISTANCE TO NEXT WP ---
+		var dist := _distance_to_next_wp(car)
+
 		cars.append({
-			"car": ai,
-			"progress": car_laps[ai] * total_wp + ai.current_wp,
-			"dist": _distance_to_next_wp(ai)
+			"car": car,
+			"progress": progress,
+			"dist": dist
 		})
 
-	# ---------------------------------------------------------
-	# SORT (AAA racing logic)
-	# ---------------------------------------------------------
+	# --- SORT ---
 	cars.sort_custom(func(a, b):
 		if a["progress"] != b["progress"]:
 			return a["progress"] > b["progress"]
 		return a["dist"] < b["dist"]
 	)
 
-	# ---------------------------------------------------------
-	# EXTRACT RESULT
-	# ---------------------------------------------------------
-	var result: Array = []
+	# --- UPDATE LAST WP SNAPSHOT ---
+	for c in cars:
+		last_wp[c["car"]] = c["car"].current_wp
+
+	# --- RETURN ORDERED LIST ---
+	var result := []
 	for c in cars:
 		result.append(c["car"])
-
-	# ---------------------------------------------------------
-	# UPDATE LAST WAYPOINT SNAPSHOT
-	# ---------------------------------------------------------
-	last_wp[player_car] = player_car.current_wp
-	for ai in ai_cars:
-		last_wp[ai] = ai.current_wp
-
 	return result
+
 
 
 

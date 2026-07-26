@@ -201,6 +201,7 @@ func _physics_process(delta: float) -> void:
 
 
 
+
 func _drive(delta: float, accel: float, brake: float, steer: float) -> void:
 	var drift_input := false
 	var nitrous := false
@@ -425,6 +426,8 @@ func set_waypoints(root: Node3D) -> void:
 	waypoints = root.get_children()
 	waypoints.sort_custom(_ai_sort_wp)
 	current_wp = 0
+	current_wp = _find_closest_waypoint()
+
 	
 
 func _ai_sort_wp(a: Node, b: Node) -> bool:
@@ -471,9 +474,10 @@ func _update_ai_inputs(delta: float) -> void:
 	var dot := forward.dot(dir)
 
 	# waypoint behind the car
-	if dot < 0.0:
+	if dot < -0.4:
 		current_wp = (current_wp + 1) % waypoints.size()
 		return
+
 
 	# --- UNSTICK FROM WALLS ---
 	for i in range(get_slide_collision_count()):
