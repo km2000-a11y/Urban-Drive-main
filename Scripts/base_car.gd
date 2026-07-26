@@ -20,7 +20,7 @@ static var used_ai_names := []
 var ai_throttle: float = 0.0
 var ai_brake: float = 0.0
 var ai_steer: float = 0.0
-var ai_names := [
+static var ai_names := [
 	"David", "Takashi", "Ricco", "Chris", "Petar", "Nina",
 	"Steve", "Linus", "Chris", "Jesse", "Dimitri", "Mirko",
 	"Abdullah", "Will", "Jimmy M.", "Gandi", "Tiffany", "Hoff", "Jake", "Britney","Laura","Francesca","Looping","Alex","Math","Sam","Gordon"

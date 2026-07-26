@@ -25,6 +25,7 @@ var wrap_cooldown: Dictionary = {}
 func spawn_race(scene: Node) -> void:
 	race_active = false
 	lap_cooldown = false
+	CarController.used_ai_names = CarController.ai_names.duplicate()
 
 	# Remove old cars
 	if player_car and player_car.is_inside_tree():
@@ -262,32 +263,33 @@ func _calculate_position() -> int:
 
 	return 1
 
-
 func _sorted_cars() -> Array:
-	var total_wp := player_car.waypoints.size()
+	var total_wp: int = player_car.waypoints.size()
 	var cars := []
 
 	for car in [player_car] + ai_cars:
-		var wp :int= car.current_wp
-		var lap :int= car_laps[car]
+		var wp: int = car.current_wp
+		var lap: int = car_laps[car]   # REAL LAP (from lap trigger)
+
+		var last: int = last_wp.get(car, wp)
+		var diff: int = wp - last
 
 		# --- VALIDATION: Reject impossible jumps ---
-		var last :int= last_wp.get(car, wp)
-		var diff :int= wp - last
-
-		# If car jumped more than 3 waypoints instantly, ignore it
 		if abs(diff) > 3 and not (wp == 0 and last == total_wp - 1):
-			wp = last  # freeze progress for this frame
+			wp = last
 
 		# --- VALIDATION: Reject backwards movement ---
 		if diff < -1 and not (wp == 0 and last == total_wp - 1):
 			wp = last
 
-		# --- PROGRESS CALCULATION ---
-		var progress := lap * total_wp + wp
+		# --- VIRTUAL LAP INCREMENT (for position only) ---
+		var virtual_lap := lap
+		if wp == 0 and last == total_wp - 1:
+			virtual_lap += 1
 
-		# --- DISTANCE TO NEXT WP ---
-		var dist := _distance_to_next_wp(car)
+		# --- PROGRESS CALCULATION ---
+		var progress: int = virtual_lap * total_wp + wp
+		var dist: float = _distance_to_next_wp(car)
 
 		cars.append({
 			"car": car,
@@ -302,16 +304,15 @@ func _sorted_cars() -> Array:
 		return a["dist"] < b["dist"]
 	)
 
-	# --- UPDATE LAST WP SNAPSHOT ---
+	# --- UPDATE LAST WAYPOINT SNAPSHOT ---
 	for c in cars:
 		last_wp[c["car"]] = c["car"].current_wp
 
 	# --- RETURN ORDERED LIST ---
-	var result := []
+	var result: Array = []
 	for c in cars:
 		result.append(c["car"])
 	return result
-
 
 
 

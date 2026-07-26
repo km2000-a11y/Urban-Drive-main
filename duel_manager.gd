@@ -36,6 +36,11 @@ func _process(delta):
 func spawn_duel(main_scene: Node) -> void:
 	RaceResults.clear()
 	ai_car_path = _pick_unique_ai_car()
+	# Reset unique AI name pool for this race
+	# Reset unique AI name pool for this race
+	CarController.used_ai_names = CarController.ai_names.duplicate()
+
+
 
 	if player_car_path == "" or ai_car_path == "":
 		push_error("DuelManager: Car paths not set!")
