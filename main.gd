@@ -1,0 +1,404 @@
+extends Node
+
+var mode: String
+var win_screen_radar: Node
+var player_car: CarController
+
+@onready var finish_flash := $FinishFlash
+@onready var start_countdown := $Start
+@onready var leaderboard := $Leaderboard if has_node("Leaderboard") else null
+@onready var normal_hud:=$HUD
+@onready var elimination_hud:=$EliminationHud
+@onready var cop_chase_hud := $CopChaseHud
+@onready var cop_chase_ui := $CopChaseHud/Control
+@onready var radar_target_label := $HUD/Control/RadarTargetLabel
+
+
+
+
+func _ready():
+	mode = Modes.mode
+	Cars.load_color()
+	MusicManager.play_race_music()
+	$EliminationWinScreen.visible=false
+	# ---------------------------------------------------------
+# LOAD TRACK SCENE
+# ---------------------------------------------------------
+		# ---------------------------------------------------------
+	# LOAD TRACK SCENE (SCALABLE)
+	# ---------------------------------------------------------
+	var track_name := TrackName.track_name
+
+	if not TrackRegistry.tracks.has(track_name):
+		push_error("Track not registered: " + track_name)
+		return
+
+	var track_file :String = TrackRegistry.tracks[track_name]
+	var track_scene := load(track_file)
+
+	if track_scene:
+		var track_instance = track_scene.instantiate()
+		track_instance.name = track_name        # REQUIRED FIX
+		add_child(track_instance)
+
+		await get_tree().process_frame          # REQUIRED FIX
+		await get_tree().process_frame          # REQUIRED FIX
+
+		print("Loaded track:", track_file)
+	else:
+		push_error("Track file missing: " + track_file)
+
+
+
+	if mode == "Duel":
+		_setup_duel()
+	elif mode.to_lower() == "normal race":
+		_setup_normal_race()
+		
+	elif mode == "Elimination":
+		_setup_elimination()
+	elif mode == "Cop Chase":
+		_setup_cop_chase()
+	else:
+		_spawn_player_free_drive()
+	print("MAIN MODE:", Modes.mode)
+
+
+
+	# Radar race win screen
+	if mode == "Radar Race":
+		radar_target_label.text = "Target: %d km/h" % Cars.get_radar_target_speed()
+		var ws_scene = load("res://Scenes/win_screen_radar.tscn")
+		win_screen_radar = ws_scene.instantiate()
+		add_child(win_screen_radar)
+		win_screen_radar.visible = false
+		radar_target_label.visible=true
+	else:
+		radar_target_label.visible=false
+
+	finish_flash.visible = false
+	if leaderboard:
+		leaderboard.visible = false
+
+	start_countdown.start_countdown()
+
+func _process(delta):
+	if mode.to_lower() == "normal race":
+		NormalRaceManager.update_race()
+	elif mode == "Elimination":
+		EliminationManager.update_race()
+	elif mode == "Cop Chase":
+		CopChaseManager.update_chase(delta)
+
+
+func _input(event):
+	if event.is_action_pressed("pause_menu"):
+		if has_node("PauseMenu"):
+			$PauseMenu.toggle_pause()
+
+# ---------------------------------------------------------
+# FREE DRIVE
+# ---------------------------------------------------------
+func _spawn_player_free_drive():
+	var path := Cars.selected_car
+	if path == "":
+		push_error("No player car selected!")
+		return
+
+	var scene := load(path)
+	if scene == null:
+		push_error("Player car scene missing: " + path)
+		return
+
+	player_car = scene.instantiate()
+	add_child(player_car)
+
+	if has_node("Speedometer"):
+		get_node("Speedometer").target_car = player_car
+
+	_apply_color_to_car(player_car, Cars.selected_color)
+
+	var root := get_node(TrackName.track_name)
+	player_car.global_transform = root.get_node("SpawnPoint").global_transform
+	# --- Connect RadarTrap inside BogotaAirport (or any track) ---
+	if root.has_node("RadarTrap"):
+		var radar_trap = root.get_node("RadarTrap")
+
+		# Connect only if not already connected
+		if not radar_trap.is_connected("body_entered", Callable(self, "_on_radar_trap_body_entered")):
+			radar_trap.body_entered.connect(_on_radar_trap_body_entered)
+
+		print("RadarTrap connected from:", TrackName.track_name)
+	else:
+		print("No RadarTrap found in:", TrackName.track_name)
+
+
+
+
+	_force_player_camera()
+
+# ---------------------------------------------------------
+# DUEL
+# ---------------------------------------------------------
+func _setup_duel():
+	var root := get_node(TrackName.track_name)
+
+	DuelManager.player_spawn = root.get_node("SpawnPoint").global_position
+	DuelManager.ai_spawn = root.get_node("AISpawnPoint").global_position
+
+	DuelManager.player_car_path = Cars.selected_car
+	DuelManager.ai_car_path = Cars.selected_ai_car
+
+	if DuelManager.ai_car_path == "":
+		DuelManager.ai_car_path = Cars.selected_car
+
+	DuelManager.spawn_duel(self)
+	DuelManager.main_scene = self
+
+	player_car = DuelManager.player_car
+	_force_player_camera()
+
+# ---------------------------------------------------------
+# NORMAL RACE
+# ---------------------------------------------------------
+func _setup_normal_race():
+	if player_car:
+		player_car.queue_free()
+	player_car = null
+
+	var root := get_node(TrackName.track_name)
+
+	NormalRaceManager.player_spawn = root.get_node("SpawnPoint").global_position
+	NormalRaceManager.player_car_path = Cars.selected_car
+
+	NormalRaceManager.ai_spawns = []
+	for i in range(1, 8):
+		NormalRaceManager.ai_spawns.append(
+			root.get_node("AISpawnPoint" + str(i)).global_position
+		)
+
+	NormalRaceManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
+
+	NormalRaceManager.spawn_race(self)
+
+	player_car = NormalRaceManager.player_car
+	_force_player_camera()
+
+# ---------------------------------------------------------
+# ELIMINATION
+# ---------------------------------------------------------
+func _setup_elimination():
+	if player_car:
+		player_car.queue_free()
+	player_car = null
+
+	# Hide normal HUD
+	normal_hud.visible=false
+
+	var root := get_node(TrackName.track_name)
+
+	EliminationManager.player_spawn = root.get_node("SpawnPoint").global_position
+
+	EliminationManager.ai_spawns = []
+	for i in range(1, 8):
+		EliminationManager.ai_spawns.append(
+			root.get_node("AISpawnPoint" + str(i)).global_position
+		)
+
+	EliminationManager.player_car_path = Cars.selected_car
+	EliminationManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
+
+	# Load elimination HUD
+	var hud_scene := load("res://Scenes/elimination_hud.tscn")
+	var hud :CanvasLayer= hud_scene.instantiate()
+	hud.visible = false
+	add_child(hud)
+
+	EliminationManager.hud = hud
+	EliminationManager.main_scene = self
+
+	# Connect elimination signals
+	EliminationManager.connect("player_eliminated", _on_player_eliminated)
+	EliminationManager.connect("elimination_win", _on_elimination_win)
+
+	# Spawn race
+	EliminationManager.spawn_race(self)
+
+	player_car = EliminationManager.player_car
+	_force_player_camera()
+
+	# Show HUD after countdown
+	start_countdown.connect("countdown_finished", _on_elimination_countdown_finished)
+
+
+func _on_elimination_countdown_finished():
+	if EliminationManager.hud:
+		EliminationManager.hud.visible = true
+
+# ---------------------------------------------------------
+# ELIMINATION SIGNAL HANDLERS
+# ---------------------------------------------------------
+func _on_player_eliminated():
+	show_finish(false)
+
+func _on_elimination_win(car):
+	show_finish(true)
+
+func _on_chase_failed():
+	show_finish(false)
+
+func _on_chase_completed():
+	show_finish(true)
+
+func _on_chase_timer_updated(time_left):
+	if time_left < 10.0:
+		cop_chase_ui.modulate = Color(1, 0.3, 0.3)
+	else:
+		cop_chase_ui.modulate = Color(1, 1, 1)
+
+
+func _setup_cop_chase():
+	if player_car:
+		player_car.queue_free()
+	player_car = null
+
+	# Hide other HUDs
+	normal_hud.visible = false
+	elimination_hud.visible = false
+
+	# Show Cop Chase HUD only after countdown
+	cop_chase_hud.visible = false
+
+	var root := get_node(TrackName.track_name)
+
+	# Assign spawn points to manager
+	CopChaseManager.player_car_path = Cars.selected_car
+	CopChaseManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
+
+	CopChaseManager.main_scene = self
+	CopChaseManager.hud = cop_chase_hud
+
+	# Connect signals
+	CopChaseManager.connect("chase_failed", _on_chase_failed)
+	CopChaseManager.connect("chase_completed", _on_chase_completed)
+	CopChaseManager.connect("time_left_updated", _on_chase_timer_updated)
+
+	# Spawn chase
+	CopChaseManager.spawn_chase(self)
+
+	player_car = CopChaseManager.player_car
+	_force_player_camera()
+
+	# Show HUD after countdown
+	start_countdown.connect("countdown_finished", _on_cop_chase_countdown_finished)
+
+func _on_cop_chase_countdown_finished():
+	if cop_chase_hud:
+		cop_chase_hud.visible = true
+
+
+# ---------------------------------------------------------
+# CAMERA
+# ---------------------------------------------------------
+func _force_player_camera():
+	if not player_car:
+		return
+
+	for node in get_tree().get_nodes_in_group("cars"):
+		if node is CarController and node != player_car:
+			if node.has_node("Camera3D"):
+				node.get_node("Camera3D").current = false
+
+	if player_car.has_node("Camera3D"):
+		player_car.get_node("Camera3D").current = true
+
+# ---------------------------------------------------------
+# COLOR
+# ---------------------------------------------------------
+func _apply_color_to_car(car: CarController, color: Color):
+	if car.has_node("ModelRoot/Body"):
+		var body = car.get_node("ModelRoot/Body")
+		for child in body.get_children():
+			if child is MeshInstance3D:
+				var mat = child.get_active_material(0)
+				if mat:
+					mat.albedo_color = color
+
+# ---------------------------------------------------------
+# RADAR RACE
+# ---------------------------------------------------------
+# ---------------------------------------------------------
+func _on_radar_trap_body_entered(body):
+	if mode != "Radar Race":
+		return
+
+	var car = body
+	while car and not (car is CarController):
+		car = car.get_parent()
+
+	if car is CarController:
+		var speed := int(round(car.velocity.length() * 3.6))
+		var target_speed :int = Cars.get_radar_target_speed()
+		var success := speed >= target_speed
+
+		player_car.controls_enabled = false
+		win_screen_radar.show_win(success)
+
+		# Stop music ONLY after result
+		MusicManager.stop_music()
+
+	finish_flash.flash()
+	_screech_to_halt()
+
+
+
+# ---------------------------------------------------------
+# GLOBAL AI DISABLE
+# ---------------------------------------------------------
+func disable_all_ai():
+	for node in get_tree().get_nodes_in_group("cars"):
+		if node is CarController:
+			node.is_ai = false
+
+func _screech_to_halt():
+	for node in get_tree().get_nodes_in_group("cars"):
+		if node is CarController:
+			node.controls_enabled = false
+			node.hard_frozen = true
+			node.velocity = Vector3.ZERO
+
+# ---------------------------------------------------------
+# FINISH SCREEN
+# ---------------------------------------------------------
+func show_finish(player_won: bool):
+	finish_flash.visible = true
+	finish_flash.flash()
+
+	_screech_to_halt()
+	MusicManager.stop_music()
+
+	if leaderboard:
+		leaderboard.visible = true
+		leaderboard.show_results(player_won)
+
+	if player_won:
+		print("YOU WIN!")
+	else:
+		print("YOU LOSE!")
+
+func _face_away_from_lap_line(car: CarController, root: Node):
+	if not root.has_node("LapLine"):
+		print("No LapLine found in track:", TrackName.track_name)
+		return
+
+	var lap_line := root.get_node("LapLine") as Node3D
+
+	# LapLine forward direction (Z+)
+	var forward := lap_line.global_transform.basis.z.normalized()
+
+	# We want the opposite direction
+	var away := -forward
+
+	# Make the car look AWAY from the lap line
+	var target_pos := car.global_position + away
+	car.look_at(target_pos, Vector3.UP)
