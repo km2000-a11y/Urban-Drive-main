@@ -3476,7 +3476,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5402, 3.35, -0.628448)
 shape = SubResource("BoxShape3D_4r14j")
 
 [node name="CharacterBody3D8" type="CharacterBody3D" parent="."]
-transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 314.913, 0, 893.002)
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 314.913, -1.21555, 893.002)
 script = ExtResource("1_sawg2")
 
 [node name="Area3D" type="Area3D" parent="CharacterBody3D8"]
@@ -3504,7 +3504,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5402, 3.35, -0.628448)
 shape = SubResource("BoxShape3D_4r14j")
 
 [node name="CharacterBody3D9" type="CharacterBody3D" parent="."]
-transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 319.818, 0, 895.704)
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 319.818, -1.5719, 895.704)
 script = ExtResource("1_sawg2")
 
 [node name="Area3D" type="Area3D" parent="CharacterBody3D9"]
@@ -3570,7 +3570,7 @@ material_override = SubResource("ORMMaterial3D_iqwul")
 mesh = SubResource("TextMesh_6ixof")
 
 [node name="CharacterBody3D11" type="CharacterBody3D" parent="."]
-transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 317.57, 0.333838, 899.217)
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 317.57, -0.537976, 899.217)
 script = ExtResource("1_sawg2")
 
 [node name="Area3D" type="Area3D" parent="CharacterBody3D11"]

@@ -145,6 +145,7 @@ func _setup_duel():
 
 	DuelManager.player_spawn = root.get_node("SpawnPoint").global_position
 	DuelManager.ai_spawn = root.get_node("AISpawnPoint").global_position
+	
 
 	DuelManager.player_car_path = Cars.selected_car
 	DuelManager.ai_car_path = Cars.selected_ai_car
@@ -157,8 +158,11 @@ func _setup_duel():
 
 	player_car = DuelManager.player_car
 	_force_player_camera()
+	
+	_fix_wrong_way(player_car, root)
+	_fix_wrong_way(DuelManager.ai_car, root)
 
-# ---------------------------------------------------------
+	# ---------------------------------------------------------
 # NORMAL RACE
 # ---------------------------------------------------------
 func _setup_normal_race():
@@ -183,6 +187,7 @@ func _setup_normal_race():
 
 	player_car = NormalRaceManager.player_car
 	_force_player_camera()
+	
 
 # ---------------------------------------------------------
 # ELIMINATION
@@ -351,6 +356,20 @@ func _on_radar_trap_body_entered(body):
 	_screech_to_halt()
 
 
+func _fix_wrong_way(car: CarController, root: Node):
+	if not root.has_node("LapLine"):
+		return
+
+	var lap_line := root.get_node("LapLine") as Node3D
+
+	var forward := -car.global_transform.basis.z.normalized()
+	var to_wp :Vector3= (root.get_node("Waypoints/WP1").global_position - car.global_position).normalized()
+
+	var dot := forward.dot(to_wp)
+
+	if dot < 0.0:
+		car.rotate_y(deg_to_rad(180))
+		print("AI was facing wrong way → rotated 180°")
 
 # ---------------------------------------------------------
 # GLOBAL AI DISABLE
