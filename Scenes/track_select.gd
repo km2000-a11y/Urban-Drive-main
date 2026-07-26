@@ -16,3 +16,9 @@ func _on_back_btn_pressed() -> void:
 #Hello again bye again 
 
 #Goodbye guys 
+
+
+func _on_chernobyl_pressed() -> void:
+	TrackName.track_name="Chernobyl"
+	
+	get_tree().change_scene_to_file("res://main.tscn")
