@@ -57,7 +57,7 @@ var class_lists := {
 		"Bartoli Cruiser",
 		"Berkshire V12-S",
 		"Berkshire Tempest",
-		"Schroder Atrix Sport",
+		"Schroder Classique Sport",
 		"Berkshire Blunt"
 	],
 
@@ -78,7 +78,8 @@ var class_lists := {
 	"torque_monsters": [
 		"Eisenach Suppressor",
 		"Eisenach Black Panda",
-		"Schroder Fastback"
+		"Schroder Fastback",
+		"Kronstadt Crest"
 	],
 	"sports_crossovers": [
 	"Straeda Pitbull",
@@ -111,7 +112,8 @@ var car_scene_paths := {
 	"Kuro Zephyr V6":"res://Scenes/lexus_is350.tscn",
 	"Eisenach Bengal":"res://Scenes/bmw_135.tscn",
 	"Strandberg Turbo":"res://Scenes/volvo_s60r.tscn",
-	"Eisenach Prince":"res://Scenes/bmw_m5_e39.tscn",
+	"Eisenach Prince":"res://Scenes/bmw_m5_e39.tscn",	
+	"Schroder Classique Sport":"res://Scenes/audi_s4.tscn",
 
 	"Brutus Viper":"res://Scenes/gt500.tscn",
 	"Mir Cars Hutch":"res://Scenes/chevelle_ss.tscn",
@@ -186,6 +188,12 @@ var car_colors := {
 	Color8(60,60,60),     # Dark Grey
 	Color8(0,70,120)      # Deep Blue
 ],
+"Kronstadt Crest":[
+	Color8(180,180,180),   # Iridium Silver
+	Color8(255,255,255),   # Calcite White
+	Color8(60,60,60),      # Tenorite Grey
+	Color8(0,70,120)       # Cavansite Blue
+],
 	"Mir Cars Crawler":[
 		Color8(200,40,40),   # Deep Red (default)
 		Color8(255,255,255), # White
@@ -252,7 +260,13 @@ var car_colors := {
 	"Berkshire Tempest":[Color8(192,192,192), Color8(255,255,255), Color8(0,80,120), Color8(160,160,160)],
 	"Berkshire V12-S":[Color8(46,54,64), Color8(255,255,255), Color8(80,120,160), Color8(160,160,160)],
 	"Bartoli Cruiser":[Color8(0,157,192), Color8(255,255,255), Color8(180,180,180), Color8(0,90,160)],
-	"Schroder Atrix Sport":[Color8(0,192,192), Color8(255,255,255), Color8(60,60,60), Color8(0,120,160)],
+	   
+"Schroder Classique Sport":[
+	Color8(0,192,192),   # ⭐ Cyan — new signature color
+	Color8(255,255,255), # White
+	Color8(180,180,180), # Silver
+	Color8(200,40,40)    # Red
+],
 	"Eisenach Bengal":[Color8(217,90,43), Color8(255,255,255), Color8(0,90,180), Color8(180,180,180)],
 
 	"Mir Cars Precision":[Color8(255,80,0), Color8(255,255,255), Color8(60,60,60), Color8(0,120,160)],

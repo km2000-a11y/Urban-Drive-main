@@ -99,6 +99,12 @@ var car_colors := {
 	Color8(60,60,60),    # Graphite
 	Color8(0,40,120)     # Deep Blue
 ],
+"Kronstadt Crest":[
+	Color8(180,180,180),   # Iridium Silver
+	Color8(255,255,255),   # Calcite White
+	Color8(60,60,60),      # Tenorite Grey
+	Color8(0,70,120)       # Cavansite Blue
+],
 
 
 
@@ -139,12 +145,13 @@ var car_colors := {
 ],
 
    
-	"Schroder Atrix Sport":[
-	Color8(0,192,192),   # ⭐ Default — Urban Drive Cyan
+"Schroder Classique Sport":[
+	Color8(0,192,192),   # ⭐ Cyan — new signature color
 	Color8(255,255,255), # White
-	Color8(60,60,60),    # Dark Grey
-	Color8(0,120,160)    # Deep Blue
+	Color8(180,180,180), # Silver
+	Color8(200,40,40)    # Red
 ],
+
 
 "Schroder Colosso":[
 	Color8(180,180,180),   # Silver (default Audi SUV vibe)
@@ -187,8 +194,8 @@ var car_colors := {
 
 var suv_list = [
 	"Colossus Titan Max",
-	"Schroder Colosso",
 	"Colossus Behemoth",
+	"Schroder Colosso",
 	"Mir Cars Nightwolf",
 ]
 
@@ -225,7 +232,7 @@ var sedans_list = [
 
 
 var sport_list = [
-	"Schroder Atrix Sport",
+	"Schroder Classique Sport",
 	"Berkshire V12-S",
 	"Bartoli Cruiser",
 	"Berkshire Tempest",
@@ -254,7 +261,8 @@ var sports_crossovers_list = [
 var torque_monsters_list = [
 	"Eisenach Suppressor",
 	"Eisenach Black Panda",
-	"Schroder Fastback"
+	"Schroder Fastback",
+	"Kronstadt Crest"
 ]
 var track_cars_list = [
 	"Mir Cars Athletic C70",
@@ -281,13 +289,13 @@ var suv = {
 	],
 	"Mir Cars Nightwolf":[
 		"", "Country: UAE", "HP: 220", "WEIGHT: 2668 KG",
-		"0-100 KM/H: 8.9s", "TOP SPEED: 203 KM/H",
+		"0-100 KM/H: 12.0s", "TOP SPEED: 198 KM/H",
 		"ENGINE: V8 6.6L", "ASPIRATION: NA", "TORQUE: 450 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
 	"Schroder Colosso":[
 		"", "Country: Germany", "HP: 237", "WEIGHT: 2340 KG",
-		"0-100 KM/H: 7.8s", "TOP SPEED: 217 KM/H",
+		"0-100 KM/H: 8.5s", "TOP SPEED: 211 KM/H",
 		"ENGINE: V6 3.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 500 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	]
@@ -355,7 +363,7 @@ var urban_racers = {
 	],
 	"Kestrel Speedster":[
 		"", "Country: UK", "HP: 286", "WEIGHT: 1145 KG",
-		"0-100 KM/H: 4.7s", "TOP SPEED: 243 KM/H",
+		"0-100 KM/H: 4.8s", "TOP SPEED: 247 KM/H",
 		"ENGINE: V8 4.4L", "ASPIRATION: NA", "TORQUE: 410 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
@@ -412,12 +420,12 @@ var sedans = {
 }
 
 var sport = {
-	"Schroder Atrix Sport":[
-		"", "Country: Germany", "HP: 340", "WEIGHT: 1470 KG",
-		"0-100 KM/H: 4.6s", "TOP SPEED: 266 KM/H",
-		"ENGINE: L5 2.5L", "ASPIRATION: Turbo", "TORQUE: 450 NM",
-		"TRANSMISSION: FOUR-WHEEL DRIVE"
-	],
+	"Schroder Classique Sport":[
+	"", "Country: Germany", "HP: 340", "WEIGHT: 1855 KG",
+	"0-100 KM/H: 4.8s", "TOP SPEED: 266 KM/H",
+	"ENGINE: V8 4.2L", "ASPIRATION: NA", "TORQUE: 420 NM",
+	"TRANSMISSION: FOUR-WHEEL DRIVE"
+],
 	"Berkshire V12-S":[
 		"", "Country: UK", "HP: 450", "WEIGHT: 1740 KG",
 		"0-100 KM/H: 5.1s", "TOP SPEED: 293 KM/H",
@@ -536,11 +544,17 @@ var torque_monsters = {
 	],
 
 	"Schroder Fastback":[
-		"", "Country: Germany", "HP: 313", "WEIGHT: 1695 KG",
-		"0-100 KM/H: 5.2s", "TOP SPEED: 265 KM/H",
-		"ENGINE: V6 3.0L BITDI", "ASPIRATION: BiTurbo Diesel", "TORQUE: 650 NM",
+		"", "Country: Germany", "HP: 242", "WEIGHT: 1695 KG",
+		"0-100 KM/H: 5.4s", "TOP SPEED: 245 KM/H",
+		"ENGINE: V6 3.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 540 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
-	]
+	],
+	"Kronstadt Crest":[
+	"", "Country: Germany", "HP: 204", "WEIGHT: 1540 KG",
+	"0-100 KM/H: 5.9s", "TOP SPEED: 252 KM/H",
+	"ENGINE: L4 2.1L DIESEL", "ASPIRATION: Turbo", "TORQUE: 500 NM",
+	"TRANSMISSION: REAR-WHEEL DRIVE"
+]
 }
 
 var track_cars = {
@@ -573,6 +587,8 @@ var track_cars = {
 func _ready():
 	MusicManager.play_menu_music()
 	$Control/ColorSelector.visible = false
+	$Control/CarStats/TopSpeedLabel.visible = false
+
 
 var car_scene_paths = {
 	"Colossus Titan Max":"res://Scenes/hummer_h1.tscn",
@@ -610,8 +626,8 @@ var car_scene_paths = {
 	"Eisenach Monarch":"res://Scenes/bmw_745.tscn",
 	"Mir Cars Transporter":"res://Scenes/audi_a8.tscn",
 	"Kuro Vault":"res://Scenes/lexus_ls430.tscn",
-
-	"Schroder Atrix Sport":"res://Scenes/audi_tt_rs.tscn",
+	"Kronstadt Crest":"res://Scenes/slk.tscn",
+	"Schroder Classique Sport":"res://Scenes/audi_s4.tscn",
 	"Bartoli Cruiser":"res://Scenes/granturismo.tscn",
 	"Berkshire V12-S":"res://Scenes/aston_db9.tscn",
 	"Berkshire Tempest":"res://Scenes/vanquish.tscn",

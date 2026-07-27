@@ -561,29 +561,28 @@ func _update_ai_waypoint():
 		return
 
 	var wp := waypoints[current_wp] as Node3D
-	var target := wp.global_position
-
-	var to_wp := target - global_position
+	var to_wp := wp.global_position - global_position
 	to_wp.y = 0.0
 
 	var dist := to_wp.length()
 
-	# skip waypoint if too close
-	if dist < 6.0:
+	# Skip waypoint if too close
+	if dist < 8.0:
 		current_wp = (current_wp + 1) % waypoints.size()
 		return
 
 	var dir := to_wp.normalized()
-
 	var forward := -transform.basis.z
 	forward.y = 0.0
 	forward = forward.normalized()
 
-	# waypoint behind the car
 	var dot := forward.dot(dir)
-	if dot < 0.0:
+
+	# If waypoint is behind the car, skip it
+	if dot < -0.2:
 		current_wp = (current_wp + 1) % waypoints.size()
 		return
+
 
 func distance_to_finish_line(lapline: Node3D) -> float:
 	return global_position.distance_to(lapline.global_position)

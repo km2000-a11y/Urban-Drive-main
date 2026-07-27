@@ -7,63 +7,63 @@ var player_car: CarController
 @onready var finish_flash := $FinishFlash
 @onready var start_countdown := $Start
 @onready var leaderboard := $Leaderboard if has_node("Leaderboard") else null
-@onready var normal_hud:=$HUD
-@onready var elimination_hud:=$EliminationHud
+@onready var normal_hud := $HUD
+@onready var elimination_hud := $EliminationHud
 @onready var cop_chase_hud := $CopChaseHud
 @onready var cop_chase_ui := $CopChaseHud/Control
 @onready var radar_target_label := $HUD/Control/RadarTargetLabel
 
-
-
+func safe_get(node: Node, path: String) -> Node:
+	if node.has_node(path):
+		return node.get_node(path)
+	return null
 
 func _ready():
 	mode = Modes.mode
 	Cars.load_color()
 	MusicManager.play_race_music()
-	$EliminationWinScreen.visible=false
-	# ---------------------------------------------------------
-# LOAD TRACK SCENE
-# ---------------------------------------------------------
-		# ---------------------------------------------------------
+	$EliminationWinScreen.visible = false
+
+	# -------------------------
 	# LOAD TRACK SCENE (SCALABLE)
-	# ---------------------------------------------------------
+	# -------------------------
 	var track_name := TrackName.track_name
 
 	if not TrackRegistry.tracks.has(track_name):
 		push_error("Track not registered: " + track_name)
 		return
 
-	var track_file :String = TrackRegistry.tracks[track_name]
+	var track_file: String = TrackRegistry.tracks[track_name]
 	var track_scene := load(track_file)
 
 	if track_scene:
 		var track_instance = track_scene.instantiate()
-		track_instance.name = track_name        # REQUIRED FIX
+		track_instance.name = track_name
 		add_child(track_instance)
 
-		await get_tree().process_frame          # REQUIRED FIX
-		await get_tree().process_frame          # REQUIRED FIX
+		await get_tree().process_frame
+		await get_tree().process_frame
 
 		print("Loaded track:", track_file)
 	else:
 		push_error("Track file missing: " + track_file)
+		return
 
-
-
+	# -------------------------
+	# MODE SETUP
+	# -------------------------
 	if mode == "Duel":
 		_setup_duel()
 	elif mode.to_lower() == "normal race":
 		_setup_normal_race()
-		
 	elif mode == "Elimination":
 		_setup_elimination()
 	elif mode == "Cop Chase":
 		_setup_cop_chase()
 	else:
 		_spawn_player_free_drive()
+
 	print("MAIN MODE:", Modes.mode)
-
-
 
 	# Radar race win screen
 	if mode == "Radar Race":
@@ -72,9 +72,9 @@ func _ready():
 		win_screen_radar = ws_scene.instantiate()
 		add_child(win_screen_radar)
 		win_screen_radar.visible = false
-		radar_target_label.visible=true
+		radar_target_label.visible = true
 	else:
-		radar_target_label.visible=false
+		radar_target_label.visible = false
 
 	finish_flash.visible = false
 	if leaderboard:
@@ -89,7 +89,6 @@ func _process(delta):
 		EliminationManager.update_race()
 	elif mode == "Cop Chase":
 		CopChaseManager.update_chase(delta)
-
 
 func _input(event):
 	if event.is_action_pressed("pause_menu"):
@@ -119,21 +118,21 @@ func _spawn_player_free_drive():
 	_apply_color_to_car(player_car, Cars.selected_color)
 
 	var root := get_node(TrackName.track_name)
-	player_car.global_transform = root.get_node("SpawnPoint").global_transform
-	# --- Connect RadarTrap inside BogotaAirport (or any track) ---
-	if root.has_node("RadarTrap"):
-		var radar_trap = root.get_node("RadarTrap")
 
-		# Connect only if not already connected
+	var spawn := safe_get(root, "SpawnPoint")
+	if spawn:
+		player_car.global_transform = spawn.global_transform
+	else:
+		print("WARNING: Track has no SpawnPoint, using origin")
+		player_car.global_transform.origin = Vector3.ZERO
+
+	var radar_trap := safe_get(root, "RadarTrap")
+	if radar_trap:
 		if not radar_trap.is_connected("body_entered", Callable(self, "_on_radar_trap_body_entered")):
 			radar_trap.body_entered.connect(_on_radar_trap_body_entered)
-
 		print("RadarTrap connected from:", TrackName.track_name)
 	else:
 		print("No RadarTrap found in:", TrackName.track_name)
-
-
-
 
 	_force_player_camera()
 
@@ -143,9 +142,11 @@ func _spawn_player_free_drive():
 func _setup_duel():
 	var root := get_node(TrackName.track_name)
 
-	DuelManager.player_spawn = root.get_node("SpawnPoint").global_position
-	DuelManager.ai_spawn = root.get_node("AISpawnPoint").global_position
-	
+	var psp := safe_get(root, "SpawnPoint")
+	var asp := safe_get(root, "AISpawnPoint")
+
+	DuelManager.player_spawn = psp.global_position if psp else Vector3.ZERO
+	DuelManager.ai_spawn = asp.global_position if asp else DuelManager.player_spawn
 
 	DuelManager.player_car_path = Cars.selected_car
 	DuelManager.ai_car_path = Cars.selected_ai_car
@@ -158,11 +159,11 @@ func _setup_duel():
 
 	player_car = DuelManager.player_car
 	_force_player_camera()
-	
+
 	_fix_wrong_way(player_car, root)
 	_fix_wrong_way(DuelManager.ai_car, root)
 
-	# ---------------------------------------------------------
+# ---------------------------------------------------------
 # NORMAL RACE
 # ---------------------------------------------------------
 func _setup_normal_race():
@@ -172,14 +173,17 @@ func _setup_normal_race():
 
 	var root := get_node(TrackName.track_name)
 
-	NormalRaceManager.player_spawn = root.get_node("SpawnPoint").global_position
+	var spawn := safe_get(root, "SpawnPoint")
+	NormalRaceManager.player_spawn = spawn.global_position if spawn else Vector3.ZERO
 	NormalRaceManager.player_car_path = Cars.selected_car
 
 	NormalRaceManager.ai_spawns = []
 	for i in range(1, 8):
-		NormalRaceManager.ai_spawns.append(
-			root.get_node("AISpawnPoint" + str(i)).global_position
-		)
+		var ai_sp := safe_get(root, "AISpawnPoint" + str(i))
+		if ai_sp:
+			NormalRaceManager.ai_spawns.append(ai_sp.global_position)
+		else:
+			NormalRaceManager.ai_spawns.append(NormalRaceManager.player_spawn)
 
 	NormalRaceManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
 
@@ -187,7 +191,6 @@ func _setup_normal_race():
 
 	player_car = NormalRaceManager.player_car
 	_force_player_camera()
-	
 
 # ---------------------------------------------------------
 # ELIMINATION
@@ -197,57 +200,83 @@ func _setup_elimination():
 		player_car.queue_free()
 	player_car = null
 
-	# Hide normal HUD
-	normal_hud.visible=false
+	normal_hud.visible = false
 
 	var root := get_node(TrackName.track_name)
 
-	EliminationManager.player_spawn = root.get_node("SpawnPoint").global_position
+	var spawn := safe_get(root, "SpawnPoint")
+	EliminationManager.player_spawn = spawn.global_position if spawn else Vector3.ZERO
 
 	EliminationManager.ai_spawns = []
 	for i in range(1, 8):
-		EliminationManager.ai_spawns.append(
-			root.get_node("AISpawnPoint" + str(i)).global_position
-		)
+		var ai_sp := safe_get(root, "AISpawnPoint" + str(i))
+		if ai_sp:
+			EliminationManager.ai_spawns.append(ai_sp.global_position)
+		else:
+			EliminationManager.ai_spawns.append(EliminationManager.player_spawn)
 
 	EliminationManager.player_car_path = Cars.selected_car
 	EliminationManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
 
-	# Load elimination HUD
 	var hud_scene := load("res://Scenes/elimination_hud.tscn")
-	var hud :CanvasLayer= hud_scene.instantiate()
+	var hud: CanvasLayer = hud_scene.instantiate()
 	hud.visible = false
 	add_child(hud)
 
 	EliminationManager.hud = hud
 	EliminationManager.main_scene = self
 
-	# Connect elimination signals
 	EliminationManager.connect("player_eliminated", _on_player_eliminated)
 	EliminationManager.connect("elimination_win", _on_elimination_win)
 
-	# Spawn race
 	EliminationManager.spawn_race(self)
 
 	player_car = EliminationManager.player_car
 	_force_player_camera()
 
-	# Show HUD after countdown
 	start_countdown.connect("countdown_finished", _on_elimination_countdown_finished)
-
 
 func _on_elimination_countdown_finished():
 	if EliminationManager.hud:
 		EliminationManager.hud.visible = true
 
-# ---------------------------------------------------------
-# ELIMINATION SIGNAL HANDLERS
-# ---------------------------------------------------------
 func _on_player_eliminated():
 	show_finish(false)
 
 func _on_elimination_win(car):
 	show_finish(true)
+
+# ---------------------------------------------------------
+# COP CHASE
+# ---------------------------------------------------------
+func _setup_cop_chase():
+	if player_car:
+		player_car.queue_free()
+	player_car = null
+
+	normal_hud.visible = false
+	elimination_hud.visible = false
+
+	cop_chase_hud.visible = false
+
+	var root := get_node(TrackName.track_name)
+
+	CopChaseManager.player_car_path = Cars.selected_car
+	CopChaseManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
+
+	CopChaseManager.main_scene = self
+	CopChaseManager.hud = cop_chase_hud
+
+	CopChaseManager.connect("chase_failed", _on_chase_failed)
+	CopChaseManager.connect("chase_completed", _on_chase_completed)
+	CopChaseManager.connect("time_left_updated", _on_chase_timer_updated)
+
+	CopChaseManager.spawn_chase(self)
+
+	player_car = CopChaseManager.player_car
+	_force_player_camera()
+
+	start_countdown.connect("countdown_finished", _on_cop_chase_countdown_finished)
 
 func _on_chase_failed():
 	show_finish(false)
@@ -261,46 +290,9 @@ func _on_chase_timer_updated(time_left):
 	else:
 		cop_chase_ui.modulate = Color(1, 1, 1)
 
-
-func _setup_cop_chase():
-	if player_car:
-		player_car.queue_free()
-	player_car = null
-
-	# Hide other HUDs
-	normal_hud.visible = false
-	elimination_hud.visible = false
-
-	# Show Cop Chase HUD only after countdown
-	cop_chase_hud.visible = false
-
-	var root := get_node(TrackName.track_name)
-
-	# Assign spawn points to manager
-	CopChaseManager.player_car_path = Cars.selected_car
-	CopChaseManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
-
-	CopChaseManager.main_scene = self
-	CopChaseManager.hud = cop_chase_hud
-
-	# Connect signals
-	CopChaseManager.connect("chase_failed", _on_chase_failed)
-	CopChaseManager.connect("chase_completed", _on_chase_completed)
-	CopChaseManager.connect("time_left_updated", _on_chase_timer_updated)
-
-	# Spawn chase
-	CopChaseManager.spawn_chase(self)
-
-	player_car = CopChaseManager.player_car
-	_force_player_camera()
-
-	# Show HUD after countdown
-	start_countdown.connect("countdown_finished", _on_cop_chase_countdown_finished)
-
 func _on_cop_chase_countdown_finished():
 	if cop_chase_hud:
 		cop_chase_hud.visible = true
-
 
 # ---------------------------------------------------------
 # CAMERA
@@ -332,7 +324,6 @@ func _apply_color_to_car(car: CarController, color: Color):
 # ---------------------------------------------------------
 # RADAR RACE
 # ---------------------------------------------------------
-# ---------------------------------------------------------
 func _on_radar_trap_body_entered(body):
 	if mode != "Radar Race":
 		return
@@ -343,33 +334,41 @@ func _on_radar_trap_body_entered(body):
 
 	if car is CarController:
 		var speed := int(round(car.velocity.length() * 3.6))
-		var target_speed :int = Cars.get_radar_target_speed()
+		var target_speed: int = Cars.get_radar_target_speed()
 		var success := speed >= target_speed
 
 		player_car.controls_enabled = false
 		win_screen_radar.show_win(success)
 
-		# Stop music ONLY after result
 		MusicManager.stop_music()
 
 	finish_flash.flash()
 	_screech_to_halt()
 
-
+# ---------------------------------------------------------
+# DIRECTION FIX
+# ---------------------------------------------------------
 func _fix_wrong_way(car: CarController, root: Node):
-	if not root.has_node("LapLine"):
+	if car == null:
+		print("Cannot fix direction: car is null")
 		return
 
-	var lap_line := root.get_node("LapLine") as Node3D
+	var wp1 := safe_get(root, "Waypoints/WP1")
+	if wp1 == null:
+		print("No WP1 in this track, skipping direction fix")
+		return
 
-	var forward := -car.global_transform.basis.z.normalized()
-	var to_wp :Vector3= (root.get_node("Waypoints/WP1").global_position - car.global_position).normalized()
+	var dir :Vector3= (wp1.global_position - car.global_position).normalized()
+	if dir.length() < 0.1:
+		dir = Vector3.FORWARD
 
-	var dot := forward.dot(to_wp)
+	var up := Vector3.UP
+	var right := up.cross(dir).normalized()
+	var forward := dir
 
-	if dot < 0.0:
-		car.rotate_y(deg_to_rad(180))
-		print("AI was facing wrong way → rotated 180°")
+	var basis := Basis(right, up, forward)
+	car.global_transform.basis = basis
+	print("AI direction forced using basis")
 
 # ---------------------------------------------------------
 # GLOBAL AI DISABLE
@@ -405,19 +404,17 @@ func show_finish(player_won: bool):
 	else:
 		print("YOU LOSE!")
 
+# ---------------------------------------------------------
+# LAP LINE FACING (SAFE)
+# ---------------------------------------------------------
 func _face_away_from_lap_line(car: CarController, root: Node):
-	if not root.has_node("LapLine"):
+	var lap_line := safe_get(root, "LapLine")
+	if lap_line == null:
 		print("No LapLine found in track:", TrackName.track_name)
 		return
 
-	var lap_line := root.get_node("LapLine") as Node3D
-
-	# LapLine forward direction (Z+)
-	var forward := lap_line.global_transform.basis.z.normalized()
-
-	# We want the opposite direction
+	var forward :Vector3= lap_line.global_transform.basis.z.normalized()
 	var away := -forward
 
-	# Make the car look AWAY from the lap line
 	var target_pos := car.global_position + away
 	car.look_at(target_pos, Vector3.UP)

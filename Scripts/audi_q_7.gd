@@ -12,8 +12,8 @@ func _ready():
 	mass = 2340.0
 	horsepower = 237
 	max_rpm = 4500.0
-	zero_to_hundred = 7.8
-	top_speed_kmh = 217
+	zero_to_hundred = 8.5
+	top_speed_kmh = 211
 	turn_speed = 1.92              # heavier, premium SUV steering feel
 	brake_strength = 14.5          # strong brakes but not sporty
 	lateral_friction = 1.04        # premium AWD grip

@@ -10,10 +10,10 @@ var zero_to_hundred_display := 8.90
 func _ready():
 	# GAMEPLAY STATS — Heavy desert‑bred 4×4
 	mass = 2668.0
-	horsepower = 247
+	horsepower = 220
 	max_rpm = 4800.0              # Low‑revving torque monster built for dunes and towing
-	zero_to_hundred = 8.9
-	top_speed_kmh = 203
+	zero_to_hundred = 12.0
+	top_speed_kmh = 198
 	turn_speed = 1.95             # Heavy steering feel; stable but not agile
 	brake_strength = 13.0         # Strong brakes needed for a 2.6‑ton chassis
 	lateral_friction = 1.02       # Good 4WD grip on pavement and sand

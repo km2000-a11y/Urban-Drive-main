@@ -4756,7 +4756,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.82918, 2.91582, -4.85455)
 shape = SubResource("BoxShape3D_ugukp")
 
 [node name="LapLine" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -281.159)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -281.159)
 script = ExtResource("2_kpt7h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LapLine"]
