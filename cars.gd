@@ -42,7 +42,8 @@ var class_lists := {
 		"Kestrel Seabird",
 		"Kuro Zephyr V6",
 		"Eisenach Bengal",
-		"Eisenach Prince"
+		"Eisenach Prince",
+		"Kronstadt Blazer"
 	],
 
 	"sedans": [
@@ -112,7 +113,8 @@ var car_scene_paths := {
 	"Kuro Zephyr V6":"res://Scenes/lexus_is350.tscn",
 	"Eisenach Bengal":"res://Scenes/bmw_135.tscn",
 	"Strandberg Turbo":"res://Scenes/volvo_s60r.tscn",
-	"Eisenach Prince":"res://Scenes/bmw_m5_e39.tscn",	
+	"Eisenach Prince":"res://Scenes/bmw_m5_e39.tscn",
+		"Kronstadt Blazer":"res://Scenes/sl_500.tscn",	
 	"Schroder Classique Sport":"res://Scenes/audi_s4.tscn",
 
 	"Brutus Viper":"res://Scenes/gt500.tscn",
@@ -206,6 +208,13 @@ var car_colors := {
 		Color8(60,60,60),    # Dark Grey
 		Color8(0,70,120)     # Deep Blue
 	],
+	"Kronstadt Blazer":[
+	Color8(180,180,180),   # Silver (default)
+	Color8(200,40,40),     # ⭐ Deep Mercedes Red
+	Color8(60,60,60),      # Graphite
+	Color8(0,70,120)       # Deep Blue
+],
+
 
 	"Mir Cars Hutch":[Color8(180,20,20), Color8(255,255,255), Color8(60,60,60), Color8(0,40,80)],
 	"Brutus Viper":[Color8(0,0,128), Color8(255,255,255), Color8(200,200,200), Color8(160,0,0)],

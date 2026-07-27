@@ -106,6 +106,12 @@ var car_colors := {
 	Color8(0,70,120)       # Cavansite Blue
 ],
 
+"Kronstadt Blazer":[
+	Color8(180,180,180),   # Silver (default)
+	Color8(200,40,40),     # ⭐ Deep Mercedes Red
+	Color8(60,60,60),      # Graphite
+	Color8(0,70,120)       # Deep Blue
+],
 
 
 	"Mir Cars Hutch":[Color8(228,31,36), Color8(255,255,255), Color8(160,160,160), Color8(0,40,120)],
@@ -213,12 +219,13 @@ var muscle_list = [
 ]
 
 var urban_list = [
-	"Eisenach Prince",   # ⭐ NEW — E39 M5
+	"Eisenach Prince",
 	"Brutus Stingray",
 	"Kestrel Speedster",
 	"Kestrel Seabird",
 	"Kuro Zephyr V6",
-	"Eisenach Bengal"
+	"Eisenach Bengal",
+	"Kronstadt Blazer"   # ⭐ NEW — SL500 R129
 ]
 
 
@@ -383,6 +390,12 @@ var urban_racers = {
 	"", "Country: Germany", "HP: 306", "WEIGHT: 1650 KG",
 	"0-100 KM/H: 5.5s", "TOP SPEED: 260 KM/H",
 	"ENGINE: L6 3.0L", "ASPIRATION: Turbo", "TORQUE: 400 NM",
+	"TRANSMISSION: REAR-WHEEL DRIVE"
+],
+"Kronstadt Blazer":[
+	"", "Country: Germany", "HP: 316", "WEIGHT: 1830 KG",
+	"0-100 KM/H: 5.8s", "TOP SPEED: 250 KM/H",
+	"ENGINE: V8 5.0L", "ASPIRATION: NA", "TORQUE: 470 NM",
 	"TRANSMISSION: REAR-WHEEL DRIVE"
 ],
 }
@@ -646,6 +659,8 @@ var car_scene_paths = {
 	"Kuro Zephyr":"res://Scenes/lexus_is250.tscn",
 	"Eisenach Suppressor":"res://Scenes/bmw_535d.tscn",
 	"Schroder Fastback":"res://Scenes/audi_a5_tdi.tscn",
+	"Kronstadt Blazer":"res://Scenes/sl_500.tscn",
+
 }
 
 # -------------------------
