@@ -219,11 +219,12 @@ var muscle_list = [
 ]
 
 var urban_list = [
-	"Brutus Stingray",
-	"Kestrel Speedster",
-	"Kuro Zephyr V6",
 	"Eisenach Bengal",
-	"Kronstadt Blazer"   # ⭐ NEW — SL500 R129
+		"Kuro Zephyr V6",
+	"Brutus Stingray",
+		"Berkshire Blunt",
+	"Kestrel Speedster",
+	"Kronstadt Blazer",   # ⭐ NEW — SL500 R129
 ]
 
 
@@ -241,7 +242,6 @@ var sport_list = [
 	"Berkshire V12-S",
 	"Bartoli Cruiser",
 	"Berkshire Tempest",
-	"Berkshire Blunt"
 ]
 
 var sport_racing_list = [
@@ -315,7 +315,7 @@ var compact = {
 	],
 	"Straeda B32":[
 		"", "Country: Germany", "HP: 224", "WEIGHT: 1500 KG",
-		"0-100 KM/H: 6.7s", "TOP SPEED: 229 KM/H",
+		"0-100 KM/H: 6.7s", "TOP SPEED: 236 KM/H",
 		"ENGINE: V6 3.2L", "ASPIRATION: NA", "TORQUE: 300 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
@@ -356,20 +356,14 @@ var muscle = {
 var urban_racers = {
 	"Brutus Stingray":[
 		"", "Country: USA", "HP: 345", "WEIGHT: 1460 KG",
-		"0-100 KM/H: 5.0s", "TOP SPEED: 253 KM/H",
+		"0-100 KM/H: 5.0s", "TOP SPEED: 257 KM/H",
 		"ENGINE: V8 5.7L", "ASPIRATION: NA", "TORQUE: 480 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Kestrel Speedster":[
 		"", "Country: UK", "HP: 286", "WEIGHT: 1145 KG",
-		"0-100 KM/H: 4.8s", "TOP SPEED: 247 KM/H",
+		"0-100 KM/H: 4.8s", "TOP SPEED: 242 KM/H",
 		"ENGINE: V8 4.4L", "ASPIRATION: NA", "TORQUE: 410 NM",
-		"TRANSMISSION: REAR-WHEEL DRIVE"
-	],
-	"Kestrel Seabird":[
-		"", "Country: UK", "HP: 217", "WEIGHT: 935 KG",
-		"0-100 KM/H: 4.5s", "TOP SPEED: 238 KM/H",
-		"ENGINE: L4 1.8L", "ASPIRATION: Supercharged", "TORQUE: 240 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Kuro Zephyr V6":[
@@ -380,7 +374,7 @@ var urban_racers = {
 	],
 	"Eisenach Bengal":[
 	"", "Country: Germany", "HP: 230", "WEIGHT: 1450 KG",
-	"0-100 KM/H: 5.3s", "TOP SPEED: 245 KM/H",
+	"0-100 KM/H: 5.0s", "TOP SPEED: 243 KM/H",
 	"ENGINE: L6 3.0L", "ASPIRATION: NA", "TORQUE: 300 NM",
 	"TRANSMISSION: REAR-WHEEL DRIVE"
 ],
@@ -390,6 +384,12 @@ var urban_racers = {
 	"ENGINE: V8 5.0L", "ASPIRATION: NA", "TORQUE: 470 NM",
 	"TRANSMISSION: REAR-WHEEL DRIVE"
 ],
+	"Berkshire Blunt":[
+		"", "Country: UK", "HP: 406", "WEIGHT: 1832 KG",
+		"0-100 KM/H: 5.6s", "TOP SPEED: 268 KM/H",
+		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
+		"TRANSMISSION: REAR-WHEEL DRIVE"
+	]
 }
 var sedans = {
 	"Eisenach Monarch":[
@@ -449,12 +449,6 @@ var sport = {
 		"ENGINE: V12 5.9L", "ASPIRATION: NA", "TORQUE: 580 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
-	"Berkshire Blunt":[
-		"", "Country: UK", "HP: 406", "WEIGHT: 1832 KG",
-		"0-100 KM/H: 5.2s", "TOP SPEED: 286 KM/H",
-		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
-		"TRANSMISSION: REAR-WHEEL DRIVE"
-	]
 }
 
 var sport_racing = {
@@ -500,7 +494,7 @@ var sports_crossovers = {
 
 	"Eisenach Escorter":[
 		"", "Country: Germany", "HP: 315", "WEIGHT: 2250 KG",
-		"0-100 KM/H: 6.9s", "TOP SPEED: 232 KM/H",
+		"0-100 KM/H: 6.7s", "TOP SPEED: 237 KM/H",
 		"ENGINE: V8 4.4L", "ASPIRATION: NA", "TORQUE: 440 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	]

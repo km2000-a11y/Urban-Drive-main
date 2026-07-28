@@ -3,7 +3,7 @@ extends CarController
 # COSMETIC INFO (UI only)
 var def_car_name := "Kuro Persian"
 var country := "Japan"
-var engine := "V8 4.3L"
+var engine := "V8 4.0L"
 var weight_kg := 1660
 var zero_to_hundred_display := 6.10
 

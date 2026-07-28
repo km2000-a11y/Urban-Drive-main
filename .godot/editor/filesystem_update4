@@ -62,6 +62,10 @@ res://Tracks/chernobyl.tscn
 res://Scenes/track_select.tscn
 res://Scenes/slk.tscn
 res://Scenes/sl_500.tscn
-res://Scripts/bmw_135i.gd
 res://Scripts/car_select.gd
+res://Scripts/new_beetle_rsi_2001.gd
+res://Scenes/slk.gd
 res://cars.gd
+res://Scripts/jaguar_xkr_2003.gd
+res://Scripts/lexus_gs430.gd
+res://Scripts/chevrolet_corvette_c5_1998.gd

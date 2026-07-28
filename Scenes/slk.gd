@@ -12,7 +12,7 @@ func _ready():
 	mass = 1540.0
 	horsepower = 204
 	max_rpm = 4500.0              # diesel redline
-	zero_to_hundred = 5.9
+	zero_to_hundred = 6.2
 	top_speed_kmh = 252
 	turn_speed = 2.55             # sporty but not twitchy
 	brake_strength = 18.5         # heavier car, strong brakes

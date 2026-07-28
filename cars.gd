@@ -38,6 +38,7 @@ var class_lists := {
 
 	"urban": [
 		"Brutus Stingray",
+			"Berkshire Blunt",
 		"Kestrel Speedster",
 		"Kuro Zephyr V6",
 		"Eisenach Bengal",
@@ -56,8 +57,7 @@ var class_lists := {
 		"Bartoli Cruiser",
 		"Berkshire V12-S",
 		"Berkshire Tempest",
-		"Schroder Classique Sport",
-		"Berkshire Blunt"
+		"Schroder Classique Sport"
 	],
 
 	"sport_racing": [
