@@ -1,6 +1,4 @@
-res://Scenes/audi_s4.tscn
 res://main.tscn
-res://main.gd
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
 res://Scenes/audi_tt.tscn
@@ -35,6 +33,7 @@ res://Scenes/win_screen_radar.tscn
 res://Scenes/leaderboard.tscn
 res://Scenes/saleen_s7.tscn
 res://Scenes/bmw_m6.tscn
+res://Scenes/audi_s4.tscn
 res://Scenes/volvo_s60r.tscn
 res://Scenes/lexus_is250.tscn
 res://Scenes/main_menu.tscn
@@ -63,5 +62,6 @@ res://Tracks/chernobyl.tscn
 res://Scenes/track_select.tscn
 res://Scenes/slk.tscn
 res://Scenes/sl_500.tscn
+res://Scripts/bmw_135i.gd
+res://Scripts/car_select.gd
 res://cars.gd
-res://Scripts/base_car.gd

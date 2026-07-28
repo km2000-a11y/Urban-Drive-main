@@ -39,10 +39,8 @@ var class_lists := {
 	"urban": [
 		"Brutus Stingray",
 		"Kestrel Speedster",
-		"Kestrel Seabird",
 		"Kuro Zephyr V6",
 		"Eisenach Bengal",
-		"Eisenach Prince",
 		"Kronstadt Blazer"
 	],
 

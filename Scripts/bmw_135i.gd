@@ -3,17 +3,17 @@ extends CarController
 # COSMETIC INFO (UI only)
 var def_car_name := "Eisenach Bengal"
 var country := "Germany"
-var engine := "L6 3.0L Twin‑Turbo"
+var engine := "L6 3.0L"
 var weight_kg := 1650
 var zero_to_hundred_display := 5.50
 
 func _ready():
 	# GAMEPLAY STATS
-	mass = 1650.0
-	horsepower = 306
+	mass = 1450.0
+	horsepower = 230
 	max_rpm = 7000.0
-	zero_to_hundred = 5.5
-	top_speed_kmh = 260
+	zero_to_hundred = 5.4
+	top_speed_kmh = 245
 	turn_speed = 2.90              # slightly softer than Z4M, playful turbo cabrio feel
 	brake_strength = 13.8          # heavier car, slightly longer stopping distance
 	lateral_friction = 1.10        # less razor‑sharp than S54 roadster

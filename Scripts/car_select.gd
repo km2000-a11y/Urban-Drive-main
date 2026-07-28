@@ -219,10 +219,8 @@ var muscle_list = [
 ]
 
 var urban_list = [
-	"Eisenach Prince",
 	"Brutus Stingray",
 	"Kestrel Speedster",
-	"Kestrel Seabird",
 	"Kuro Zephyr V6",
 	"Eisenach Bengal",
 	"Kronstadt Blazer"   # ⭐ NEW — SL500 R129
@@ -356,12 +354,6 @@ var muscle = {
 	]
 }
 var urban_racers = {
-	"Eisenach Prince":[
-	"", "Country: Germany", "HP: 390", "WEIGHT: 1740 KG",
-	"0-100 KM/H: 4.6s", "TOP SPEED: 250 KM/H",
-	"ENGINE: V8 4.9L", "ASPIRATION: NA", "TORQUE: 500 NM",
-	"TRANSMISSION: REAR-WHEEL DRIVE"
-],
 	"Brutus Stingray":[
 		"", "Country: USA", "HP: 345", "WEIGHT: 1460 KG",
 		"0-100 KM/H: 5.0s", "TOP SPEED: 253 KM/H",
@@ -387,9 +379,9 @@ var urban_racers = {
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Eisenach Bengal":[
-	"", "Country: Germany", "HP: 306", "WEIGHT: 1650 KG",
-	"0-100 KM/H: 5.5s", "TOP SPEED: 260 KM/H",
-	"ENGINE: L6 3.0L", "ASPIRATION: Turbo", "TORQUE: 400 NM",
+	"", "Country: Germany", "HP: 230", "WEIGHT: 1450 KG",
+	"0-100 KM/H: 5.3s", "TOP SPEED: 245 KM/H",
+	"ENGINE: L6 3.0L", "ASPIRATION: NA", "TORQUE: 300 NM",
 	"TRANSMISSION: REAR-WHEEL DRIVE"
 ],
 "Kronstadt Blazer":[
