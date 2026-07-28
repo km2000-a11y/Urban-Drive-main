@@ -160,8 +160,6 @@ func _setup_duel():
 	player_car = DuelManager.player_car
 	_force_player_camera()
 
-	_fix_wrong_way(player_car, root)
-	_fix_wrong_way(DuelManager.ai_car, root)
 
 # ---------------------------------------------------------
 # NORMAL RACE

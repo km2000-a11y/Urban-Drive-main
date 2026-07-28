@@ -112,7 +112,8 @@ albedo_color = Color(0.752941, 0.752941, 0.752941, 1)
 size = Vector3(0.8, 0.35, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klgx5"]
-albedo_color = Color(0, 0, 0, 1)
+albedo_color = Color(0.705882, 0.705882, 0.705882, 1)
+metallic = 0.8
 
 [sub_resource type="BoxMesh" id="BoxMesh_cclti"]
 size = Vector3(0.15, 0.25, 0.1)

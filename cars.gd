@@ -134,6 +134,7 @@ var car_scene_paths := {
 	"Berkshire Tempest":"res://Scenes/vanquish.tscn",
 	"Eisenach Black Panda":"res://Scenes/bmw_330d.tscn",
 	"Kuro Persian":"res://Scenes/lexus_gs430.tscn",
+	"Kronstadt Crest":"res://Scenes/slk.tscn",
 
 
 	"Mir Cars Precision":"res://Scenes/bmw_m6.tscn",

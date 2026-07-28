@@ -279,6 +279,7 @@ size = Vector3(13, 5, 1)
 size = Vector3(12, 5, 1)
 
 [node name="Chernobyl" type="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.998451, -151.731)
@@ -3279,9 +3280,10 @@ material_override = SubResource("StandardMaterial3D_tnsgo")
 mesh = SubResource("BoxMesh_pxcwx")
 
 [node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="AISpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 75.5669)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 75.5669)
 
 [node name="Flag" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.1546, 1.81998, 150.752)
@@ -3709,13 +3711,13 @@ material_override = SubResource("StandardMaterial3D_cytxd")
 mesh = SubResource("BoxMesh_sjgvn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D9/MeshInstance3D3"]
-transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 6.84149, 0, 2.49011)
+transform = Transform3D(1, 0, -5.90086e-08, 0, 1, 0, 5.96046e-08, 0, 0.99, 6.84149, 0, 2.49011)
 mesh = SubResource("BoxMesh_sawg2")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D9/MeshInstance3D3/MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D9/MeshInstance3D3/MeshInstance3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 0, -1.91214)
+transform = Transform3D(0.98, 0, 0, 0, 0.98, 0, 0, 0, 0.98, 5.96046e-08, 0, -1.91214)
 shape = SubResource("BoxShape3D_kpt7h")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D9/MeshInstance3D3"]
@@ -4724,25 +4726,25 @@ material_override = SubResource("StandardMaterial3D_cm5gb")
 mesh = SubResource("BoxMesh_td035")
 
 [node name="AISpawnPoint1" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13215, 0, 169.09)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.13215, 0, 169.09)
 
 [node name="AISpawnPoint2" type="Node3D" parent="."]
-transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -4.48721, 0.187174, 201.827)
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -4.48721, 0.187174, 201.827)
 
 [node name="AISpawnPoint3" type="Node3D" parent="."]
-transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -27.8231, 0.187174, 241.676)
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -27.8231, 0.187174, 241.676)
 
 [node name="AISpawnPoint4" type="Node3D" parent="."]
-transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -72.0063, 0.187174, 317.038)
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -72.0063, 0.187174, 317.038)
 
 [node name="AISpawnPoint5" type="Node3D" parent="."]
-transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -151.235, 0.187174, 454.29)
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -151.235, 0.187174, 454.29)
 
 [node name="AISpawnPoint6" type="Node3D" parent="."]
-transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -185.125, 0.187174, 515.991)
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -185.125, 0.187174, 515.991)
 
 [node name="AISpawnPoint7" type="Node3D" parent="."]
-transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -216.936, 0.623142, 569.563)
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -216.936, 0.623142, 569.563)
 
 [node name="RadarTrap" type="Area3D" parent="."]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -117.253, 0, 391.104)
@@ -4766,6 +4768,7 @@ shape = SubResource("BoxShape3D_tnsgo")
 [node name="Waypoints" type="Node3D" parent="."]
 
 [node name="WP1" type="Node3D" parent="Waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.72274)
 
 [node name="WP2" type="Node3D" parent="Waypoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.975607, 6.22662, 169.61)

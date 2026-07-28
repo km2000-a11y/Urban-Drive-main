@@ -236,7 +236,7 @@ func _drive(delta: float, accel: float, brake: float, steer: float) -> void:
 
 	# --- CAR ORIENTATION ---
 	if not drifting:
-		rotation.y += steering * turn_speed * delta
+		rotate_y(steering * turn_speed * delta)
 		lateral_friction = 1.2
 	else:
 		var drift_steer := steering * (turn_speed * 0.35)
