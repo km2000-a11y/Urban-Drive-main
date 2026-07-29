@@ -12,19 +12,19 @@ var ai_cars: Array[CarController] = []
 var race_active: bool = false
 var total_laps: int = 2
 
-var lap_cooldown: bool = false
 var hud: Node = null
 var main_scene: Node = null
 
-# flawless lap + waypoint tracking
-var car_laps: Dictionary = {}
-var last_wp: Dictionary = {}
-var wrap_cooldown: Dictionary = {}
+# lap + waypoint tracking
+var car_laps := {}
+var last_wp := {}
+var lap_cooldown := {}
+
+
 
 
 func spawn_race(scene: Node) -> void:
 	race_active = false
-	lap_cooldown = false
 	CarController.used_ai_names = CarController.ai_names.duplicate()
 
 	# Remove old cars
@@ -45,7 +45,7 @@ func spawn_race(scene: Node) -> void:
 
 	ai_spawns.clear()
 	for i in range(7):
-		ai_spawns.append(root.get_node("AISpawnPoint" + str(i+1)).global_transform.origin)
+		ai_spawns.append(root.get_node("AISpawnPoint" + str(i + 1)).global_transform.origin)
 
 	RaceResults.clear()
 	main_scene = scene
@@ -80,7 +80,7 @@ func spawn_race(scene: Node) -> void:
 		if ai.has_node("Camera3D"):
 			ai.get_node("Camera3D").current = false
 
-		var spawn_node := root.get_node("AISpawnPoint" + str(i+1))
+		var spawn_node := root.get_node("AISpawnPoint" + str(i + 1))
 		ai.global_transform = spawn_node.global_transform
 		ai.is_ai = true
 		ai.controls_enabled = true
@@ -102,33 +102,36 @@ func spawn_race(scene: Node) -> void:
 	for ai in ai_cars:
 		ai.set_waypoints(wp_root)
 
-	# INIT flawless lap dictionaries (correct placement)
-	car_laps.clear()
-	last_wp.clear()
-	wrap_cooldown.clear()
-
-	car_laps[player_car] = 0
-	last_wp[player_car] = 0
-	wrap_cooldown[player_car] = false
-
-	for ai in ai_cars:
-		car_laps[ai] = 0
-		last_wp[ai] = 0
-		wrap_cooldown[ai] = false
+	# INIT lap dictionaries
+	init_lap_system()
 
 	race_active = true
 
 	hud.update_lap(1, total_laps)
-	hud.update_position(8, 8)
+	hud.update_position(ai_cars.size() + 1, ai_cars.size() + 1)
 
 	MusicManager.stop_music()
 	MusicManager.play_race_music()
 
+
+func init_lap_system():
+	car_laps.clear()
+	last_wp.clear()
+
+	car_laps[player_car] = 0
+	last_wp[player_car] = 0
+
+	for ai in ai_cars:
+		car_laps[ai] = 0
+		last_wp[ai] = 0
+
+
+
 func register_lap(body: Node) -> void:
-	if not race_active or lap_cooldown:
+	if not race_active:
 		return
 
-	var car: Node = body
+	var car := body
 	while car != null and not (car is CarController):
 		car = car.get_parent()
 
@@ -136,19 +139,28 @@ func register_lap(body: Node) -> void:
 		return
 
 	if not car_laps.has(car):
-		return  # <- critical safety
+		return
 
-	lap_cooldown = true
-	_start_lap_cooldown()
+	if lap_cooldown.get(car, false):
+		return
 
+	# PLAYER LAP COUNTS HERE
 	car_laps[car] += 1
 
-	_check_finish()
+	lap_cooldown[car] = true
+	_start_lap_cooldown(car)
+
+	if car == player_car:
+		_check_finish()
 
 
-func _start_lap_cooldown() -> void:
-	await get_tree().create_timer(1.0).timeout
-	lap_cooldown = false
+
+
+
+
+func _start_lap_cooldown(car):
+	await get_tree().create_timer(0.8).timeout
+	lap_cooldown[car] = false
 
 
 func _check_finish() -> void:
@@ -167,7 +179,34 @@ func _check_finish() -> void:
 		_end_race("Player")
 	else:
 		_end_race("AI")
+func _get_wp_index(car: CarController) -> int:
+	var waypoints := player_car.waypoints
+	if waypoints.is_empty():
+		return 0
 
+	var best_index := 0
+	var best_dist := INF
+
+	for i in range(waypoints.size()):
+		var wp := waypoints[i] as Node3D
+		var d := car.global_position.distance_to(wp.global_position)
+		if d < best_dist:
+			best_dist = d
+			best_index = i
+
+	return best_index
+
+func _distance_to_next_wp_from_index(car: CarController, wp_index: int) -> float:
+	var waypoints := player_car.waypoints
+	if waypoints.is_empty():
+		return 0.0
+
+	var next_wp := wp_index + 1
+	if next_wp >= waypoints.size():
+		next_wp = 0
+
+	var wp := waypoints[next_wp] as Node3D
+	return car.global_position.distance_to(wp.global_position)
 
 func _end_race(winner: String) -> void:
 	race_active = false
@@ -237,9 +276,15 @@ func update_race() -> void:
 	if not race_active:
 		return
 
+	var sorted := _sorted_cars()
+	var player_pos := _calculate_position()
+
 	hud.update_stopwatch(player_car.total_race_time)
 	hud.update_lap(car_laps[player_car] + 1, total_laps)
-	hud.update_position(_calculate_position(), ai_cars.size() + 1)
+	hud.update_position(player_pos, ai_cars.size() + 1)
+
+	_check_finish()
+
 
 
 func _distance_to_next_wp(car: CarController) -> float:
@@ -264,32 +309,18 @@ func _calculate_position() -> int:
 	return 1
 
 func _sorted_cars() -> Array:
-	var total_wp: int = player_car.waypoints.size()
+	var total_wp := player_car.waypoints.size()
 	var cars := []
 
 	for car in [player_car] + ai_cars:
-		var wp: int = car.current_wp
-		var lap: int = car_laps[car]   # REAL LAP (from lap trigger)
+		var lap :int= car_laps.get(car, 0)
 
-		var last: int = last_wp.get(car, wp)
-		var diff: int = wp - last
+		# compute waypoint index by proximity
+		var wp_index := _get_wp_index(car)
 
-		# --- VALIDATION: Reject impossible jumps ---
-		if abs(diff) > 3 and not (wp == 0 and last == total_wp - 1):
-			wp = last
-
-		# --- VALIDATION: Reject backwards movement ---
-		if diff < -1 and not (wp == 0 and last == total_wp - 1):
-			wp = last
-
-		# --- VIRTUAL LAP INCREMENT (for position only) ---
-		var virtual_lap := lap
-		if wp == 0 and last == total_wp - 1:
-			virtual_lap += 1
-
-		# --- PROGRESS CALCULATION ---
-		var progress: int = virtual_lap * total_wp + wp
-		var dist: float = _distance_to_next_wp(car)
+		# pure progress: laps + waypoint index
+		var progress :int= lap * total_wp + wp_index
+		var dist := _distance_to_next_wp_from_index(car, wp_index)
 
 		cars.append({
 			"car": car,
@@ -297,23 +328,17 @@ func _sorted_cars() -> Array:
 			"dist": dist
 		})
 
-	# --- SORT ---
+	# sort: higher progress first, then closer to next WP
 	cars.sort_custom(func(a, b):
 		if a["progress"] != b["progress"]:
 			return a["progress"] > b["progress"]
 		return a["dist"] < b["dist"]
 	)
 
-	# --- UPDATE LAST WAYPOINT SNAPSHOT ---
-	for c in cars:
-		last_wp[c["car"]] = c["car"].current_wp
-
-	# --- RETURN ORDERED LIST ---
 	var result: Array = []
 	for c in cars:
 		result.append(c["car"])
 	return result
-
 
 
 func _apply_player_color(car: CarController) -> void:
@@ -322,7 +347,7 @@ func _apply_player_color(car: CarController) -> void:
 		var body := car.get_node("ModelRoot/Body")
 		for child in body.get_children():
 			if child is MeshInstance3D:
-				var mat :Material= child.get_active_material(0)
+				var mat: Material = child.get_active_material(0)
 				if mat is BaseMaterial3D:
 					mat.albedo_color = color
 
@@ -345,7 +370,7 @@ func _apply_random_ai_color(car: CarController) -> void:
 		for child in body.get_children():
 			if child is MeshInstance3D:
 				var mesh_instance := child
-				var mesh :Mesh= mesh_instance.mesh
+				var mesh: Mesh = mesh_instance.mesh
 				if mesh == null:
 					return
 

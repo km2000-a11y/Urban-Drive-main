@@ -282,19 +282,19 @@ var track_cars_list = [
 var suv = {
 	"Colossus Titan Max":[
 		"", "Country: USA", "HP: 195", "WEIGHT: 3500 KG",
-		"0-100 KM/H: 13.5s", "TOP SPEED: 170 KM/H",
+		"0-100 KM/H: 15.0s", "TOP SPEED: 180 KM/H",
 		"ENGINE: V8 6.5L DIESEL", "ASPIRATION: Turbo", "TORQUE: 583 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
 	"Colossus Behemoth":[
 		"", "Country: USA", "HP: 316", "WEIGHT: 2900 KG",
-		"0-100 KM/H: 10.2s", "TOP SPEED: 208 KM/H",
+		"0-100 KM/H: 10.2s", "TOP SPEED: 198 KM/H",
 		"ENGINE: V8 6.0L", "ASPIRATION: NA", "TORQUE: 488 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
 	"Mir Cars Nightwolf":[
 		"", "Country: UAE", "HP: 220", "WEIGHT: 2668 KG",
-		"0-100 KM/H: 12.0s", "TOP SPEED: 198 KM/H",
+		"0-100 KM/H: 12.0s", "TOP SPEED: 195 KM/H",
 		"ENGINE: V8 6.6L", "ASPIRATION: NA", "TORQUE: 450 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
@@ -386,7 +386,7 @@ var urban_racers = {
 ],
 	"Berkshire Blunt":[
 		"", "Country: UK", "HP: 406", "WEIGHT: 1832 KG",
-		"0-100 KM/H: 5.6s", "TOP SPEED: 268 KM/H",
+		"0-100 KM/H: 6.2s", "TOP SPEED: 277 KM/H",
 		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	]
@@ -419,7 +419,7 @@ var sedans = {
 	"Kuro Persian":[
 	"", "Country: Japan", "HP: 300", "WEIGHT: 1660 KG",
 	"0-100 KM/H: 5.7s", "TOP SPEED: 258 KM/H",
-	"ENGINE: V8 4.3L", "ASPIRATION: NA", "TORQUE: 430 NM",
+	"ENGINE: V8 4.0L", "ASPIRATION: NA", "TORQUE: 410 NM",
 	"TRANSMISSION: REAR-WHEEL DRIVE"
 ]
 }
@@ -445,7 +445,7 @@ var sport = {
 	],
 	"Berkshire Tempest":[
 		"", "Country: UK", "HP: 460", "WEIGHT: 1875 KG",
-		"0-100 KM/H: 5.4s", "TOP SPEED: 303 KM/H",
+		"0-100 KM/H: 5.6s", "TOP SPEED: 303 KM/H",
 		"ENGINE: V12 5.9L", "ASPIRATION: NA", "TORQUE: 580 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
@@ -586,7 +586,6 @@ var track_cars = {
 func _ready():
 	MusicManager.play_menu_music()
 	$Control/ColorSelector.visible = false
-	$Control/CarStats/TopSpeedLabel.visible = false
 
 
 var car_scene_paths = {
