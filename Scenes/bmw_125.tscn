@@ -162,13 +162,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.329322, 0.686325, 0.30087)
 material_override = SubResource("StandardMaterial3D_j171l")
 mesh = SubResource("BoxMesh_rmeoq")
 
-[node name="MeshInstance3D10" type="MeshInstance3D" parent="ModelRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.329322, 0.690675, -0.0285023)
-material_override = SubResource("StandardMaterial3D_j171l")
-mesh = SubResource("BoxMesh_rmeoq")
-
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="ModelRoot"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.422282, 0.698407, -0.0579049)
+material_override = SubResource("StandardMaterial3D_j171l")
+mesh = SubResource("PrismMesh_56vir")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="ModelRoot"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.352936, 0.698407, -0.0579049)
 material_override = SubResource("StandardMaterial3D_j171l")
 mesh = SubResource("PrismMesh_56vir")
 

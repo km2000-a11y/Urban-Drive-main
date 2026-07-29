@@ -308,7 +308,7 @@ func _update_laps_from_progress() -> void:
 		ai_crossed_start = false
 		
 func _estimate_ai_finish_time() -> int:
-	var lapline := main_scene.get_node("LapLine")
+	var lapline := main_scene.find_child("LapLine", true, false)
 
 	var remaining_dist: float = ai_car.distance_to_finish_line(lapline)
 	var ai_speed: float = ai_car.current_speed

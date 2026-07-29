@@ -62,4 +62,6 @@ res://Tracks/chernobyl.tscn
 res://Scenes/track_select.tscn
 res://Scenes/slk.tscn
 res://Scenes/sl_500.tscn
+res://Scripts/bmw_125.gd
 res://Scripts/car_select.gd
+res://duel_manager.gd

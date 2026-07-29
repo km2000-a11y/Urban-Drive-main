@@ -332,9 +332,9 @@ var compact = {
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Eisenach Compaque":[
-		"", "Country: Germany", "HP: 215", "WEIGHT: 1450 KG",
+		"", "Country: Germany", "HP: 177", "WEIGHT: 1450 KG",
 		"0-100 KM/H: 6.9s", "TOP SPEED: 238 KM/H",
-		"ENGINE: L6 3.0L", "ASPIRATION: NA", "TORQUE: 280 NM",
+		"ENGINE: L4 2.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 350 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	]
 }
