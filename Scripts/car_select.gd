@@ -219,12 +219,12 @@ var muscle_list = [
 ]
 
 var urban_list = [
+		"Kronstadt Blazer",  
 	"Eisenach Bengal",
 		"Kuro Zephyr V6",
 	"Brutus Stingray",
 		"Berkshire Blunt",
-	"Kestrel Speedster",
-	"Kronstadt Blazer",   # ⭐ NEW — SL500 R129
+	"Kestrel Speedster", # ⭐ NEW — SL500 R129
 ]
 
 

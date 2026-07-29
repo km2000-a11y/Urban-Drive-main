@@ -27,7 +27,6 @@ theme_override_font_sizes/font_size = 30
 text = "BACK"
 
 [node name="Chernobyl" type="Button" parent="Control"]
-visible = false
 layout_mode = 0
 offset_top = 67.0
 offset_right = 1263.0

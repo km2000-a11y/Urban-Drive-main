@@ -168,7 +168,7 @@ size = Vector3(1, 150, 10)
 albedo_color = Color(0.176471, 0.176471, 0.176471, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2q1fn"]
-size = Vector3(20, 1, 815)
+size = Vector3(20, 1, 830)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ao255"]
 size = Vector3(1, 4, 795)
@@ -3822,7 +3822,7 @@ material_override = SubResource("StandardMaterial3D_ugukp")
 mesh = SubResource("BoxMesh_2q1fn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D9/MeshInstance3D3/MeshInstance3D3/MeshInstance3D3/MeshInstance3D/MeshInstance3D4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.97354, 0, -3.183)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.05, 9.97354, 0, -3.183)
 mesh = SubResource("BoxMesh_ao255")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D9/MeshInstance3D3/MeshInstance3D3/MeshInstance3D3/MeshInstance3D/MeshInstance3D4/MeshInstance3D"]
@@ -4764,6 +4764,82 @@ script = ExtResource("2_kpt7h")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LapLine"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81069, 0)
 shape = SubResource("BoxShape3D_tnsgo")
+
+[node name="Waypoints" type="Node3D" parent="."]
+
+[node name="WP1" type="Node3D" parent="Waypoints"]
+
+[node name="WP2" type="Node3D" parent="Waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 165.968)
+
+[node name="WP3" type="Node3D" parent="Waypoints"]
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 180.869)
+
+[node name="WP4" type="Node3D" parent="Waypoints"]
+transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, -0.0583255, 0, 192.447)
+
+[node name="WP5" type="Node3D" parent="Waypoints"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -3.14127, 0, 202.528)
+
+[node name="WP6" type="Node3D" parent="Waypoints"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -240.925, 0, 614.382)
+
+[node name="WP7" type="Node3D" parent="Waypoints"]
+transform = Transform3D(0.970296, 0, -0.241922, 0, 1, 0, 0.241922, 0, 0.970296, -244.056, 0, 619.804)
+
+[node name="WP8" type="Node3D" parent="Waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -245.558, 0, 625.828)
+
+[node name="WP9" type="Node3D" parent="Waypoints"]
+transform = Transform3D(0.939692, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939692, -245.558, 0, 632.091)
+
+[node name="WP10" type="Node3D" parent="Waypoints"]
+transform = Transform3D(0.939692, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939692, -136.739, 0, 932.421)
+
+[node name="WP11" type="Node3D" parent="Waypoints"]
+transform = Transform3D(0.766044, 0, 0.642788, 0, 1, 0, -0.642788, 0, 0.766044, -133.914, 0, 940.184)
+
+[node name="WP12" type="Node3D" parent="Waypoints"]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -130.039, 0, 944.802)
+
+[node name="WP13" type="Node3D" parent="Waypoints"]
+transform = Transform3D(0.34202, 0, 0.939692, 0, 1, 0, -0.939692, 0, 0.34202, -123.049, 0, 950.23)
+
+[node name="WP14" type="Node3D" parent="Waypoints"]
+transform = Transform3D(0.34202, 0, 0.939692, 0, 1, 0, -0.939692, 0, 0.34202, 223.867, 0, 1076.5)
+
+[node name="WP15" type="Node3D" parent="Waypoints"]
+transform = Transform3D(-0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648, 233.476, 0, 1081.51)
+
+[node name="WP16" type="Node3D" parent="Waypoints"]
+transform = Transform3D(-0.642787, 0, 0.766044, 0, 1, 0, -0.766044, 0, -0.642787, 239.762, 0, 1082.32)
+
+[node name="WP17" type="Node3D" parent="Waypoints"]
+transform = Transform3D(-0.939692, 0, 0.34202, 0, 1, 0, -0.34202, 0, -0.939692, 249.355, 0, 1074.62)
+
+[node name="WP18" type="Node3D" parent="Waypoints"]
+transform = Transform3D(-0.939692, 0, 0.34202, 0, 1, 0, -0.34202, 0, -0.939692, 705.048, 0, -177.385)
+
+[node name="WP19" type="Node3D" parent="Waypoints"]
+transform = Transform3D(-0.984807, 0, -0.173648, 0, 1, 0, 0.173648, 0, -0.984807, 717.417, 0, -205.754)
+
+[node name="WP20" type="Node3D" parent="Waypoints"]
+transform = Transform3D(-0.766044, 0, -0.642787, 0, 1, 0, 0.642787, 0, -0.766044, 724.756, 0, -228.966)
+
+[node name="WP21" type="Node3D" parent="Waypoints"]
+transform = Transform3D(-0.34202, 0, -0.939692, 0, 1, 0, 0.939692, 0, -0.34202, 728.699, 0, -241.2)
+
+[node name="WP22" type="Node3D" parent="Waypoints"]
+transform = Transform3D(-0.34202, 0, -0.939692, 0, 1, 0, 0.939692, 0, -0.34202, 19.2178, 0, -499.43)
+
+[node name="WP23" type="Node3D" parent="Waypoints"]
+transform = Transform3D(0.173648, 0, -0.984807, 0, 1, 0, 0.984807, 0, 0.173648, 17.2715, 0, -503.054)
+
+[node name="WP24" type="Node3D" parent="Waypoints"]
+transform = Transform3D(0.766044, 0, -0.642787, 0, 1, 0, 0.642787, 0, 0.766044, 11.6454, 0, -502.062)
+
+[node name="WP25" type="Node3D" parent="Waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39791, 0, -499.66)
 
 [connection signal="body_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="CharacterBody3D8/Area3D" to="CharacterBody3D8" method="_on_area_3d_body_entered"]
