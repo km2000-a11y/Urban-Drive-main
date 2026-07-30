@@ -1,7 +1,3 @@
-res://Scenes/audi_a3.tscn
-res://Scripts/bmw_125.gd
-res://cars.gd
-res://Scripts/car_select.gd
 res://main.tscn
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
@@ -46,6 +42,7 @@ res://Scenes/HUD.tscn
 res://Scenes/start.tscn
 res://Scenes/bmw_535d.tscn
 res://Scenes/morgan_aero_8.tscn
+res://Scenes/audi_a3.tscn
 res://Scenes/audi_a5_tdi.tscn
 res://Scenes/audi_q7.tscn
 res://Scenes/bmw_330d.tscn
@@ -66,4 +63,3 @@ res://Scenes/track_select.tscn
 res://Scenes/slk.tscn
 res://Scenes/lexus_sc.tscn
 res://Scenes/sl_500.tscn
-res://Scripts/base_car.gd
