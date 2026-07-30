@@ -1,7 +1,7 @@
 extends CarController
 
 # COSMETIC INFO (UI only)
-var def_car_name := "Eisenach Compaque D20"
+var def_car_name := "Schroder D-20"
 var country := "Germany"
 var engine := "L4 2.0L Turbo Diesel"
 var weight_kg := 1450
@@ -18,7 +18,7 @@ func _ready():
 	turn_speed = 2.70                # More playful, GTI-like rotation
 	brake_strength = 11.6            # Hot hatch brake feel
 	lateral_friction = 1.14          # Grippy but not twitchy — diesel weight up front
-	transmission = "Rear wheel drive"
+	transmission = "Front wheel drive"
 	is_diesel = true                 # Enables diesel torque behavior
 
 	# HOT-HATCH DIESEL HANDLING

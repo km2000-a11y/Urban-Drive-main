@@ -1,3 +1,7 @@
+res://Scenes/audi_a3.tscn
+res://Scripts/bmw_125.gd
+res://cars.gd
+res://Scripts/car_select.gd
 res://main.tscn
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
@@ -42,7 +46,6 @@ res://Scenes/HUD.tscn
 res://Scenes/start.tscn
 res://Scenes/bmw_535d.tscn
 res://Scenes/morgan_aero_8.tscn
-res://Scenes/bmw_125.tscn
 res://Scenes/audi_a5_tdi.tscn
 res://Scenes/audi_q7.tscn
 res://Scenes/bmw_330d.tscn
@@ -61,17 +64,6 @@ res://Scenes/cop_chase_hud.tscn
 res://Tracks/chernobyl.tscn
 res://Scenes/track_select.tscn
 res://Scenes/slk.tscn
-res://Scenes/sl_500.tscn
 res://Scenes/lexus_sc.tscn
-res://Scripts/car_select.gd
-res://Scenes/lexus_is_250.gd
-res://Scripts/bmw_125.gd
-res://cars.gd
-res://Scripts/jaguar_xkr_2003.gd
-res://Scenes/lexus_sc.gd
-res://Scripts/morgan_aero_8.gd
-res://normal_race_manager.gd
-res://duel_manager.gd
-res://Scenes/pause_menu.gd
-res://cop_chase_manager.gd
-res://elimination_manager.gd
+res://Scenes/sl_500.tscn
+res://Scripts/base_car.gd

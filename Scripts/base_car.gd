@@ -344,18 +344,22 @@ func _drive(delta: float, accel: float, brake: float, steer: float) -> void:
 	var traction_factor := 1.0
 	var launch_grip := 1.0
 
+		# --- DRIVETRAIN BEHAVIOR FLAVOR ---
 	if transmission == "Front wheel drive":
-		traction_factor = 1.05
-		throttle_steer = steering * 0.08
-		launch_grip = 1.0
+		# More understeer, stable, safe
+		lateral_friction = lerp(lateral_friction, 1.05, delta * 2.0)
+		steering *= 0.95  # slightly calmer steering
 	elif transmission == "Rear wheel drive":
-		traction_factor = 1.0
-		throttle_steer = steering * 0.2
-		launch_grip = 0.9
+		# More oversteer, playful
+		lateral_friction = lerp(lateral_friction, 0.95, delta * 2.0)
+		var yaw_boost :float= clamp(speed_kmh / 120.0, 0.0, 1.0)
+		velocity = velocity.rotated(Vector3.UP, steering * yaw_boost * 0.12 * delta)
 	elif transmission == "Four wheel drive":
-		traction_factor = 1.15
-		throttle_steer = steering * 0.10
-		launch_grip = 1.2
+		# More grip, more stability
+		lateral_friction = lerp(lateral_friction, 1.15, delta * 2.0)
+		steering *= 1.05
+
+
 
 	var accel_force := 0.0
 

@@ -22,7 +22,7 @@ var class_lists := {
 		"Schroder Atrix Q32",
 		"Straeda B32",
 		"Kuro Zephyr",
-		"Eisenach Compaque"
+		"Schroder D-20"
 	],
 	"track_cars": [
 	"Mir Cars Athletic C70",
@@ -123,7 +123,7 @@ var car_scene_paths := {
 	"Mir Cars Transporter":"res://Scenes/audi_a8.tscn",
 	"Kuro Vault":"res://Scenes/lexus_ls430.tscn",
 	"Eisenach Suppressor":"res://Scenes/bmw_535d.tscn",
-	"Eisenach Compaque":"res://Scenes/bmw_125.tscn",
+	"Schroder D-20":"res://Scenes/audi_a3.tscn",
 		"Kuro Serenity":"res://Scenes/lexus_sc.tscn",
 
 	"Schroder Atrix Sport":"res://Scenes/audi_tt_rs.tscn",
@@ -246,7 +246,7 @@ var car_colors := {
 
 	"Mir Cars Transporter":[Color8(0,90,160), Color8(255,255,255), Color8(160,160,160), Color8(0,40,80)],
 	"Kuro Vault":[Color8(123,3,35), Color8(255,255,255), Color8(60,60,60), Color8(0,70,120)],
-	"Eisenach Compaque":[
+"Schroder D-20":[
 	Color8(240,240,240),
 	Color8(0,60,120),
 	Color8(180,180,180),

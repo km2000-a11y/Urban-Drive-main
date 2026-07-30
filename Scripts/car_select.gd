@@ -72,7 +72,7 @@ var car_colors := {
 	Color8(60,60,60)      # ⭐ Graphite Shadow — dark executive grey
 ],
 
-"Eisenach Compaque":[
+"Schroder D-20":[
 	Color8(240,240,240),
 	Color8(0,60,120),
 	Color8(180,180,180),
@@ -217,7 +217,7 @@ var compact_list = [
 	"Schroder Atrix Q32",
 	"Zenith Horizon",
 	"Straeda B32",
-	"Eisenach Compaque"
+	"Schroder D-20"
 ]
 
 var muscle_list = [
@@ -337,11 +337,11 @@ var compact = {
 		"ENGINE: V6 2.5L", "ASPIRATION: NA", "TORQUE: 270 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
-	"Eisenach Compaque":[
+	"Schroder D-20":[
 		"", "Country: Germany", "HP: 177", "WEIGHT: 1450 KG",
 		"0-100 KM/H: 7.1s", "TOP SPEED: 238 KM/H",
 		"ENGINE: L4 2.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 350 NM",
-		"TRANSMISSION: REAR-WHEEL DRIVE"
+		"TRANSMISSION: FRONT-WHEEL DRIVE"
 	]
 }
 
@@ -598,7 +598,7 @@ var car_scene_paths = {
 	"Straeda B32":"res://Scenes/new_beetle.tscn",
 	"Zenith Horizon":"res://Scenes/nissan_350z.tscn",
 	"Straeda G25":"res://Scenes/golf_v_gti.tscn",
-	"Eisenach Compaque":"res://Scenes/bmw_125.tscn",
+	"Schroder D-20":"res://Scenes/audi_a3.tscn",
 	"Mir Cars Crawler":"res://Scenes/volvo_xc90.tscn",
 	"Eisenach Escorter":"res://Scenes/bmw_x5.tscn",
 
