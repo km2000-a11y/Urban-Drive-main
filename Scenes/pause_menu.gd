@@ -22,8 +22,48 @@ func _on_resume_btn_pressed() -> void:
 	
 
 func _on_retry_btn_pressed() -> void:
-	get_tree().paused=false
+	get_tree().paused = false  
+
+	# NORMAL RACE
+	if Modes.mode == "Normal Race":
+		if NormalRaceManager:
+			NormalRaceManager.race_active = false  
+			NormalRaceManager.player_car = null  
+			NormalRaceManager.ai_cars.clear()  
+		get_tree().reload_current_scene()
+		return
+
+	# DUEL
+	if Modes.mode == "Duel":
+		if DuelManager:
+			DuelManager.duel_active = false  
+			DuelManager.player_car = null  
+			DuelManager.ai_car = null  
+		get_tree().reload_current_scene()
+		return
+
+	# ELIMINATION
+	if Modes.mode == "Elimination":
+		if EliminationManager:
+			EliminationManager.race_active = false  
+			EliminationManager.player_car = null  
+			EliminationManager.ai_cars.clear()  
+		get_tree().reload_current_scene()
+		return
+
+	# COP CHASE
+	if Modes.mode == "Cop Chase":
+		if CopChaseManager:
+			CopChaseManager.chase_active = false  
+			CopChaseManager.player_car = null  
+			CopChaseManager.ai_cars.clear()  
+		get_tree().reload_current_scene()
+		return
+
+	# ANY OTHER MODE (Free Drive, Radar Race, etc.)
 	get_tree().reload_current_scene()
+
+
 	
 func _on_quit_btn_pressed() -> void:
 	get_tree().paused=false

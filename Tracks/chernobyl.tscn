@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://bcsgdawdkhawv"]
+[gd_scene load_steps=89 format=3 uid="uid://bcsgdawdkhawv"]
 
 [ext_resource type="Script" uid="uid://frkq58mu2pgw" path="res://Scripts/barrier_1.gd" id="1_sawg2"]
 [ext_resource type="Script" uid="uid://dthur0h1nvj6s" path="res://Tracks/lap_line.gd" id="2_kpt7h"]
@@ -157,12 +157,6 @@ size = Vector3(440, 4, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_td035"]
 size = Vector3(440, 140, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_tml4q"]
-size = Vector3(1, 4, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_fu4m5"]
-size = Vector3(1, 150, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ugukp"]
 albedo_color = Color(0.176471, 0.176471, 0.176471, 1)
@@ -3286,7 +3280,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 75.5669)
 
 [node name="Flag" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.1546, 1.81998, 150.752)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.15458, 1.81998, -43.4362)
 
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="Flag"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24175, 2.47032, 14.4122)
@@ -3806,15 +3800,6 @@ mesh = SubResource("BoxMesh_cm5gb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D9/MeshInstance3D3/MeshInstance3D3/MeshInstance3D3/MeshInstance3D/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("BoxShape3D_td035")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D9/MeshInstance3D3/MeshInstance3D3/MeshInstance3D3/MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 220.466, 1.90154, -0.46875)
-mesh = SubResource("BoxMesh_tml4q")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D9/MeshInstance3D3/MeshInstance3D3/MeshInstance3D3/MeshInstance3D/MeshInstance3D3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D9/MeshInstance3D3/MeshInstance3D3/MeshInstance3D3/MeshInstance3D/MeshInstance3D3/StaticBody3D"]
-shape = SubResource("BoxShape3D_fu4m5")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D9/MeshInstance3D3/MeshInstance3D3/MeshInstance3D3/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 210.026, 1, -382.032)

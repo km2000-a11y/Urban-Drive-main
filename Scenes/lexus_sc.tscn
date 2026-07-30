@@ -188,12 +188,12 @@ material_override = SubResource("StandardMaterial3D_kceoh")
 mesh = SubResource("CapsuleMesh_56vir")
 
 [node name="MeshInstance3D15" type="MeshInstance3D" parent="ModelRoot"]
-transform = Transform3D(1.1, 0, 0, 0, -8.74228e-09, -1, 0, 0.2, -4.37114e-08, -0.119625, 0.40001, 1.09959)
+transform = Transform3D(1.1, 0, 0, 0, -8.74228e-09, -1, 0, 0.2, -4.37114e-08, -0.0767429, 0.40001, 1.09959)
 material_override = SubResource("StandardMaterial3D_kceoh")
 mesh = SubResource("CapsuleMesh_56vir")
 
 [node name="MeshInstance3D20" type="MeshInstance3D" parent="ModelRoot"]
-transform = Transform3D(1.1, 0, 0, 0, -8.74228e-09, -1, 0, 0.2, -4.37114e-08, 0.117191, 0.40001, 1.09959)
+transform = Transform3D(1.1, 0, 0, 0, -8.74228e-09, -1, 0, 0.2, -4.37114e-08, 0.165984, 0.40001, 1.09959)
 material_override = SubResource("StandardMaterial3D_kceoh")
 mesh = SubResource("CapsuleMesh_56vir")
 

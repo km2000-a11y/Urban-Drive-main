@@ -179,8 +179,9 @@ func _apply_random_ai_color(car: CarController) -> void:
 					mesh_instance.set_surface_override_material(s, new_mat)
 					
 func update_duel() -> void:
-	if not duel_active:
+	if not duel_active  or not is_instance_valid(player_car): 
 		return
+
 
 	# ❌ REMOVE extra lap logic from waypoints
 	# _update_laps_from_progress()

@@ -129,7 +129,7 @@ func spawn_race(scene: Node) -> void:
 	MusicManager.play_race_music()
 
 func update_race() -> void:
-	if not race_active:
+	if not race_active or not is_instance_valid(player_car):  
 		return
 
 	# Take ONE stable snapshot for this frame
@@ -193,6 +193,9 @@ func _calculate_position() -> int:
 	return 1
 
 func _sorted_cars() -> Array:
+	if not is_instance_valid(player_car) or player_car.waypoints.is_empty():
+		  			
+					return []
 	var total_wp := player_car.waypoints.size()
 	var cars := []
 

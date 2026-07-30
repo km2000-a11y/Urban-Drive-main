@@ -274,7 +274,7 @@ func _end_race(winner: String) -> void:
 
 
 func update_race() -> void:
-	if not race_active:
+	if not race_active or not is_instance_valid(player_car):  
 		return
 
 	var sorted := _sorted_cars()
@@ -310,6 +310,9 @@ func _calculate_position() -> int:
 	return 1
 
 func _sorted_cars() -> Array:
+	if not is_instance_valid(player_car) or player_car.waypoints.is_empty():
+		  			
+					return []
 	var total_wp := player_car.waypoints.size()
 	var cars := []
 

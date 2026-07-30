@@ -144,7 +144,7 @@ func spawn_chase(scene: Node) -> void:
 # UPDATE CHASE
 # ============================================================
 func update_chase(delta: float) -> void:
-	if not chase_active:
+	if not chase_active or not is_instance_valid(player_car):  
 		return
 
 	time_left -= delta

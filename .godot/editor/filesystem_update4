@@ -72,3 +72,6 @@ res://Scenes/lexus_sc.gd
 res://Scripts/morgan_aero_8.gd
 res://normal_race_manager.gd
 res://duel_manager.gd
+res://Scenes/pause_menu.gd
+res://cop_chase_manager.gd
+res://elimination_manager.gd
