@@ -24,6 +24,95 @@ var lap_cooldown := {}
 
 
 
+func spawn_race(scene: Node) -> void:
+	race_active = false
+	CarController.used_ai_names = CarController.ai_names.duplicate()
+
+	# Remove old cars
+	if player_car and player_car.is_inside_tree():
+		player_car.queue_free()
+
+	for ai in ai_cars:
+		if ai and ai.is_inside_tree():
+			ai.queue_free()
+
+	ai_cars.clear()
+
+	await get_tree().process_frame
+
+	var root := scene.get_node(TrackName.track_name)
+
+	player_spawn = root.get_node("SpawnPoint").global_transform.origin
+
+	ai_spawns.clear()
+	for i in range(7):
+		ai_spawns.append(root.get_node("AISpawnPoint" + str(i + 1)).global_transform.origin)
+
+	RaceResults.clear()
+	main_scene = scene
+	hud = scene.get_node("HUD")
+
+	# PLAYER
+	var player_scene := load(player_car_path)
+	player_car = player_scene.instantiate() as CarController
+	player_car.is_ai = false
+	player_car.global_transform = root.get_node("SpawnPoint").global_transform
+	player_car.controls_enabled = true
+	player_car.driver_name = "Player"
+	player_car.car_name = Cars.selected_car_name
+	scene.add_child(player_car)
+
+	_apply_player_color(player_car)
+
+	await get_tree().process_frame
+	await get_tree().process_frame
+
+	if player_car.has_node("Camera3D"):
+		player_car.get_node("Camera3D").current = true
+
+	# AI CARS
+	ai_cars.clear()
+
+	for i in range(ai_spawns.size()):
+		var ai_scene := load(ai_car_paths[i])
+		var ai := ai_scene.instantiate() as CarController
+		scene.add_child(ai)
+
+		if ai.has_node("Camera3D"):
+			ai.get_node("Camera3D").current = false
+
+		var spawn_node := root.get_node("AISpawnPoint" + str(i + 1))
+		ai.global_transform = spawn_node.global_transform
+		ai.is_ai = true
+		ai.controls_enabled = true
+
+		ai.driver_name = ai.ai_names[randi() % ai.ai_names.size()]
+		ai.car_name = Cars.car_scene_paths.keys()[Cars.car_scene_paths.values().find(ai_car_paths[i])]
+
+		_apply_random_ai_color(ai)
+
+		ai_cars.append(ai)
+
+	await get_tree().process_frame
+	await get_tree().process_frame
+
+	# WAYPOINTS
+	var wp_root := scene.find_child("Waypoints", true, false)
+	player_car.set_waypoints(wp_root)
+
+	for ai in ai_cars:
+		ai.set_waypoints(wp_root)
+
+	# INIT lap dictionaries
+	init_lap_system()
+
+	race_active = true
+
+	hud.update_lap(1, total_laps)
+	hud.update_position(ai_cars.size() + 1, ai_cars.size() + 1)
+
+	MusicManager.stop_music()
+	MusicManager.play_race_music()
 
 
 func init_lap_system():
