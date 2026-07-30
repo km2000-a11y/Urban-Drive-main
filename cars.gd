@@ -40,9 +40,8 @@ var class_lists := {
 		"Brutus Stingray",
 			"Berkshire Blunt",
 		"Kestrel Speedster",
-		"Kuro Zephyr V6",
 		"Eisenach Bengal",
-		"Kronstadt Blazer"
+		"Kuro Serenity"
 	],
 
 	"sedans": [
@@ -125,6 +124,7 @@ var car_scene_paths := {
 	"Kuro Vault":"res://Scenes/lexus_ls430.tscn",
 	"Eisenach Suppressor":"res://Scenes/bmw_535d.tscn",
 	"Eisenach Compaque":"res://Scenes/bmw_125.tscn",
+		"Kuro Serenity":"res://Scenes/lexus_sc.tscn",
 
 	"Schroder Atrix Sport":"res://Scenes/audi_tt_rs.tscn",
 	"Bartoli Cruiser":"res://Scenes/granturismo.tscn",
@@ -212,6 +212,12 @@ var car_colors := {
 	Color8(200,40,40),     # ⭐ Deep Mercedes Red
 	Color8(60,60,60),      # Graphite
 	Color8(0,70,120)       # Deep Blue
+],
+"Kuro Serenity":[
+	Color8(20,40,60),     # ⭐ Midnight Jade Pearl (default) — deep green-black Lexus luxury
+	Color8(255,255,255),  # ⭐ Diamond White Pearl — classic Lexus VIP white
+	Color8(180,180,180),  # ⭐ Platinum Silver — calm GT silver
+	Color8(60,60,60)      # ⭐ Graphite Shadow — dark executive grey
 ],
 
 

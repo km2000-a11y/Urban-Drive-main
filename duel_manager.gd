@@ -187,7 +187,7 @@ func update_duel() -> void:
 
 	if not player_finished:
 			
-			hud.update_stopwatch(player_car.total_race_time)
+w			hud.update_stopwatch(player_car.total_race_time)
 			
 	hud.update_lap(player_laps + 1, total_laps)
 	hud.update_position(_calculate_position(), 2)

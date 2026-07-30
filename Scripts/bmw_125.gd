@@ -13,7 +13,7 @@ func _ready():
 	horsepower = 190                 # Diesel tuned to match GTI acceleration
 	max_rpm = 4800.0                 # Diesel redline
 	idle_rpm = 800.0
-	zero_to_hundred = 6.9
+	zero_to_hundred = 7.1
 	top_speed_kmh = 238              # You requested this — GTI-level top speed
 	turn_speed = 2.70                # More playful, GTI-like rotation
 	brake_strength = 11.6            # Hot hatch brake feel

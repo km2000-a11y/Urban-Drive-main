@@ -65,6 +65,13 @@ var car_colors := {
 	Color8(60,60,60),     # Dark Grey
 	Color8(0,70,120)      # Deep Blue
 ],
+"Kuro Serenity":[
+	Color8(20,40,60),     # ⭐ Midnight Jade Pearl (default) — deep green-black Lexus luxury
+	Color8(255,255,255),  # ⭐ Diamond White Pearl — classic Lexus VIP white
+	Color8(180,180,180),  # ⭐ Platinum Silver — calm GT silver
+	Color8(60,60,60)      # ⭐ Graphite Shadow — dark executive grey
+],
+
 "Eisenach Compaque":[
 	Color8(240,240,240),
 	Color8(0,60,120),
@@ -206,10 +213,10 @@ var suv_list = [
 ]
 
 var compact_list = [
+	"Kuro Zephyr",
 	"Schroder Atrix Q32",
 	"Zenith Horizon",
 	"Straeda B32",
-	"Kuro Zephyr",
 	"Eisenach Compaque"
 ]
 
@@ -218,10 +225,9 @@ var muscle_list = [
 	"Mir Cars Hutch"
 ]
 
-var urban_list = [
-		"Kronstadt Blazer",  
+var urban_list = [  
+	"Kuro Serenity",
 	"Eisenach Bengal",
-		"Kuro Zephyr V6",
 	"Brutus Stingray",
 		"Berkshire Blunt",
 	"Kestrel Speedster", # ⭐ NEW — SL500 R129
@@ -327,13 +333,13 @@ var compact = {
 	],
 	"Kuro Zephyr":[
 		"", "Country: Japan", "HP: 204", "WEIGHT: 1600 KG",
-		"0-100 KM/H: 7.3s", "TOP SPEED: 234 KM/H",
-		"ENGINE: V6 2.5L", "ASPIRATION: NA", "TORQUE: 250 NM",
+		"0-100 KM/H: 6.9s", "TOP SPEED: 234 KM/H",
+		"ENGINE: V6 2.5L", "ASPIRATION: NA", "TORQUE: 270 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Eisenach Compaque":[
 		"", "Country: Germany", "HP: 177", "WEIGHT: 1450 KG",
-		"0-100 KM/H: 6.9s", "TOP SPEED: 238 KM/H",
+		"0-100 KM/H: 7.1s", "TOP SPEED: 238 KM/H",
 		"ENGINE: L4 2.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 350 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	]
@@ -362,31 +368,25 @@ var urban_racers = {
 	],
 	"Kestrel Speedster":[
 		"", "Country: UK", "HP: 286", "WEIGHT: 1145 KG",
-		"0-100 KM/H: 4.8s", "TOP SPEED: 242 KM/H",
+		"0-100 KM/H: 5.3s", "TOP SPEED: 259 KM/H",
 		"ENGINE: V8 4.4L", "ASPIRATION: NA", "TORQUE: 410 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
-	"Kuro Zephyr V6":[
-		"", "Country: Japan", "HP: 306", "WEIGHT: 1578 KG",
-		"0-100 KM/H: 5.6s", "TOP SPEED: 250 KM/H",
-		"ENGINE: V6 3.5L", "ASPIRATION: NA", "TORQUE: 370 NM",
-		"TRANSMISSION: REAR-WHEEL DRIVE"
-	],
+	"Kuro Serenity":[
+	"", "Country: Japan", "HP: 260", "WEIGHT: 1640 KG",
+	"0-100 KM/H: 6.4s", "TOP SPEED: 250 KM/H",
+	"ENGINE: V8 4.0L", "ASPIRATION: NA", "TORQUE: 360 NM",
+	"TRANSMISSION: REAR-WHEEL DRIVE"
+],
 	"Eisenach Bengal":[
 	"", "Country: Germany", "HP: 230", "WEIGHT: 1450 KG",
 	"0-100 KM/H: 5.0s", "TOP SPEED: 243 KM/H",
 	"ENGINE: L6 3.0L", "ASPIRATION: NA", "TORQUE: 300 NM",
 	"TRANSMISSION: REAR-WHEEL DRIVE"
 ],
-"Kronstadt Blazer":[
-	"", "Country: Germany", "HP: 316", "WEIGHT: 1830 KG",
-	"0-100 KM/H: 5.8s", "TOP SPEED: 250 KM/H",
-	"ENGINE: V8 5.0L", "ASPIRATION: NA", "TORQUE: 470 NM",
-	"TRANSMISSION: REAR-WHEEL DRIVE"
-],
 	"Berkshire Blunt":[
 		"", "Country: UK", "HP: 406", "WEIGHT: 1832 KG",
-		"0-100 KM/H: 6.2s", "TOP SPEED: 277 KM/H",
+		"0-100 KM/H: 6.2s", "TOP SPEED: 273 KM/H",
 		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	]
@@ -630,6 +630,7 @@ var car_scene_paths = {
 	"Berkshire V12-S":"res://Scenes/aston_db9.tscn",
 	"Berkshire Tempest":"res://Scenes/vanquish.tscn",
 	"Strandberg Turbo":"res://Scenes/volvo_s60r.tscn",
+	"Kuro Serenity":"res://Scenes/lexus_sc.tscn",
 
 	"Mir Cars Precision":"res://Scenes/bmw_m6.tscn",
 	"Kestrel Battleaxe":"res://Scenes/sagaris.tscn",
