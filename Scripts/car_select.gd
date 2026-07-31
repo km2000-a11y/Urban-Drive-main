@@ -486,8 +486,8 @@ var sports_crossovers = {
 	],
 
 	"Mir Cars Crawler":[
-		"", "Country: UAE", "HP: 320", "WEIGHT: 2289 KG",
-		"0-100 KM/H: 6.9s", "TOP SPEED: 232 KM/H",
+		"", "Country: UAE", "HP: 320", "WEIGHT: 2489 KG",
+		"0-100 KM/H: 6.9s", "TOP SPEED: 226 KM/H",
 		"ENGINE: V8 4.9L", "ASPIRATION: NA", "TORQUE: 480 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],

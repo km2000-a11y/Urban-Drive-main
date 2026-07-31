@@ -4,7 +4,7 @@ extends CarController
 var def_car_name := "Mir Cars Crawler"
 var country := "UAE"
 var engine := "V8 4.9L"
-var weight_kg := 2289
+var weight_kg := 2489
 var zero_to_hundred_display := 6.90
 
 func _ready():
@@ -13,7 +13,7 @@ func _ready():
 	horsepower = 320
 	max_rpm = 6000.0
 	zero_to_hundred = 6.9
-	top_speed_kmh = 232
+	top_speed_kmh = 226
 	turn_speed = 2.15              # tighter, more responsive than heavy SUVs
 	brake_strength = 15.0          # strong V8 crossover braking
 	lateral_friction = 1.10        # confident AWD road grip
