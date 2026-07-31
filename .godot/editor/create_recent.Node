@@ -1,10 +1,10 @@
+MeshInstance3D
+CollisionShape3D
+StaticBody3D
 CarController
 Node3D
-MeshInstance3D
 Button
-CollisionShape3D
 Area3D
-StaticBody3D
 Label
 Control
 CanvasLayer

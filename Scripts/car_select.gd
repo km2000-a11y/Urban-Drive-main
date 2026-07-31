@@ -230,15 +230,15 @@ var urban_list = [
 	"Eisenach Bengal",
 	"Brutus Stingray",
 		"Berkshire Blunt",
-	"Kestrel Speedster", # ⭐ NEW — SL500 R129
+	"Kestrel Speedster", 
 ]
 
 
 var sedans_list = [
+		"Kuro Vault",
+			"Eisenach Monarch",
+		"Mir Cars Transporter",
 	"Kuro Persian",
-	"Eisenach Monarch",
-	"Mir Cars Transporter",
-	"Kuro Vault",
 	"Strandberg Turbo"
 ]
 
@@ -315,7 +315,7 @@ var suv = {
 var compact = {
 	"Schroder Atrix Q32":[
 		"", "Country: Germany", "HP: 247", "WEIGHT: 1470 KG",
-		"0-100 KM/H: 6.4s", "TOP SPEED: 250 KM/H",
+		"0-100 KM/H: 6.6s", "TOP SPEED: 250 KM/H",
 		"ENGINE: V6 3.2L", "ASPIRATION: NA", "TORQUE: 320 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
@@ -327,7 +327,7 @@ var compact = {
 	],
 	"Zenith Horizon":[
 		"", "Country: Japan", "HP: 287", "WEIGHT: 1460 KG",
-		"0-100 KM/H: 5.9s", "TOP SPEED: 250 KM/H",
+		"0-100 KM/H: 6.4s", "TOP SPEED: 250 KM/H",
 		"ENGINE: V6 3.5L", "ASPIRATION: NA", "TORQUE: 340 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
@@ -530,14 +530,14 @@ var torque_monsters = {
 
 	"Eisenach Suppressor":[
 		"", "Country: Germany", "HP: 272", "WEIGHT: 1660 KG",
-		"0-100 KM/H: 5.7s", "TOP SPEED: 245 KM/H",
+		"0-100 KM/H: 5.7s", "TOP SPEED: 250 KM/H",
 		"ENGINE: L6 3.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 560 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 
 	"Eisenach Black Panda":[
 		"", "Country: Germany", "HP: 231", "WEIGHT: 1600 KG",
-		"0-100 KM/H: 6.1s", "TOP SPEED: 252 KM/H",
+		"0-100 KM/H: 6.1s", "TOP SPEED: 258 KM/H",
 		"ENGINE: L6 3.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 500 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],

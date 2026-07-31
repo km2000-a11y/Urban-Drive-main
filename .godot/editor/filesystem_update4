@@ -63,3 +63,8 @@ res://Scenes/track_select.tscn
 res://Scenes/slk.tscn
 res://Scenes/lexus_sc.tscn
 res://Scenes/sl_500.tscn
+res://Scripts/audi_tt_roadster_32_2004.gd
+res://Scripts/car_select.gd
+res://Scripts/nissan_350z_2005.gd
+res://Scripts/bmw_330d.gd
+res://Tracks/abu_dhabi.tscn
