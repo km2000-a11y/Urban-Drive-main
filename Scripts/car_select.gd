@@ -120,6 +120,12 @@ var car_colors := {
 	Color8(0,70,120)       # Deep Blue
 ],
 
+"Kestrel Touring":[
+	Color8(45,54,35),     # ⭐ Midnight Blackpool (default)
+	Color8(160,40,200),   # Toxic Purple
+	Color8(120,255,40),   # Radioactive Lime
+	Color8(255,90,20)     # Cerbera Flame Orange
+],
 
 	"Mir Cars Hutch":[Color8(228,31,36), Color8(255,255,255), Color8(160,160,160), Color8(0,40,120)],
 	"Brutus Viper":[Color8(0,0,128), Color8(255,255,255), Color8(200,200,200), Color8(160,0,0)],
@@ -248,6 +254,7 @@ var sport_list = [
 	"Berkshire V12-S",
 	"Bartoli Cruiser",
 	"Berkshire Tempest",
+	"Kestrel Touring"
 ]
 
 var sport_racing_list = [
@@ -449,6 +456,13 @@ var sport = {
 		"ENGINE: V12 5.9L", "ASPIRATION: NA", "TORQUE: 580 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
+	"Kestrel Touring":[
+	"", "Country: UK", "HP: 360", "WEIGHT: 1150 KG",
+	"0-100 KM/H: 4.3s", "TOP SPEED: 292 KM/H",
+	"ENGINE: V8 4.2L", "ASPIRATION: NA", "TORQUE: 390 NM",
+	"TRANSMISSION: REAR-WHEEL DRIVE"
+],
+
 }
 
 var sport_racing = {
@@ -460,7 +474,7 @@ var sport_racing = {
 	],
 	"Kestrel Battleaxe":[
 		"", "Country: UK", "HP: 406", "WEIGHT: 1078 KG",
-		"0-100 KM/H: 3.8s", "TOP SPEED: 287 KM/H",
+		"0-100 KM/H: 3.5s", "TOP SPEED: 287 KM/H",
 		"ENGINE: L6 4.0L", "ASPIRATION: NA", "TORQUE: 390 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
@@ -646,6 +660,7 @@ var car_scene_paths = {
 	"Eisenach Suppressor":"res://Scenes/bmw_535d.tscn",
 	"Schroder Fastback":"res://Scenes/audi_a5_tdi.tscn",
 	"Kronstadt Blazer":"res://Scenes/sl_500.tscn",
+	"Kestrel Touring":"res://Scenes/tvr_cerbera.tscn"
 
 }
 

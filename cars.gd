@@ -56,7 +56,8 @@ var class_lists := {
 		"Bartoli Cruiser",
 		"Berkshire V12-S",
 		"Berkshire Tempest",
-		"Schroder Classique Sport"
+		"Schroder Classique Sport",
+		"Kestrel Touring"
 	],
 
 	"sport_racing": [
@@ -139,6 +140,7 @@ var car_scene_paths := {
 	"Kestrel Battleaxe":"res://Scenes/sagaris.tscn",
 	"Linetti Shepherd":"res://Scenes/gallardo.tscn",
 	"Brutus Venom":"res://Scenes/dodge_viper.tscn",
+	"Kestrel Touring":"res://Scenes/tvr_cerbera.tscn",
 
 	"Linetti Terror":"res://Scenes/murcielago.tscn",
 	"Linetti Firestorm":"res://Scenes/diablo_road.tscn",
@@ -218,6 +220,14 @@ var car_colors := {
 	Color8(255,255,255),  # ⭐ Diamond White Pearl — classic Lexus VIP white
 	Color8(180,180,180),  # ⭐ Platinum Silver — calm GT silver
 	Color8(60,60,60)      # ⭐ Graphite Shadow — dark executive grey
+],
+
+
+"Kestrel Touring":[
+	Color8(45,54,35),     # ⭐ Midnight Blackpool (default)
+	Color8(160,40,200),   # Toxic Purple
+	Color8(120,255,40),   # Radioactive Lime
+	Color8(255,90,20)     # Cerbera Flame Orange
 ],
 
 
