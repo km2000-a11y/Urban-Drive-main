@@ -1,6 +1,6 @@
-res://Tracks/abu_dhabi.tscn
-res://Scripts/base_car.gd
 res://main.tscn
+res://Scripts/car_select.gd
+res://Scripts/jaguar_xkr_2003.gd
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
 res://Scenes/audi_tt.tscn
@@ -64,4 +64,8 @@ res://Tracks/chernobyl.tscn
 res://Scenes/track_select.tscn
 res://Scenes/slk.tscn
 res://Scenes/lexus_sc.tscn
+res://Tracks/abu_dhabi.tscn
 res://Scenes/tvr_cerbera.tscn
+res://Tracks/lap_line.gd
+res://Scenes/track_select.gd
+res://track_registry.gd

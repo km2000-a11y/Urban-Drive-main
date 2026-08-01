@@ -34,6 +34,15 @@ offset_bottom = 124.0
 theme_override_font_sizes/font_size = 30
 text = "CHERNOBYL UKRAINE"
 
+[node name="AbuDhabi" type="Button" parent="Control"]
+layout_mode = 0
+offset_top = 134.0
+offset_right = 1254.0
+offset_bottom = 186.0
+theme_override_font_sizes/font_size = 30
+text = "ABU DHABI"
+
 [connection signal="pressed" from="Control/BogotaAirport" to="." method="_on_bogota_airport_pressed"]
 [connection signal="pressed" from="Control/BackBtn" to="." method="_on_back_btn_pressed"]
 [connection signal="pressed" from="Control/Chernobyl" to="." method="_on_chernobyl_pressed"]
+[connection signal="pressed" from="Control/AbuDhabi" to="." method="_on_abu_dhabi_pressed"]

@@ -22,3 +22,9 @@ func _on_chernobyl_pressed() -> void:
 	TrackName.track_name="Chernobyl"
 	
 	get_tree().change_scene_to_file("res://main.tscn")
+
+
+func _on_abu_dhabi_pressed() -> void:
+	TrackName.track_name="AbuDhabi"
+	
+	get_tree().change_scene_to_file("res://main.tscn")

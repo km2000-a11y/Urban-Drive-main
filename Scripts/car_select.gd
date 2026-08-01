@@ -393,7 +393,7 @@ var urban_racers = {
 ],
 	"Berkshire Blunt":[
 		"", "Country: UK", "HP: 406", "WEIGHT: 1832 KG",
-		"0-100 KM/H: 6.1s", "TOP SPEED: 271 KM/H",
+		"0-100 KM/H: 5.8s", "TOP SPEED: 272 KM/H",
 		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	]
