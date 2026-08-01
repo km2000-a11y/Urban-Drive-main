@@ -244,6 +244,7 @@ var sedans_list = [
 		"Kuro Vault",
 			"Eisenach Monarch",
 		"Mir Cars Transporter",
+			"Eisenach Black Panda",
 	"Kuro Persian",
 	"Strandberg Turbo"
 ]
@@ -278,7 +279,6 @@ var sports_crossovers_list = [
 
 var torque_monsters_list = [
 	"Eisenach Suppressor",
-	"Eisenach Black Panda",
 	"Schroder Fastback",
 	"Kronstadt Crest"
 ]
@@ -393,7 +393,7 @@ var urban_racers = {
 ],
 	"Berkshire Blunt":[
 		"", "Country: UK", "HP: 406", "WEIGHT: 1832 KG",
-		"0-100 KM/H: 6.2s", "TOP SPEED: 273 KM/H",
+		"0-100 KM/H: 6.1s", "TOP SPEED: 271 KM/H",
 		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	]
@@ -423,6 +423,12 @@ var sedans = {
 		"ENGINE: L5 2.5L", "ASPIRATION: Turbo", "TORQUE: 350 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
+		"Eisenach Black Panda":[
+		"", "Country: Germany", "HP: 231", "WEIGHT: 1600 KG",
+		"0-100 KM/H: 6.1s", "TOP SPEED: 253 KM/H",
+		"ENGINE: L6 3.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 500 NM",
+		"TRANSMISSION: REAR-WHEEL DRIVE"
+	],
 	"Kuro Persian":[
 	"", "Country: Japan", "HP: 300", "WEIGHT: 1660 KG",
 	"0-100 KM/H: 5.7s", "TOP SPEED: 258 KM/H",
@@ -434,7 +440,7 @@ var sedans = {
 var sport = {
 	"Schroder Classique Sport":[
 	"", "Country: Germany", "HP: 340", "WEIGHT: 1855 KG",
-	"0-100 KM/H: 4.8s", "TOP SPEED: 266 KM/H",
+	"0-100 KM/H: 4.8s", "TOP SPEED: 262 KM/H",
 	"ENGINE: V8 4.2L", "ASPIRATION: NA", "TORQUE: 420 NM",
 	"TRANSMISSION: FOUR-WHEEL DRIVE"
 ],
@@ -549,12 +555,6 @@ var torque_monsters = {
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 
-	"Eisenach Black Panda":[
-		"", "Country: Germany", "HP: 231", "WEIGHT: 1600 KG",
-		"0-100 KM/H: 6.1s", "TOP SPEED: 258 KM/H",
-		"ENGINE: L6 3.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 500 NM",
-		"TRANSMISSION: REAR-WHEEL DRIVE"
-	],
 
 	"Schroder Fastback":[
 		"", "Country: Germany", "HP: 242", "WEIGHT: 1695 KG",

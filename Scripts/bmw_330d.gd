@@ -13,7 +13,7 @@ func _ready():
 	horsepower = 231                 # M57D30 output (330d)
 	max_rpm = 5000.0                 # Diesel redline; strong torque band
 	zero_to_hundred = 6.1
-	top_speed_kmh = 258            # Realistic tuned 330d top speed
+	top_speed_kmh = 253            # Realistic tuned 330d top speed
 	turn_speed = 2.55                # Heavier than 125i; stable diesel rotation
 	brake_strength = 11.2            # Strong brakes; diesel weight accounted for
 	lateral_friction = 1.15          # Confident grip; planted BMW chassis

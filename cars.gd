@@ -48,6 +48,7 @@ var class_lists := {
 		"Eisenach Monarch",
 		"Mir Cars Transporter",
 		"Kuro Vault",
+				"Eisenach Black Panda",
 		"Strandberg Turbo",
 		"Kuro Persian"
 	],
@@ -76,7 +77,6 @@ var class_lists := {
 
 	"torque_monsters": [
 		"Eisenach Suppressor",
-		"Eisenach Black Panda",
 		"Schroder Fastback",
 		"Kronstadt Crest"
 	],
