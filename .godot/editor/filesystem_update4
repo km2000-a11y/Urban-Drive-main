@@ -1,4 +1,6 @@
-res://Tracks/abu_dhabi.tscn
+res://Scenes/track_select.tscn
+res://cars.gd
+res://Scripts/car_select.gd
 res://main.tscn
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
@@ -60,7 +62,9 @@ res://Scenes/ford_cobra.tscn
 res://Scenes/zonda.tscn
 res://Scenes/cop_chase_hud.tscn
 res://Tracks/chernobyl.tscn
-res://Scenes/track_select.tscn
 res://Scenes/slk.tscn
 res://Scenes/lexus_sc.tscn
+res://Tracks/abu_dhabi.tscn
 res://Scenes/tvr_cerbera.tscn
+res://normal_race_manager.gd
+res://Tracks/barrier_3.gd

@@ -35,7 +35,6 @@ theme_override_font_sizes/font_size = 30
 text = "CHERNOBYL UKRAINE"
 
 [node name="AbuDhabi" type="Button" parent="Control"]
-visible = false
 layout_mode = 0
 offset_top = 134.0
 offset_right = 1254.0

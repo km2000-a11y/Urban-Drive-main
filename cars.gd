@@ -27,7 +27,6 @@ var class_lists := {
 	"track_cars": [
 	"Mir Cars Athletic C70",
 	"Bartoli Track Cruiser",
-	"Brutus Thunderbolt"
 ],
 
 
@@ -46,7 +45,6 @@ var class_lists := {
 
 	"sedans": [
 		"Eisenach Monarch",
-		"Mir Cars Transporter",
 		"Kuro Vault",
 				"Eisenach Black Panda",
 		"Strandberg Turbo",
@@ -54,7 +52,6 @@ var class_lists := {
 	],
 
 	"sport": [
-		"Bartoli Cruiser",
 		"Berkshire V12-S",
 		"Berkshire Tempest",
 		"Schroder Classique Sport",
@@ -63,7 +60,6 @@ var class_lists := {
 
 	"sport_racing": [
 		"Mir Cars Precision",
-		"Kestrel Battleaxe",
 		"Linetti Shepherd",
 		"Brutus Venom"
 	],

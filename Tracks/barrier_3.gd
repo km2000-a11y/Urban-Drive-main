@@ -26,7 +26,9 @@ func _physics_process(delta):
 
 		# DO NOT USE move_and_slide() anymore
 		# Just manually move the prop
-		global_position += yeet_force * delta
+		velocity = yeet_force
+		move_and_slide()
+
 
 		if yeet_timer <= 0.0:
 			queue_free()

@@ -243,7 +243,6 @@ var urban_list = [
 var sedans_list = [
 		"Kuro Vault",
 			"Eisenach Monarch",
-		"Mir Cars Transporter",
 			"Eisenach Black Panda",
 	"Kuro Persian",
 	"Strandberg Turbo"
@@ -253,7 +252,6 @@ var sedans_list = [
 var sport_list = [
 	"Schroder Classique Sport",
 	"Berkshire V12-S",
-	"Bartoli Cruiser",
 	"Berkshire Tempest",
 	"Kestrel Touring"
 ]
@@ -261,7 +259,6 @@ var sport_list = [
 var sport_racing_list = [
 	"Linetti Shepherd",
 	"Mir Cars Precision",
-	"Kestrel Battleaxe",
 	"Brutus Venom"
 ]
 
@@ -285,7 +282,6 @@ var torque_monsters_list = [
 var track_cars_list = [
 	"Mir Cars Athletic C70",
 	"Bartoli Track Cruiser",
-	"Brutus Thunderbolt"
 ]
 
 
@@ -572,9 +568,9 @@ var torque_monsters = {
 
 var track_cars = {
 	"Mir Cars Athletic C70":[
-		"", "Country: UAE", "HP: 600", "WEIGHT: 1378 KG",
+		"", "Country: UAE", "HP: 655", "WEIGHT: 1378 KG",
 		"0-100 KM/H: 3.65s", "TOP SPEED: 342 KM/H",
-		"ENGINE: V12 7.0L", "ASPIRATION: NA", "TORQUE: 650 NM",
+		"ENGINE: V12 7.5L", "ASPIRATION: NA", "TORQUE: 650 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 

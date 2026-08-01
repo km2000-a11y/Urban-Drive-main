@@ -10,7 +10,7 @@ var player_car: CarController = null
 var ai_cars: Array[CarController] = []
 
 var race_active: bool = false
-var total_laps: int = 2
+var total_laps: int = 3
 
 var hud: Node = null
 var main_scene: Node = null
