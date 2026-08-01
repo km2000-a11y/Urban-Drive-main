@@ -140,6 +140,7 @@ func _ready() -> void:
 	apply_stats()
 	apply_handling_profile()
 	nitro.hide()
+	floor_stop_on_slope=false
 
 	if is_ai:
 		# Build a fresh pool if empty
@@ -459,7 +460,7 @@ func _update_ai_inputs(delta: float) -> void:
 	var target := wp.global_position
 
 	var to_wp := target - global_position
-	to_wp.y = 0.0
+
 
 	var dist := to_wp.length()
 
@@ -471,7 +472,6 @@ func _update_ai_inputs(delta: float) -> void:
 	var dir := to_wp.normalized()
 
 	var forward := -transform.basis.z
-	forward.y = 0.0
 	forward = forward.normalized()
 
 	# --- NEVER REVERSE ---
