@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://72uh2jduq10m"]
+[gd_scene load_steps=49 format=3 uid="uid://72uh2jduq10m"]
 
 [ext_resource type="Script" uid="uid://b0isf7hyx4jdo" path="res://Scripts/audi_tt_roadster_32_2004.gd" id="1_j8p6p"]
 [ext_resource type="Script" uid="uid://ffvs8ga7wgmd" path="res://Scripts/camera.gd" id="2_epe3n"]
@@ -28,14 +28,8 @@ albedo_color = Color(0.752941, 0.752941, 0.752941, 1)
 metallic = 0.8
 
 [sub_resource type="TorusMesh" id="TorusMesh_hf3ky"]
-inner_radius = 0.03
+inner_radius = 0.06
 outer_radius = 0.18
-rings = 12
-ring_segments = 8
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bl4ea"]
-albedo_color = Color(0.752941, 0.752941, 0.752941, 1)
-metallic = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7iob"]
 albedo_color = Color(0.627451, 0.372549, 0.172549, 1)
@@ -122,7 +116,7 @@ albedo_color = Color(0.752941, 0.752941, 0.752941, 1)
 albedo_color = Color(0.752941, 0.752941, 0.752941, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6d3fy"]
-size = Vector3(0.8, 0.35, 0.2)
+size = Vector3(0.8, 0.35, 0.3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_08euy"]
 size = Vector3(1, 1, 1.7)
@@ -269,13 +263,13 @@ mesh = SubResource("BoxMesh_dtqb8")
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="ModelRoot"]
 
 [node name="MeshInstance3D9" type="MeshInstance3D" parent="ModelRoot"]
-transform = Transform3D(0.5, 0, 0, 0, -6.99382e-08, -0.85, 0, 1.6, -3.71547e-08, 0.254303, 0.358462, 0.142337)
+transform = Transform3D(0.5, 0, 0, 0, -2.62268e-08, -1, 0, 0.6, -4.37114e-08, 0.254303, 0.358462, 0.182077)
 material_override = SubResource("StandardMaterial3D_4a4rh")
 mesh = SubResource("TorusMesh_hf3ky")
 
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="ModelRoot"]
-transform = Transform3D(0.5, 0, 0, 0, -6.99382e-08, -0.85, 0, 1.6, -3.71547e-08, -0.160942, 0.36543, 0.145022)
-material_override = SubResource("StandardMaterial3D_bl4ea")
+transform = Transform3D(0.5, 0, 0, 0, -2.62268e-08, -1, 0, 0.6, -4.37114e-08, -0.174553, 0.358462, 0.169306)
+material_override = SubResource("StandardMaterial3D_4a4rh")
 mesh = SubResource("TorusMesh_hf3ky")
 
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="ModelRoot"]
@@ -380,7 +374,7 @@ mesh = SubResource("BoxMesh_epe3n")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="ModelRoot/Body"]
-transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871557, 0, 0.0871557, 0.996195, -1.08358e-08, 0.16155, 0.0717624)
+transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871557, 0, 0.0871557, 0.996195, -1.74283e-08, 0.16155, 0.115423)
 material_override = SubResource("StandardMaterial3D_s0kkr")
 mesh = SubResource("BoxMesh_6d3fy")
 skeleton = NodePath("../..")
