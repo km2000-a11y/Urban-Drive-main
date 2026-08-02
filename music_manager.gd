@@ -24,6 +24,8 @@ func play_race_music() -> void:
 	# Track-specific override using your autoload
 	if TrackName.track_name == "Chernobyl":
 		path = "res://Songs/chernobyl.mp3"
+	if TrackName.track_name == "AbuDhabi":
+		path = "res://Songs/abu_dhabi.mp3"
 
 	# Prevent restarting same track
 	if player.stream and player.stream.resource_path == path and player.playing:
