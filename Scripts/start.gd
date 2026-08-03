@@ -1,36 +1,41 @@
 extends CanvasLayer
 
-signal countdown_finished   # 🔥 ADD THIS
+signal countdown_finished
 
 @onready var label := $Control/CountdownLabel
 
-var cars := []
+var cars: Array = []
 
-func start_countdown():
-	# Freeze cars
-	cars = get_tree().get_nodes_in_group("cars")
+func start_countdown(car_list):
+	cars = car_list
+
+	# freeze cars
 	for c in cars:
 		if c is CarController:
 			c.controls_enabled = false
+			c.velocity = Vector3.ZERO
+
 
 	visible = true
-	label.text = "3"
+	$Control/CountdownLabel.text = "3"
 	await get_tree().create_timer(1.0).timeout
 
-	label.text = "2"
+	$Control/CountdownLabel.text = "2"
 	await get_tree().create_timer(1.0).timeout
 
-	label.text = "1"
+	$Control/CountdownLabel.text = "1"
 	await get_tree().create_timer(1.0).timeout
 
-	label.text = "GO!"
+	$Control/CountdownLabel.text = "GO!"
 	await get_tree().create_timer(0.7).timeout
 
-	# Unfreeze cars
+	# unfreeze cars
 	for c in cars:
 		if c is CarController:
 			c.controls_enabled = true
+			c.hard_frozen = false
 
 	visible = false
 
-	emit_signal("countdown_finished")   # 🔥 FIRE THE SIGNAL
+	get_parent().race_started = true
+	emit_signal("countdown_finished")

@@ -242,8 +242,7 @@ var urban_list = [
 
 var sedans_list = [
 		"Kuro Vault",
-			"Eisenach Monarch",
-			"Eisenach Black Panda",
+			"Eisenach Suppressor",
 	"Kuro Persian",
 	"Strandberg Turbo"
 ]
@@ -259,7 +258,8 @@ var sport_list = [
 var sport_racing_list = [
 	"Linetti Shepherd",
 	"Mir Cars Precision",
-	"Brutus Venom"
+	"Brutus Venom",
+	"Kestrel Battleaxe"
 ]
 
 var supercars_list = [
@@ -268,20 +268,10 @@ var supercars_list = [
 	"Kestrel Guillotine",
 	"Mir Cars Raptor"
 ]
-var sports_crossovers_list = [
-	"Straeda Pitbull",
-	"Mir Cars Crawler",
-	"Eisenach Escorter"
-]
-
-var torque_monsters_list = [
-	"Eisenach Suppressor",
-	"Schroder Fastback",
-	"Kronstadt Crest"
-]
 var track_cars_list = [
 	"Mir Cars Athletic C70",
 	"Bartoli Track Cruiser",
+	"Brutus Thunderbolt"
 ]
 
 
@@ -301,31 +291,30 @@ var suv = {
 		"ENGINE: V8 6.0L", "ASPIRATION: NA", "TORQUE: 488 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
-	"Mir Cars Nightwolf":[
-		"", "Country: UAE", "HP: 220", "WEIGHT: 2668 KG",
-		"0-100 KM/H: 12.0s", "TOP SPEED: 195 KM/H",
-		"ENGINE: V8 6.6L", "ASPIRATION: NA", "TORQUE: 450 NM",
-		"TRANSMISSION: FOUR-WHEEL DRIVE"
-	],
 	"Schroder Colosso":[
 		"", "Country: Germany", "HP: 237", "WEIGHT: 2340 KG",
 		"0-100 KM/H: 8.5s", "TOP SPEED: 211 KM/H",
 		"ENGINE: V6 3.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 500 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
+	],
+	"Mir Cars Nightwolf":[
+		"", "Country: UAE", "HP: 220", "WEIGHT: 2668 KG",
+		"0-100 KM/H: 12.0s", "TOP SPEED: 195 KM/H",
+		"ENGINE: V8 6.6L", "ASPIRATION: NA", "TORQUE: 450 NM",
+		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	]
 }
-
 var compact = {
+	"Kuro Zephyr":[
+		"", "Country: Japan", "HP: 204", "WEIGHT: 1600 KG",
+		"0-100 KM/H: 6.9s", "TOP SPEED: 234 KM/H",
+		"ENGINE: V6 2.5L", "ASPIRATION: NA", "TORQUE: 270 NM",
+		"TRANSMISSION: REAR-WHEEL DRIVE"
+	],
 	"Schroder Atrix Q32":[
 		"", "Country: Germany", "HP: 247", "WEIGHT: 1470 KG",
 		"0-100 KM/H: 6.6s", "TOP SPEED: 250 KM/H",
 		"ENGINE: V6 3.2L", "ASPIRATION: NA", "TORQUE: 320 NM",
-		"TRANSMISSION: FOUR-WHEEL DRIVE"
-	],
-	"Straeda B32":[
-		"", "Country: Germany", "HP: 224", "WEIGHT: 1500 KG",
-		"0-100 KM/H: 6.7s", "TOP SPEED: 236 KM/H",
-		"ENGINE: V6 3.2L", "ASPIRATION: NA", "TORQUE: 300 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
 	"Zenith Horizon":[
@@ -334,20 +323,19 @@ var compact = {
 		"ENGINE: V6 3.5L", "ASPIRATION: NA", "TORQUE: 340 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
-	"Kuro Zephyr":[
-		"", "Country: Japan", "HP: 204", "WEIGHT: 1600 KG",
-		"0-100 KM/H: 6.9s", "TOP SPEED: 234 KM/H",
-		"ENGINE: V6 2.5L", "ASPIRATION: NA", "TORQUE: 270 NM",
-		"TRANSMISSION: REAR-WHEEL DRIVE"
-	],
 	"Schroder D-20":[
 		"", "Country: Germany", "HP: 177", "WEIGHT: 1450 KG",
 		"0-100 KM/H: 7.1s", "TOP SPEED: 238 KM/H",
 		"ENGINE: L4 2.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 350 NM",
 		"TRANSMISSION: FRONT-WHEEL DRIVE"
+	],
+	"Straeda B32":[
+		"", "Country: Germany", "HP: 224", "WEIGHT: 1500 KG",
+		"0-100 KM/H: 6.7s", "TOP SPEED: 236 KM/H",
+		"ENGINE: V6 3.2L", "ASPIRATION: NA", "TORQUE: 300 NM",
+		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	]
 }
-
 var muscle = {
 	"Brutus Viper":[
 		"", "Country: USA", "HP: 355", "WEIGHT: 1650 KG",
@@ -363,10 +351,10 @@ var muscle = {
 	]
 }
 var urban_racers = {
-	"Brutus Stingray":[
-		"", "Country: USA", "HP: 345", "WEIGHT: 1460 KG",
-		"0-100 KM/H: 5.0s", "TOP SPEED: 257 KM/H",
-		"ENGINE: V8 5.7L", "ASPIRATION: NA", "TORQUE: 480 NM",
+	"Berkshire Blunt":[
+		"", "Country: UK", "HP: 406", "WEIGHT: 1832 KG",
+		"0-100 KM/H: 5.8s", "TOP SPEED: 272 KM/H",
+		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Kestrel Speedster":[
@@ -375,37 +363,37 @@ var urban_racers = {
 		"ENGINE: V8 4.4L", "ASPIRATION: NA", "TORQUE: 410 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
-	"Kuro Serenity":[
-	"", "Country: Japan", "HP: 260", "WEIGHT: 1640 KG",
-	"0-100 KM/H: 6.4s", "TOP SPEED: 250 KM/H",
-	"ENGINE: V8 4.0L", "ASPIRATION: NA", "TORQUE: 360 NM",
-	"TRANSMISSION: REAR-WHEEL DRIVE"
-],
+	"Brutus Stingray":[
+		"", "Country: USA", "HP: 345", "WEIGHT: 1460 KG",
+		"0-100 KM/H: 5.0s", "TOP SPEED: 257 KM/H",
+		"ENGINE: V8 5.7L", "ASPIRATION: NA", "TORQUE: 480 NM",
+		"TRANSMISSION: REAR-WHEEL DRIVE"
+	],
 	"Eisenach Bengal":[
-	"", "Country: Germany", "HP: 230", "WEIGHT: 1450 KG",
-	"0-100 KM/H: 5.0s", "TOP SPEED: 243 KM/H",
-	"ENGINE: L6 3.0L", "ASPIRATION: NA", "TORQUE: 300 NM",
-	"TRANSMISSION: REAR-WHEEL DRIVE"
-],
-	"Berkshire Blunt":[
-		"", "Country: UK", "HP: 406", "WEIGHT: 1832 KG",
-		"0-100 KM/H: 5.8s", "TOP SPEED: 272 KM/H",
-		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
+		"", "Country: Germany", "HP: 230", "WEIGHT: 1450 KG",
+		"0-100 KM/H: 5.0s", "TOP SPEED: 243 KM/H",
+		"ENGINE: L6 3.0L", "ASPIRATION: NA", "TORQUE: 300 NM",
+		"TRANSMISSION: REAR-WHEEL DRIVE"
+	],
+	"Kuro Serenity":[
+		"", "Country: Japan", "HP: 260", "WEIGHT: 1640 KG",
+		"0-100 KM/H: 6.4s", "TOP SPEED: 250 KM/H",
+		"ENGINE: V8 4.0L", "ASPIRATION: NA", "TORQUE: 360 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	]
 }
 var sedans = {
-	"Eisenach Monarch":[
-		"", "Country: Germany", "HP: 325", "WEIGHT: 1985 KG",
-		"0-100 KM/H: 6.4s", "TOP SPEED: 265 KM/H",
-		"ENGINE: V8 4.4L", "ASPIRATION: NA", "TORQUE: 440 NM",
+	"Eisenach Suppressor":[
+		"", "Country: Germany", "HP: 272", "WEIGHT: 1660 KG",
+		"0-100 KM/H: 5.7s", "TOP SPEED: 250 KM/H",
+		"ENGINE: L6 3.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 560 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
-	"Mir Cars Transporter":[
-		"", "Country: UAE", "HP: 343", "WEIGHT: 1780 KG",
-		"0-100 KM/H: 6.2s", "TOP SPEED: 257 KM/H",
-		"ENGINE: V8 5.0L", "ASPIRATION: NA", "TORQUE: 480 NM",
-		"TRANSMISSION: FOUR-WHEEL DRIVE"
+	"Kuro Persian":[
+		"", "Country: Japan", "HP: 300", "WEIGHT: 1660 KG",
+		"0-100 KM/H: 5.7s", "TOP SPEED: 258 KM/H",
+		"ENGINE: V8 4.0L", "ASPIRATION: NA", "TORQUE: 410 NM",
+		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Kuro Vault":[
 		"", "Country: Japan", "HP: 290", "WEIGHT: 1760 KG",
@@ -418,38 +406,25 @@ var sedans = {
 		"0-100 KM/H: 5.8s", "TOP SPEED: 250 KM/H",
 		"ENGINE: L5 2.5L", "ASPIRATION: Turbo", "TORQUE: 350 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
-	],
-		"Eisenach Black Panda":[
-		"", "Country: Germany", "HP: 231", "WEIGHT: 1600 KG",
-		"0-100 KM/H: 6.1s", "TOP SPEED: 253 KM/H",
-		"ENGINE: L6 3.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 500 NM",
-		"TRANSMISSION: REAR-WHEEL DRIVE"
-	],
-	"Kuro Persian":[
-	"", "Country: Japan", "HP: 300", "WEIGHT: 1660 KG",
-	"0-100 KM/H: 5.7s", "TOP SPEED: 258 KM/H",
-	"ENGINE: V8 4.0L", "ASPIRATION: NA", "TORQUE: 410 NM",
-	"TRANSMISSION: REAR-WHEEL DRIVE"
-]
+	]
 }
-
 var sport = {
-	"Schroder Classique Sport":[
-	"", "Country: Germany", "HP: 340", "WEIGHT: 1855 KG",
-	"0-100 KM/H: 4.8s", "TOP SPEED: 262 KM/H",
-	"ENGINE: V8 4.2L", "ASPIRATION: NA", "TORQUE: 420 NM",
-	"TRANSMISSION: FOUR-WHEEL DRIVE"
-],
 	"Berkshire V12-S":[
 		"", "Country: UK", "HP: 450", "WEIGHT: 1740 KG",
 		"0-100 KM/H: 5.1s", "TOP SPEED: 293 KM/H",
 		"ENGINE: V12 5.9L", "ASPIRATION: NA", "TORQUE: 570 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
-	"Bartoli Cruiser":[
-		"", "Country: Italy", "HP: 433", "WEIGHT: 1880 KG",
-		"0-100 KM/H: 4.9s", "TOP SPEED: 287 KM/H",
-		"ENGINE: V8 4.7L", "ASPIRATION: NA", "TORQUE: 490 NM",
+	"Schroder Classique Sport":[
+		"", "Country: Germany", "HP: 340", "WEIGHT: 1855 KG",
+		"0-100 KM/H: 4.8s", "TOP SPEED: 262 KM/H",
+		"ENGINE: V8 4.2L", "ASPIRATION: NA", "TORQUE: 420 NM",
+		"TRANSMISSION: FOUR-WHEEL DRIVE"
+	],
+	"Kestrel Touring":[
+		"", "Country: UK", "HP: 360", "WEIGHT: 1150 KG",
+		"0-100 KM/H: 4.3s", "TOP SPEED: 292 KM/H",
+		"ENGINE: V8 4.2L", "ASPIRATION: NA", "TORQUE: 390 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Berkshire Tempest":[
@@ -457,29 +432,9 @@ var sport = {
 		"0-100 KM/H: 5.6s", "TOP SPEED: 303 KM/H",
 		"ENGINE: V12 5.9L", "ASPIRATION: NA", "TORQUE: 580 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
-	],
-	"Kestrel Touring":[
-	"", "Country: UK", "HP: 360", "WEIGHT: 1150 KG",
-	"0-100 KM/H: 4.3s", "TOP SPEED: 292 KM/H",
-	"ENGINE: V8 4.2L", "ASPIRATION: NA", "TORQUE: 390 NM",
-	"TRANSMISSION: REAR-WHEEL DRIVE"
-],
-
+	]
 }
-
 var sport_racing = {
-	"Mir Cars Precision":[
-		"", "Country: UAE", "HP: 488", "WEIGHT: 1590 KG",
-		"0-100 KM/H: 4.5s", "TOP SPEED: 307 KM/H",
-		"ENGINE: V10 5.0L", "ASPIRATION: NA", "TORQUE: 520 NM",
-		"TRANSMISSION: REAR-WHEEL DRIVE"
-	],
-	"Kestrel Battleaxe":[
-		"", "Country: UK", "HP: 406", "WEIGHT: 1078 KG",
-		"0-100 KM/H: 3.5s", "TOP SPEED: 287 KM/H",
-		"ENGINE: L6 4.0L", "ASPIRATION: NA", "TORQUE: 390 NM",
-		"TRANSMISSION: REAR-WHEEL DRIVE"
-	],
 	"Linetti Shepherd":[
 		"", "Country: Italy", "HP: 500", "WEIGHT: 1430 KG",
 		"0-100 KM/H: 4.2s", "TOP SPEED: 305 KM/H",
@@ -491,81 +446,46 @@ var sport_racing = {
 		"0-100 KM/H: 4.1s", "TOP SPEED: 300 KM/H",
 		"ENGINE: V10 8.0L", "ASPIRATION: NA", "TORQUE: 630 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
-	]
-}
-var sports_crossovers = {
-	"Straeda Pitbull":[
-		"", "Country: Germany", "HP: 309", "WEIGHT: 2520 KG",
-		"0-100 KM/H: 7.1s", "TOP SPEED: 235 KM/H",
-		"ENGINE: V10 5.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 750 NM",
-		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
-
-	"Mir Cars Crawler":[
-		"", "Country: UAE", "HP: 320", "WEIGHT: 2489 KG",
-		"0-100 KM/H: 6.9s", "TOP SPEED: 226 KM/H",
-		"ENGINE: V8 4.9L", "ASPIRATION: NA", "TORQUE: 480 NM",
-		"TRANSMISSION: FOUR-WHEEL DRIVE"
-	],
-
-	"Eisenach Escorter":[
-		"", "Country: Germany", "HP: 315", "WEIGHT: 2250 KG",
-		"0-100 KM/H: 6.7s", "TOP SPEED: 237 KM/H",
-		"ENGINE: V8 4.4L", "ASPIRATION: NA", "TORQUE: 440 NM",
-		"TRANSMISSION: FOUR-WHEEL DRIVE"
-	]
-}
-
-var supercars = {
-	"Linetti Terror":[
-		"", "Country: Italy", "HP: 572", "WEIGHT: 1630 KG",
-		"0-100 KM/H: 3.7s", "TOP SPEED: 330 KM/H",
-		"ENGINE: V12 6.2L", "ASPIRATION: NA", "TORQUE: 650 NM",
-		"TRANSMISSION: FOUR-WHEEL DRIVE"
-	],
-	"Linetti Firestorm":[
-		"", "Country: Italy", "HP: 493", "WEIGHT: 1625 KG",
-		"0-100 KM/H: 4.2s", "TOP SPEED: 328 KM/H",
-		"ENGINE: V12 5.7L", "ASPIRATION: NA", "TORQUE: 580 NM",
+	"Mir Cars Precision":[
+		"", "Country: UAE", "HP: 488", "WEIGHT: 1590 KG",
+		"0-100 KM/H: 4.5s", "TOP SPEED: 307 KM/H",
+		"ENGINE: V10 5.0L", "ASPIRATION: NA", "TORQUE: 520 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
+	"Kestrel Battleaxe":[
+		"", "Country: UK", "HP: 406", "WEIGHT: 1078 KG",
+		"0-100 KM/H: 3.5s", "TOP SPEED: 287 KM/H",
+		"ENGINE: L6 4.0L", "ASPIRATION: NA", "TORQUE: 390 NM",
+		"TRANSMISSION: REAR-WHEEL DRIVE"
+	]
+}
+var supercars = {
 	"Kestrel Guillotine":[
 		"", "Country: UK", "HP: 440", "WEIGHT: 1100 KG",
 		"0-100 KM/H: 3.6s", "TOP SPEED: 315 KM/H",
 		"ENGINE: L6 4.2L", "ASPIRATION: NA", "TORQUE: 420 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
+	"Linetti Terror":[
+		"", "Country: Italy", "HP: 572", "WEIGHT: 1630 KG",
+		"0-100 KM/H: 3.7s", "TOP SPEED: 330 KM/H",
+		"ENGINE: V12 6.2L", "ASPIRATION: NA", "TORQUE: 650 NM",
+		"TRANSMISSION: FOUR-WHEEL DRIVE"
+	],
 	"Mir Cars Raptor":[
 		"", "Country: USA", "HP: 532", "WEIGHT: 1378 KG",
 		"0-100 KM/H: 3.8s", "TOP SPEED: 327 KM/H",
 		"ENGINE: V8 7.0L", "ASPIRATION: NA", "TORQUE: 700 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
+	],
+	"Linetti Firestorm":[
+		"", "Country: Italy", "HP: 493", "WEIGHT: 1625 KG",
+		"0-100 KM/H: 4.2s", "TOP SPEED: 328 KM/H",
+		"ENGINE: V12 5.7L", "ASPIRATION: NA", "TORQUE: 580 NM",
+		"TRANSMISSION: REAR-WHEEL DRIVE"
 	]
 }
-var torque_monsters = {
-
-	"Eisenach Suppressor":[
-		"", "Country: Germany", "HP: 272", "WEIGHT: 1660 KG",
-		"0-100 KM/H: 5.7s", "TOP SPEED: 250 KM/H",
-		"ENGINE: L6 3.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 560 NM",
-		"TRANSMISSION: REAR-WHEEL DRIVE"
-	],
-
-
-	"Schroder Fastback":[
-		"", "Country: Germany", "HP: 242", "WEIGHT: 1695 KG",
-		"0-100 KM/H: 5.4s", "TOP SPEED: 245 KM/H",
-		"ENGINE: V6 3.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 540 NM",
-		"TRANSMISSION: FOUR-WHEEL DRIVE"
-	],
-	"Kronstadt Crest":[
-	"", "Country: Germany", "HP: 204", "WEIGHT: 1540 KG",
-	"0-100 KM/H: 5.9s", "TOP SPEED: 252 KM/H",
-	"ENGINE: L4 2.1L DIESEL", "ASPIRATION: Turbo", "TORQUE: 500 NM",
-	"TRANSMISSION: REAR-WHEEL DRIVE"
-]
-}
-
 var track_cars = {
 	"Mir Cars Athletic C70":[
 		"", "Country: UAE", "HP: 655", "WEIGHT: 1378 KG",
@@ -573,14 +493,12 @@ var track_cars = {
 		"ENGINE: V12 7.5L", "ASPIRATION: NA", "TORQUE: 650 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
-
-	"Bartoli Track Cruiser":[
+	"Bartoli Cruiser":[
 		"", "Country: Italy", "HP: 621", "WEIGHT: 1335 KG",
 		"0-100 KM/H: 3.4s", "TOP SPEED: 335 KM/H",
 		"ENGINE: V12 6.0L", "ASPIRATION: NA", "TORQUE: 652 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
-
 	"Brutus Thunderbolt":[
 		"", "Country: USA", "HP: 605", "WEIGHT: 1390 KG",
 		"0-100 KM/H: 3.6s", "TOP SPEED: 338 KM/H",
@@ -843,12 +761,6 @@ func switch_car(direction):
 		"sport_racing":
 			list = sport_racing_list
 			dict = sport_racing
-		"torque_monsters":
-			list=torque_monsters_list
-			dict=torque_monsters
-		"sports_crossovers":
-			list = sports_crossovers_list
-			dict = sports_crossovers
 		"track_cars":
 				list = track_cars_list
 				dict = track_cars
@@ -921,26 +833,10 @@ func _on_select_pressed():
 	get_tree().change_scene_to_file("res://Scenes/track_select.tscn")
 
 
-func _on_torque_monsters_pressed() -> void:
-	car_class = "torque_monsters"
-	car_index = 0
-	car_name = torque_monsters_list[car_index]
-	update_car_ui(torque_monsters[car_name], car_name)
-	load_preview_car(car_scene_paths[car_name])
-	_reset_color()
-
 
 func _on_back_btn_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
 
-
-func _on_sports_crossovers_pressed() -> void:
-	car_class = "sports_crossovers"
-	car_index = 0
-	car_name = sports_crossovers_list[car_index]
-	update_car_ui(sports_crossovers[car_name], car_name)
-	load_preview_car(car_scene_paths[car_name])
-	_reset_color()
 
 func _on_track_cars_pressed() -> void:
 	car_class = "track_cars"

@@ -20,6 +20,7 @@ var captured_total: int = 7
 var hud: Node = null
 var main_scene: Node = null
 
+
 signal chase_failed()
 signal chase_completed()
 signal racer_captured(car)
@@ -48,6 +49,7 @@ func build_chase_ai_paths() -> Array:
 # SPAWN CHASE
 # ============================================================
 func spawn_chase(scene: Node) -> void:
+	hud.visible=true
 	chase_active = false
 
 	# Remove old cars
@@ -62,6 +64,7 @@ func spawn_chase(scene: Node) -> void:
 
 	await get_tree().process_frame
 
+
 	var root := scene.get_node(TrackName.track_name)
 
 	player_spawn = root.get_node("SpawnPoint").global_transform.origin
@@ -71,14 +74,14 @@ func spawn_chase(scene: Node) -> void:
 		ai_spawns.append(root.get_node("AISpawnPoint" + str(i+1)).global_transform.origin)
 
 	main_scene = scene
-	hud = scene.get_node("CopChaseHud")
+
 
 	# PLAYER
 	var player_scene := load(player_car_path)
 	player_car = player_scene.instantiate() as CarController
 	player_car.is_ai = false
 	player_car.global_transform = root.get_node("SpawnPoint").global_transform
-	player_car.controls_enabled = true
+	player_car.controls_enabled = false
 	player_car.driver_name = "Police"
 	player_car.car_name = Cars.selected_car_name
 	scene.add_child(player_car)
@@ -108,7 +111,7 @@ func spawn_chase(scene: Node) -> void:
 		var spawn_node := root.get_node("AISpawnPoint" + str(i+1))
 		ai.global_transform = spawn_node.global_transform
 		ai.is_ai = true
-		ai.controls_enabled = true
+		ai.controls_enabled = false
 
 		ai.driver_name = ai.ai_names[randi() % ai.ai_names.size()]
 		ai.car_name = Cars.car_scene_paths.keys()[Cars.car_scene_paths.values().find(ai_car_paths[i])]
@@ -131,16 +134,27 @@ func spawn_chase(scene: Node) -> void:
 	captured_count = 0
 	time_left = total_time
 
+	hud = scene.get_node("CopChaseHud")
 	hud.update_captured(captured_count, captured_total)
 	hud.update_time_left(time_left)
 
-	chase_active = true
+
+
 
 	MusicManager.stop_music()
 	MusicManager.play_race_music()
+	var all_cars = get_all_race_cars()
+	scene.get_node("Start").start_countdown(all_cars)
+
+func on_countdown_finished():
+	chase_active = true   # ⭐ THIS FIXES EVERYTHING
+
+	player_car.controls_enabled = true
+	for ai in ai_cars:
+		ai.controls_enabled = true
 
 
-# ============================================================
+
 # UPDATE CHASE
 # ============================================================
 func update_chase(delta: float) -> void:
@@ -179,6 +193,14 @@ func capture_racer(car: CarController) -> void:
 			emit_signal("chase_completed")
 
 
+
+func get_all_race_cars() -> Array:
+	var arr = []
+	if player_car:
+		arr.append(player_car)
+	for ai in ai_cars:
+		arr.append(ai)
+	return arr
 # ============================================================
 # COLOR APPLY
 func _apply_player_color(car: CarController) -> void:

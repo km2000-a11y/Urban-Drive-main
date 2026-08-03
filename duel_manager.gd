@@ -64,6 +64,10 @@ func spawn_duel(main_scene: Node) -> void:
 
 	main_scene.add_child(player_car)
 	_apply_player_color(player_car)
+	var all_cars = get_all_race_cars()
+	# WAYPOINTS
+	main_scene.get_node("Start").start_countdown(all_cars)
+
 
 	player_laps = 0
 	ai_laps = 0
@@ -133,6 +137,14 @@ func _pick_unique_ai_car() -> String:
 
 	return Cars.car_scene_paths[chosen_name]
 
+
+func get_all_race_cars() -> Array:
+	var arr = []
+	if player_car:
+		arr.append(player_car)
+	if ai_car:
+		arr.append(ai_car)
+	return arr
 
 func _apply_player_color(car: CarController) -> void:
 	var color: Color = Cars.selected_color

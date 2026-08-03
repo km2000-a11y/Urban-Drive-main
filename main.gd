@@ -3,6 +3,8 @@ extends Node
 var mode: String
 var win_screen_radar: Node
 var player_car: CarController
+var race_started: bool = false
+
 
 @onready var finish_flash := $FinishFlash
 @onready var start_countdown := $Start
@@ -25,7 +27,7 @@ func _ready():
 	$EliminationWinScreen.visible = false
 
 	# -------------------------
-	# LOAD TRACK SCENE (SCALABLE)
+	# LOAD TRACK
 	# -------------------------
 	var track_name := TrackName.track_name
 
@@ -43,8 +45,6 @@ func _ready():
 
 		await get_tree().process_frame
 		await get_tree().process_frame
-
-		print("Loaded track:", track_file)
 	else:
 		push_error("Track file missing: " + track_file)
 		return
@@ -54,18 +54,24 @@ func _ready():
 	# -------------------------
 	if mode == "Duel":
 		_setup_duel()
+		_start_mode_countdown(DuelManager.get_all_race_cars())
+
 	elif mode.to_lower() == "normal race":
 		_setup_normal_race()
+		_start_mode_countdown(NormalRaceManager.get_all_race_cars())
+
 	elif mode == "Elimination":
 		_setup_elimination()
+		_start_mode_countdown(EliminationManager.get_all_race_cars())
+
 	elif mode == "Cop Chase":
 		_setup_cop_chase()
+		_start_mode_countdown(CopChaseManager.get_all_race_cars())
+
 	else:
 		_spawn_player_free_drive()
 
-	print("MAIN MODE:", Modes.mode)
-
-	# Radar race win screen
+	# Radar race
 	if mode == "Radar Race":
 		radar_target_label.text = "Target: %d km/h" % Cars.get_radar_target_speed()
 		var ws_scene = load("res://Scenes/win_screen_radar.tscn")
@@ -80,15 +86,32 @@ func _ready():
 	if leaderboard:
 		leaderboard.visible = false
 
-	start_countdown.start_countdown()
+
+func _start_mode_countdown(cars: Array):
+	# Freeze/unfreeze cars via countdown
+	start_countdown.start_countdown(cars)
 
 func _process(delta):
-	if mode.to_lower() == "normal race":
-		NormalRaceManager.update_race()
-	elif mode == "Elimination":
-		EliminationManager.update_race()
-	elif mode == "Cop Chase":
-		CopChaseManager.update_chase(delta)
+	if not race_started:
+		return
+
+	match mode:
+		"Duel":
+			DuelManager.update_duel()
+
+		"Radar Race":
+			# Radar race has no continuous update except speed check
+			# So we do nothing here
+			pass
+
+		_:
+			if mode.to_lower() == "normal race":
+				NormalRaceManager.update_race()
+			elif mode == "Elimination":
+				EliminationManager.update_race()
+			elif mode == "Cop Chase":
+				CopChaseManager.update_chase(delta)
+
 
 func _input(event):
 	if event.is_action_pressed("pause_menu"):
@@ -149,10 +172,7 @@ func _setup_duel():
 	DuelManager.ai_spawn = asp.global_position if asp else DuelManager.player_spawn
 
 	DuelManager.player_car_path = Cars.selected_car
-	DuelManager.ai_car_path = Cars.selected_ai_car
-
-	if DuelManager.ai_car_path == "":
-		DuelManager.ai_car_path = Cars.selected_car
+	DuelManager.ai_car_path = Cars.selected_ai_car if Cars.selected_ai_car != "" else Cars.selected_car
 
 	DuelManager.spawn_duel(self)
 	DuelManager.main_scene = self
@@ -160,6 +180,9 @@ func _setup_duel():
 	player_car = DuelManager.player_car
 	_force_player_camera()
 
+	# COUNTDOWN HERE
+	var cars = DuelManager.get_all_race_cars()
+	start_countdown.start_countdown(cars)
 
 # ---------------------------------------------------------
 # NORMAL RACE
@@ -178,10 +201,7 @@ func _setup_normal_race():
 	NormalRaceManager.ai_spawns = []
 	for i in range(1, 8):
 		var ai_sp := safe_get(root, "AISpawnPoint" + str(i))
-		if ai_sp:
-			NormalRaceManager.ai_spawns.append(ai_sp.global_position)
-		else:
-			NormalRaceManager.ai_spawns.append(NormalRaceManager.player_spawn)
+		NormalRaceManager.ai_spawns.append(ai_sp.global_position if ai_sp else NormalRaceManager.player_spawn)
 
 	NormalRaceManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
 
@@ -189,6 +209,11 @@ func _setup_normal_race():
 
 	player_car = NormalRaceManager.player_car
 	_force_player_camera()
+
+	# COUNTDOWN HERE
+	var cars = NormalRaceManager.get_all_race_cars()
+	start_countdown.start_countdown(cars)
+	start_countdown.connect("countdown_finished", Callable(NormalRaceManager, "on_countdown_finished"))
 
 # ---------------------------------------------------------
 # ELIMINATION
@@ -208,10 +233,7 @@ func _setup_elimination():
 	EliminationManager.ai_spawns = []
 	for i in range(1, 8):
 		var ai_sp := safe_get(root, "AISpawnPoint" + str(i))
-		if ai_sp:
-			EliminationManager.ai_spawns.append(ai_sp.global_position)
-		else:
-			EliminationManager.ai_spawns.append(EliminationManager.player_spawn)
+		EliminationManager.ai_spawns.append(ai_sp.global_position if ai_sp else EliminationManager.player_spawn)
 
 	EliminationManager.player_car_path = Cars.selected_car
 	EliminationManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
@@ -232,7 +254,12 @@ func _setup_elimination():
 	player_car = EliminationManager.player_car
 	_force_player_camera()
 
-	start_countdown.connect("countdown_finished", _on_elimination_countdown_finished)
+	# COUNTDOWN HERE
+	var cars = EliminationManager.get_all_race_cars()
+	start_countdown.start_countdown(cars)
+	start_countdown.connect("countdown_finished", Callable(EliminationManager, "on_countdown_finished"))
+
+
 
 func _on_elimination_countdown_finished():
 	if EliminationManager.hud:
@@ -254,7 +281,6 @@ func _setup_cop_chase():
 
 	normal_hud.visible = false
 	elimination_hud.visible = false
-
 	cop_chase_hud.visible = false
 
 	var root := get_node(TrackName.track_name)
@@ -274,7 +300,12 @@ func _setup_cop_chase():
 	player_car = CopChaseManager.player_car
 	_force_player_camera()
 
-	start_countdown.connect("countdown_finished", _on_cop_chase_countdown_finished)
+	# COUNTDOWN HERE
+	var cars = CopChaseManager.get_all_race_cars()
+	start_countdown.start_countdown(cars)
+	start_countdown.connect("countdown_finished", Callable(CopChaseManager, "on_countdown_finished"))
+
+
 
 func _on_chase_failed():
 	show_finish(false)

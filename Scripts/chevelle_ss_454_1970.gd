@@ -19,13 +19,14 @@ func _ready():
 	lateral_friction = 1.03       # Good RWD grip for a torque-heavy coupe
 	transmission = "Rear wheel drive"
 
-	# Mir Cars 3-Speed Heavy Muscle Gearbox
-	# Long gears, massive torque, classic UAE street-brawler character
-	gear_count = 3
+	# Mir Cars 4-Speed Heavy Muscle Gearbox
+	# Long gears, massive torque, classic UAE street‑brawler character
+	gear_count = 4
 	gear_ratios = [
 		2.52,  # 1st - brutal torque launch
-		1.50,  # 2nd - keeps Hutch in its power band
-		1.00   # 3rd - direct drive for 232 km/h
+		1.68,  # 2nd - strong mid-range shove
+		1.22,  # 3rd - long pull for highway acceleration
+		1.00   # 4th - direct drive for 232 km/h
 	]
 	shift_up_rpm = 5200
 	shift_down_rpm = 2300

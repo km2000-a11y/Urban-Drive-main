@@ -27,6 +27,7 @@ var class_lists := {
 	"track_cars": [
 	"Mir Cars Athletic C70",
 	"Bartoli Track Cruiser",
+	"Brutus Thunderbolt"
 ],
 
 
@@ -44,7 +45,7 @@ var class_lists := {
 	],
 
 	"sedans": [
-		"Eisenach Monarch",
+		"Eisenach Suppressor",
 		"Kuro Vault",
 				"Eisenach Black Panda",
 		"Strandberg Turbo",
@@ -61,7 +62,8 @@ var class_lists := {
 	"sport_racing": [
 		"Mir Cars Precision",
 		"Linetti Shepherd",
-		"Brutus Venom"
+		"Brutus Venom",
+		"Kestrel Battleaxe"
 	],
 
 	"supercars": [
@@ -70,18 +72,6 @@ var class_lists := {
 		"Kestrel Guillotine",
 		"Mir Cars Raptor"
 	],
-
-	"torque_monsters": [
-		"Eisenach Suppressor",
-		"Schroder Fastback",
-		"Kronstadt Crest"
-	],
-	"sports_crossovers": [
-	"Straeda Pitbull",
-	"Mir Cars Crawler",
-	"Eisenach Escorter"
-],
-
 	"special": [
 		"Bartoli Cruiser Interceptor"
 	]

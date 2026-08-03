@@ -55,12 +55,14 @@ func spawn_race(scene: Node) -> void:
 	main_scene = scene
 	hud = scene.get_node("EliminationHud")
 
+
+
 	# PLAYER
 	var player_scene := load(player_car_path)
 	player_car = player_scene.instantiate() as CarController
 	player_car.is_ai = false
 	player_car.global_transform = root.get_node("SpawnPoint").global_transform
-	player_car.controls_enabled = true
+	player_car.controls_enabled = false
 	player_car.driver_name = "Player"
 	player_car.car_name = Cars.selected_car_name
 	scene.add_child(player_car)
@@ -87,7 +89,7 @@ func spawn_race(scene: Node) -> void:
 		var spawn_node := root.get_node("AISpawnPoint" + str(i+1))
 		ai.global_transform = spawn_node.global_transform
 		ai.is_ai = true
-		ai.controls_enabled = true
+		ai.controls_enabled =false
 
 		ai.driver_name = ai.ai_names[randi() % ai.ai_names.size()]
 		ai.car_name = Cars.car_scene_paths.keys()[Cars.car_scene_paths.values().find(ai_car_paths[i])]
@@ -120,13 +122,15 @@ func spawn_race(scene: Node) -> void:
 
 
 	elimination_timer = elimination_interval
-	race_active = true
+
 
 	hud.update_position(1, ai_cars.size() + 1)
 	hud.update_elimination_timer(elimination_timer)
 
 	MusicManager.stop_music()
 	MusicManager.play_race_music()
+	var all_cars = get_all_race_cars()
+	scene.get_node("Start").start_countdown(all_cars)
 
 func update_race() -> void:
 	if not race_active or not is_instance_valid(player_car):  
@@ -144,6 +148,11 @@ func update_race() -> void:
 	if elimination_timer <= 0.0:
 		_do_elimination(sorted)  # use SAME snapshot
 		elimination_timer = elimination_interval
+func on_countdown_finished():
+	race_active = true
+	player_car.controls_enabled = true
+	for ai in ai_cars:
+		ai.controls_enabled = true
 
 func _do_elimination(sorted: Array) -> void:
 	if ai_cars.size() + 1 <= 1:
@@ -176,6 +185,15 @@ func _do_elimination(sorted: Array) -> void:
 		player_car.controls_enabled = false
 		player_car.current_speed = 0
 		emit_signal("elimination_win", player_car)
+
+
+func get_all_race_cars() -> Array:
+	var arr = []
+	if player_car:
+		arr.append(player_car)
+	for ai in ai_cars:
+		arr.append(ai)
+	return arr
 
 func _position_from_sorted(sorted: Array) -> int:
 	for i in range(sorted.size()):
