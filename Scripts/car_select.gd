@@ -847,9 +847,12 @@ func _on_select_pressed():
 	get_tree().change_scene_to_file("res://Scenes/track_select.tscn")
 
 
-
 func _on_back_btn_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+	if GameMode.game_mode == "Road Challenge":
+		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
 
 
 func _on_track_cars_pressed() -> void:
