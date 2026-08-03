@@ -12,6 +12,17 @@ func show_results(player_won: bool):
 	else:
 		title_label.text = "YOU LOSE!"
 
+	# ROAD CHALLENGE PROGRESS
+	if GameMode.game_mode == "Road Challenge":
+		var group := RoadChallengeState.active_group
+		var done :int= RoadChallengeSave.progress[group]
+		var left := 5 - done
+
+		if left > 0:
+			title_label.text += "\nRaces left: %d / 5" % left
+		else:
+			title_label.text += "\nChallenge Complete!"
+
 	# Clear old entries
 	for child in entries.get_children():
 		child.queue_free()
@@ -48,8 +59,21 @@ func _format_time(ms: int) -> String:
 
 
 func _on_retry_btn_pressed() -> void:
+	reset()
 	get_tree().reload_current_scene()
 
 
 func _on_quit_btn_pressed() -> void:
+	reset()
 	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
+func reset():
+	# Clear title
+	title_label.text = ""
+
+	# Clear entries
+	for child in entries.get_children():
+		child.queue_free()
+
+	# Hide leaderboard
+	visible = false

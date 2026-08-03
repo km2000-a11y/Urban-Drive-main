@@ -280,16 +280,12 @@ func _end_race(winner: String) -> void:
 		if p["finished"]:
 			final_time = p["real_time"]
 		else:
-			var leader_progress = participants[0]["progress"]
-			var leader_time = participants[0]["real_time"]
-
-			var progress_diff = leader_progress - p["progress"]
-			var avg_time_per_wp = leader_time / max(leader_progress, 1)
-
-			var penalty = int(progress_diff * avg_time_per_wp) + (randi() % 1500 + 500)
-			final_time = leader_time + penalty
-
+			# Accurate AI finish time
+			var ai := p["car_obj"] as CarController
+			final_time = _estimate_ai_finish_time_for(ai)
+			
 		RaceResults.add_result(p["name"], p["car_name"], final_time)
+
 
 	main_scene.show_finish(winner == "Player")
 	hud.visible = false
@@ -408,6 +404,28 @@ func _apply_random_ai_color(car: CarController) -> void:
 
 				for s in range(surface_count):
 					mesh_instance.set_surface_override_material(s, new_mat)
+func _estimate_ai_finish_time_for(ai: CarController) -> int:
+	var lapline := main_scene.find_child("LapLine", true, false)
+	if lapline == null:
+		return ai.total_race_time
+
+	# Remaining distance
+	var remaining_dist := ai.distance_to_finish_line(lapline)
+
+	# Smoothed speed using ONLY current_speed
+	var blended_speed: float = ai.current_speed * 0.75
+
+	# Safety clamp
+	if blended_speed < 5.0:
+		blended_speed = 5.0
+
+	# Estimate remaining time
+	var remaining_time_ms := int((remaining_dist / blended_speed) * 1000)
+
+	# Slight smoothing (AI slows near finish)
+	remaining_time_ms = int(remaining_time_ms * 1.10)
+
+	return ai.total_race_time + remaining_time_ms
 
 
 func force_player_camera():

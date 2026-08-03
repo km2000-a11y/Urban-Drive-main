@@ -1,11 +1,25 @@
 extends CanvasLayer
 
 func show_win(success: bool):
-	if success:
-		$Control/Panel/VBoxContainer/Label_Title.text = "YOU WIN!"
-	else:
-		$Control/Panel/VBoxContainer/Label_Title.text = "YOU LOSE!"
+	var text := ""
 
+	if success:
+		text = "YOU WIN!"
+	else:
+		text = "YOU LOSE!"
+
+	# ROAD CHALLENGE PROGRESS
+	if GameMode.game_mode == "Road Challenge":
+		var group := RoadChallengeState.active_group
+		var done :int= RoadChallengeSave.progress[group]
+		var left := 5 - done
+
+		if left > 0:
+			text += "\nRaces left: %d / 5" % left
+		else:
+			text += "\nChallenge Complete!"
+
+	$Control/Panel/VBoxContainer/Label_Title.text = text
 	visible = true
 
 

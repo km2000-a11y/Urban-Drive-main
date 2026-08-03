@@ -515,6 +515,8 @@ func _ready():
 	MusicManager.play_menu_music()
 	$Control/ColorSelector.visible = false
 
+	_update_class_locks()
+
 
 var car_scene_paths = {
 	"Colossus Titan Max":"res://Scenes/hummer_h1.tscn",
@@ -830,6 +832,13 @@ func _on_select_pressed():
 	Cars.selected_color = car_colors[car_name][color_index]
 	Cars.save_color()
 	Cars.selected_class = car_class
+
+	RoadChallengeState.active_group = car_class
+	RoadChallengeState.active_car = car_name
+	RoadChallengeState.active_color = car_colors[car_name][color_index]
+
+	GameMode.game_mode = "Road Challenge"
+
 	get_tree().change_scene_to_file("res://Scenes/track_select.tscn")
 
 
@@ -845,3 +854,14 @@ func _on_track_cars_pressed() -> void:
 	update_car_ui(track_cars[car_name], car_name)
 	load_preview_car(car_scene_paths[car_name])
 	_reset_color()
+
+func _update_class_locks():
+	$Control/ClassList/SUV.disabled = false
+	$Control/ClassList/MuscleCars.disabled = not RoadChallengeSave.unlocked["muscle"]
+	$Control/ClassList/CompactCars.disabled = not RoadChallengeSave.unlocked["compact"]
+	$Control/ClassList/Sedans.disabled = not RoadChallengeSave.unlocked["sedans"]
+	$Control/ClassList/UrbanRacers.disabled = not RoadChallengeSave.unlocked["urban"]
+	$Control/ClassList/SportCoupe.disabled = not RoadChallengeSave.unlocked["sport"]
+	$Control/ClassList/SportRacing.disabled = not RoadChallengeSave.unlocked["sport_racing"]
+	$Control/ClassList/Supercars.disabled = not RoadChallengeSave.unlocked["supercars"]
+	$Control/ClassList/TrackCars.disabled = not RoadChallengeSave.unlocked["track_cars"]

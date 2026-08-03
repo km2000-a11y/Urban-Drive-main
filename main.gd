@@ -424,6 +424,11 @@ func show_finish(player_won: bool):
 	_screech_to_halt()
 	MusicManager.stop_music()
 
+	# ROAD CHALLENGE PROGRESS UPDATE
+	if GameMode.game_mode == "Road Challenge":
+		RoadChallengeManager.on_race_finished(player_won)
+
+	# Leaderboard (if exists)
 	if leaderboard:
 		leaderboard.visible = true
 		leaderboard.show_results(player_won)

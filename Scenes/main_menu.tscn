@@ -19,6 +19,6 @@ offset_bottom = 77.0
 [node name="FreeRaceMenu" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "FREE RACE"
+text = "ROAD CHALLENGE"
 
 [connection signal="pressed" from="Control/VBoxContainer/FreeRaceMenu" to="." method="_on_free_race_menu_pressed"]

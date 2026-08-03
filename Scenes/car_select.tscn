@@ -17,7 +17,7 @@ layout_mode = 0
 offset_right = 241.0
 offset_bottom = 374.0
 
-[node name="4x4SUV" type="Button" parent="Control/ClassList"]
+[node name="SUV" type="Button" parent="Control/ClassList"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "4x4 SUV"
@@ -177,7 +177,7 @@ theme_override_font_sizes/font_size = 30
 text = "SELECT CAR
 "
 
-[connection signal="pressed" from="Control/ClassList/4x4SUV" to="." method="_on_4x4suv_pressed"]
+[connection signal="pressed" from="Control/ClassList/SUV" to="." method="_on_4x4suv_pressed"]
 [connection signal="pressed" from="Control/ClassList/MuscleCars" to="." method="_on_muscle_cars_pressed"]
 [connection signal="pressed" from="Control/ClassList/CompactCars" to="." method="_on_compact_cars_pressed"]
 [connection signal="pressed" from="Control/ClassList/Sedans" to="." method="_on_sedans_pressed"]

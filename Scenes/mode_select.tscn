@@ -12,6 +12,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="RadarRaceBtn" type="Button" parent="Control"]
+visible = false
 layout_mode = 0
 offset_top = 81.0
 offset_right = 1239.0
@@ -22,8 +23,9 @@ text = "RADAR RACE
 
 [node name="DuelBtn" type="Button" parent="Control"]
 layout_mode = 0
+offset_top = 70.0
 offset_right = 1244.0
-offset_bottom = 63.0
+offset_bottom = 133.0
 theme_override_font_sizes/font_size = 40
 text = "DUEL"
 

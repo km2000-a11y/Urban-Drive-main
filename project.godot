@@ -33,6 +33,9 @@ TrackName="*res://track_name.gd"
 EliminationManager="*res://elimination_manager.gd"
 CopChaseManager="*res://cop_chase_manager.gd"
 TrackRegistry="*res://track_registry.gd"
+RoadChallengeManager="*res://road_challenge_manager.gd"
+RoadChallengeState="*res://road_challenge_state.gd"
+RoadChallengeSave="*res://road_challenge_save.gd"
 
 [display]
 
