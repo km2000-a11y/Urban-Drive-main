@@ -25,8 +25,10 @@ func _ready():
 	Cars.load_color()
 	MusicManager.play_race_music()
 	$EliminationWinScreen.visible = false
+	if GameMode.game_mode == "Road Challenge":
+		Modes.mode = "Normal Race"
 
-	# -------------------------
+		# -------------------------
 	# LOAD TRACK
 	# -------------------------
 	var track_name := TrackName.track_name

@@ -8,6 +8,8 @@ var selected_ai_car_name: String = ""  # car name string
 
 var selected_color: Color = Color.WHITE
 var selected_class: String = ""
+var all_cars: Array = []
+
 
 var class_lists := {
 	"suv": [
@@ -338,3 +340,10 @@ func get_ai_paths_for_class(_unused):
 
 func get_radar_target_speed() -> int:
 	return radar_target_speeds.get(selected_class, 180)
+
+func get_unlocked_cars() -> Array:
+	var result = []
+	for car in all_cars:
+		if car.category in RoadChallengeManager.unlocked_categories:
+			result.append(car)
+	return result

@@ -837,8 +837,13 @@ func _on_select_pressed():
 	RoadChallengeState.active_car = car_name
 	RoadChallengeState.active_color = car_colors[car_name][color_index]
 
-	GameMode.game_mode = "Road Challenge"
+	if GameMode.game_mode == "Free Race":
+		# Free Race → do NOT activate Road Challenge
+		get_tree().change_scene_to_file("res://Scenes/track_select.tscn")
+		return
 
+	# Road Challenge → normal behavior
+	GameMode.game_mode = "Road Challenge"
 	get_tree().change_scene_to_file("res://Scenes/track_select.tscn")
 
 
@@ -856,12 +861,19 @@ func _on_track_cars_pressed() -> void:
 	_reset_color()
 
 func _update_class_locks():
-	$Control/ClassList/SUV.disabled = false
-	$Control/ClassList/MuscleCars.disabled = not RoadChallengeSave.unlocked["muscle"]
-	$Control/ClassList/CompactCars.disabled = not RoadChallengeSave.unlocked["compact"]
-	$Control/ClassList/Sedans.disabled = not RoadChallengeSave.unlocked["sedans"]
-	$Control/ClassList/UrbanRacers.disabled = not RoadChallengeSave.unlocked["urban"]
-	$Control/ClassList/SportCoupe.disabled = not RoadChallengeSave.unlocked["sport"]
-	$Control/ClassList/SportRacing.disabled = not RoadChallengeSave.unlocked["sport_racing"]
-	$Control/ClassList/Supercars.disabled = not RoadChallengeSave.unlocked["supercars"]
-	$Control/ClassList/TrackCars.disabled = not RoadChallengeSave.unlocked["track_cars"]
+	# Free Race and Road Challenge share unlocks
+	if GameMode.game_mode == "Free Race" or GameMode.game_mode == "Road Challenge":
+		$Control/ClassList/SUV.disabled = false
+		$Control/ClassList/MuscleCars.disabled = not RoadChallengeSave.unlocked["muscle"]
+		$Control/ClassList/CompactCars.disabled = not RoadChallengeSave.unlocked["compact"]
+		$Control/ClassList/Sedans.disabled = not RoadChallengeSave.unlocked["sedans"]
+		$Control/ClassList/UrbanRacers.disabled = not RoadChallengeSave.unlocked["urban"]
+		$Control/ClassList/SportCoupe.disabled = not RoadChallengeSave.unlocked["sport"]
+		$Control/ClassList/SportRacing.disabled = not RoadChallengeSave.unlocked["sport_racing"]
+		$Control/ClassList/Supercars.disabled = not RoadChallengeSave.unlocked["supercars"]
+		$Control/ClassList/TrackCars.disabled = not RoadChallengeSave.unlocked["track_cars"]
+		return
+
+	# Normal modes → unlock everything
+	for btn in $Control/ClassList.get_children():
+		btn.disabled = false
