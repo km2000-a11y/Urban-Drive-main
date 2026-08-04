@@ -67,7 +67,11 @@ func _on_retry_btn_pressed() -> void:
 	
 func _on_quit_btn_pressed() -> void:
 	get_tree().paused=false
-	get_tree().change_scene_to_file(main_menu_path)
+	if GameMode.game_mode=="Road Challenge":
+		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	else: 
+		get_tree().change_scene_to_file(main_menu_path)
+	
 
 func _on_vol_up_btn_pressed() -> void:
 	volume=clamp(volume+5,0,100)

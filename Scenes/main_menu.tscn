@@ -18,7 +18,7 @@ offset_bottom = 77.0
 
 [node name="RoadChallenge" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 40
 text = "ROAD CHALLENGE"
 
 [node name="FreeRace" type="Button" parent="Control/VBoxContainer"]
