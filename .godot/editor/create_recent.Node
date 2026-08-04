@@ -1,9 +1,9 @@
+CollisionShape3D
+StaticBody3D
 MeshInstance3D
 Button
-CollisionShape3D
 Area3D
 CharacterBody3D
-StaticBody3D
 Node3D
 CarController
 Label

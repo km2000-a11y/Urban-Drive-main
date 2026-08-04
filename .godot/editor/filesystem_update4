@@ -1,3 +1,4 @@
+res://Tracks/split.tscn
 res://main.tscn
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
@@ -52,7 +53,4 @@ res://Scenes/track_select.tscn
 res://Scenes/lexus_sc.tscn
 res://Tracks/abu_dhabi.tscn
 res://Scenes/tvr_cerbera.tscn
-res://Tracks/split.tscn
 res://Scenes/win_screen_duel.tscn
-res://Scenes/main_menu.gd
-res://Scripts/leaderboard.gd
