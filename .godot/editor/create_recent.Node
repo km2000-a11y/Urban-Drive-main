@@ -1,5 +1,5 @@
-Button
 MeshInstance3D
+Button
 CollisionShape3D
 Area3D
 CharacterBody3D

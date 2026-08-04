@@ -65,7 +65,10 @@ func _on_retry_btn_pressed() -> void:
 
 func _on_quit_btn_pressed() -> void:
 	reset()
-	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+	if GameMode.game_mode=="Road Challenge":
+		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
 
 func reset():
 	# Clear title

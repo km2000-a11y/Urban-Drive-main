@@ -54,4 +54,5 @@ res://Tracks/abu_dhabi.tscn
 res://Scenes/tvr_cerbera.tscn
 res://Tracks/split.tscn
 res://Scenes/win_screen_duel.tscn
-res://Scripts/car_select.gd
+res://Scenes/main_menu.gd
+res://Scripts/leaderboard.gd
