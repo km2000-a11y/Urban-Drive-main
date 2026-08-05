@@ -1,5 +1,5 @@
-res://Tracks/split.tscn
 res://main.tscn
+res://music_manager.gd
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
 res://Scenes/audi_tt.tscn
@@ -52,7 +52,6 @@ res://Tracks/chernobyl.tscn
 res://Scenes/track_select.tscn
 res://Tracks/abu_dhabi.tscn
 res://Scenes/tvr_cerbera.tscn
+res://Tracks/split.tscn
 res://Scenes/win_screen_duel.tscn
-res://Tracks/lap_line.gd
-res://Scenes/track_select.gd
-res://track_registry.gd
+res://Tracks/barrier_3.gd

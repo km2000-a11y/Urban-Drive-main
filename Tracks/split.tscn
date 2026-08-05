@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://bjwgdoy37jk5f"]
+[gd_scene load_steps=84 format=3 uid="uid://bjwgdoy37jk5f"]
 
 [ext_resource type="Script" uid="uid://dthur0h1nvj6s" path="res://Tracks/lap_line.gd" id="1_1c3gv"]
 [ext_resource type="Script" uid="uid://b5tj0bpuxvh85" path="res://Tracks/barrier_3.gd" id="1_nio6u"]
@@ -120,6 +120,9 @@ size = Vector3(1, 3, 250)
 [sub_resource type="BoxShape3D" id="BoxShape3D_fqxu4"]
 size = Vector3(1, 1100, 250)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_a3sna"]
+size = Vector3(1, 400, 250)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_must4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jj8ry"]
@@ -239,6 +242,10 @@ size = Vector3(12, 10, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e8ux5"]
 size = Vector3(12, 10, 1)
+
+[sub_resource type="Environment" id="Environment_ppuhi"]
+background_mode = 1
+background_color = Color(0.529412, 0.705882, 0.862745, 1)
 
 [node name="Split" type="Node3D"]
 
@@ -3765,7 +3772,7 @@ mesh = SubResource("BoxMesh_bfnur")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D/MeshInstance3D8/MeshInstance3D3/MeshInstance3D16"]
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D/MeshInstance3D8/MeshInstance3D3/MeshInstance3D16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.43133, 2.88286, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.43133, 1.66513, 0)
 mesh = SubResource("BoxMesh_j7qwg")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D/MeshInstance3D8/MeshInstance3D3/MeshInstance3D16/MeshInstance3D3"]
@@ -3774,8 +3781,13 @@ mesh = SubResource("BoxMesh_j7qwg")
 shape = SubResource("BoxShape3D_fqxu4")
 
 [node name="MeshInstance3D14" type="MeshInstance3D" parent="MeshInstance3D/MeshInstance3D8/MeshInstance3D3/MeshInstance3D16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14798, 2.88286, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14798, 1.21137, 0)
 mesh = SubResource("BoxMesh_j7qwg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D/MeshInstance3D8/MeshInstance3D3/MeshInstance3D16/MeshInstance3D14"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/MeshInstance3D8/MeshInstance3D3/MeshInstance3D16/MeshInstance3D14/StaticBody3D"]
+shape = SubResource("BoxShape3D_a3sna")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D/MeshInstance3D8/MeshInstance3D3/MeshInstance3D16"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5766, 0, 2.98023e-08)
@@ -11013,6 +11025,9 @@ transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, 
 [node name="WP39" type="Node3D" parent="Waypoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18073, 0.038784, -288.392)
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ppuhi")
+
 [connection signal="body_entered" from="MeshInstance3D/MeshInstance3D13/CharacterBody3D10/Area3D" to="MeshInstance3D/MeshInstance3D13/CharacterBody3D10" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="MeshInstance3D/MeshInstance3D13/CharacterBody3D11/Area3D" to="MeshInstance3D/MeshInstance3D13/CharacterBody3D11" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="MeshInstance3D/MeshInstance3D13/CharacterBody3D12/Area3D" to="MeshInstance3D/MeshInstance3D13/CharacterBody3D12" method="_on_area_3d_body_entered"]
@@ -11032,4 +11047,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18073, 0.038784, -288.392)
 [connection signal="body_entered" from="MeshInstance3D/MeshInstance3D13/CharacterBody3D26/Area3D" to="MeshInstance3D/MeshInstance3D13/CharacterBody3D26" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="MeshInstance3D/MeshInstance3D13/CharacterBody3D27/Area3D" to="MeshInstance3D/MeshInstance3D13/CharacterBody3D27" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="MeshInstance3D/MeshInstance3D13/CharacterBody3D28/Area3D" to="MeshInstance3D/MeshInstance3D13/CharacterBody3D28" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="CharacterBody3D8/Area3D" to="CharacterBody3D8" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="CharacterBody3D9/Area3D" to="CharacterBody3D9" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="CharacterBody3D2/Area3D" to="CharacterBody3D2" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="CharacterBody3D5/Area3D" to="CharacterBody3D5" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="CharacterBody3D6/Area3D" to="CharacterBody3D6" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="CharacterBody3D10/Area3D" to="CharacterBody3D10" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="CharacterBody3D12/Area3D" to="CharacterBody3D12" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="CharacterBody3D3/Area3D" to="CharacterBody3D3" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="CharacterBody3D7/Area3D" to="CharacterBody3D7" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="CharacterBody3D11/Area3D" to="CharacterBody3D11" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="CharacterBody3D4/Area3D" to="CharacterBody3D4" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="LapLine" to="LapLine" method="_on_body_entered"]

@@ -1,9 +1,10 @@
+WorldEnvironment
+CollisionShape3D
+StaticBody3D
 Button
 Node3D
-CollisionShape3D
 Area3D
 MeshInstance3D
-StaticBody3D
 CharacterBody3D
 CarController
 Label
@@ -11,4 +12,3 @@ Control
 CanvasLayer
 Node2D
 TextureProgressBar
-Panel

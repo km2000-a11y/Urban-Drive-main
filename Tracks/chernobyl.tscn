@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://bcsgdawdkhawv"]
+[gd_scene load_steps=90 format=3 uid="uid://bcsgdawdkhawv"]
 
 [ext_resource type="Script" uid="uid://frkq58mu2pgw" path="res://Scripts/barrier_1.gd" id="1_sawg2"]
 [ext_resource type="Script" uid="uid://dthur0h1nvj6s" path="res://Tracks/lap_line.gd" id="2_kpt7h"]
@@ -25,7 +25,7 @@ albedo_color = Color(0.196078, 0.196078, 0.196078, 1)
 size = Vector3(10, 20, 8)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnsgo"]
-albedo_color = Color(1, 0.823529, 0.431373, 1)
+albedo_color = Color(0.705882, 0.705882, 0.431373, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pxcwx"]
 
@@ -271,6 +271,10 @@ size = Vector3(13, 5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tnsgo"]
 size = Vector3(12, 5, 1)
+
+[sub_resource type="Environment" id="Environment_kpt7h"]
+background_mode = 1
+background_color = Color(0.411765, 0.45098, 0.490196, 1)
 
 [node name="Chernobyl" type="Node3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -4825,6 +4829,9 @@ transform = Transform3D(0.766044, 0, -0.642787, 0, 1, 0, 0.642787, 0, 0.766044, 
 
 [node name="WP25" type="Node3D" parent="Waypoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39791, 0, -499.66)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kpt7h")
 
 [connection signal="body_entered" from="CharacterBody3D/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="CharacterBody3D8/Area3D" to="CharacterBody3D8" method="_on_area_3d_body_entered"]

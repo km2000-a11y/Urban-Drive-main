@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://0xg618ovary8"]
+[gd_scene load_steps=110 format=3 uid="uid://0xg618ovary8"]
 
 [ext_resource type="Script" uid="uid://dthur0h1nvj6s" path="res://Tracks/lap_line.gd" id="2_kydu3"]
 [ext_resource type="Script" uid="uid://b5tj0bpuxvh85" path="res://Tracks/barrier_3.gd" id="2_ub2w8"]
@@ -324,6 +324,10 @@ albedo_color = Color(0.658824, 0.470588, 0.27451, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5k4ap"]
 size = Vector3(3, 2, 2)
+
+[sub_resource type="Environment" id="Environment_kydu3"]
+background_mode = 1
+background_color = Color(0.0392157, 0.0784314, 0.156863, 1)
 
 [node name="AbuDhabi" type="Node3D"]
 
@@ -6241,6 +6245,9 @@ shape = SubResource("BoxShape3D_v2nqy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16939, 2.18511, 1.8571)
 material_override = SubResource("StandardMaterial3D_037cu")
 mesh = SubResource("BoxMesh_5k4ap")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kydu3")
 
 [connection signal="body_entered" from="MeshInstance3D17/CharacterBody3D9/Area3D" to="MeshInstance3D17/CharacterBody3D9" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="MeshInstance3D17/CharacterBody3D10/Area3D" to="MeshInstance3D17/CharacterBody3D10" method="_on_area_3d_body_entered"]
