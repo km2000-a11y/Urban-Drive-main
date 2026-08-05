@@ -339,13 +339,13 @@ var compact = {
 var muscle = {
 	"Brutus Viper":[
 		"", "Country: USA", "HP: 355", "WEIGHT: 1650 KG",
-		"0-100 KM/H: 5.8s", "TOP SPEED: 225 KM/H",
+		"0-100 KM/H: 5.8s", "TOP SPEED: 216 KM/H",
 		"ENGINE: V8 7.0L", "ASPIRATION: NA", "TORQUE: 540 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Mir Cars Hutch":[
 		"", "Country: UAE", "HP: 372", "WEIGHT: 1780 KG",
-		"0-100 KM/H: 5.6s", "TOP SPEED: 232 KM/H",
+		"0-100 KM/H: 5.6s", "TOP SPEED: 221 KM/H",
 		"ENGINE: V8 7.1L", "ASPIRATION: NA", "TORQUE: 560 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	]

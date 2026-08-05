@@ -31,3 +31,10 @@ func _on_abu_dhabi_pressed() -> void:
 	TrackName.track_name="AbuDhabi"
 	
 	get_tree().change_scene_to_file("res://main.tscn")
+
+
+func _on_split_pressed() -> void:
+	RoadChallengeState.active_track="Split"
+	TrackName.track_name="Split"
+	
+	get_tree().change_scene_to_file("res://main.tscn")
