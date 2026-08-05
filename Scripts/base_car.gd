@@ -14,6 +14,9 @@ var waypoints: Array[Node] = []
 var current_wp: int = 0
 var hard_frozen := false
 static var used_ai_names := []
+var speed_samples := []
+var avg_speed := 0.0
+
 
 
 # --- AI INPUT ---
@@ -169,7 +172,16 @@ func update_gears(speed_kmh: float) -> void:
 	current_gear = clamp(current_gear, 1, gear_count)
 
 func _physics_process(delta: float) -> void:
-	
+
+	speed_samples.append(current_speed)
+	if speed_samples.size() > 60: # last 1 second
+		speed_samples.pop_front()
+
+	var sum := 0.0
+	for s in speed_samples:
+		sum += s
+	avg_speed = sum / speed_samples.size()
+
 	if not controls_enabled:
 		if not is_on_floor():
 			velocity.y -= GRAVITY * delta

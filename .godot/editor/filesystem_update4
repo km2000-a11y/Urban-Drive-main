@@ -1,5 +1,4 @@
 res://main.tscn
-res://music_manager.gd
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
 res://Scenes/audi_tt.tscn
@@ -54,4 +53,6 @@ res://Tracks/abu_dhabi.tscn
 res://Scenes/tvr_cerbera.tscn
 res://Tracks/split.tscn
 res://Scenes/win_screen_duel.tscn
-res://Tracks/barrier_3.gd
+res://Scripts/base_car.gd
+res://duel_manager.gd
+res://normal_race_manager.gd
