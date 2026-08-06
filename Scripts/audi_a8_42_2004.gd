@@ -12,8 +12,8 @@ func _ready():
 	mass = 1780.0
 	horsepower = 343
 	max_rpm = 6500.0               # High-revving 5.0L tuned for strong mid-range acceleration
-	zero_to_hundred = 6.2
-	top_speed_kmh = 257
+	zero_to_hundred = 5.5
+	top_speed_kmh = 250
 	turn_speed = 2.55              # Balanced steering; heavier than sport sedans, lighter than SUVs
 	brake_strength = 11.2          # Strong brakes for a 1.7-ton AWD chassis
 	lateral_friction = 1.08        # Confident AWD grip on pavement and desert roads

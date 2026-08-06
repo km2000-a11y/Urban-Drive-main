@@ -12,8 +12,8 @@ func _ready():
 	mass = 1740.0
 	horsepower = 390
 	max_rpm = 7000.0                 # High‑rev V8 but not torque‑friendly
-	zero_to_hundred = 4.6
-	top_speed_kmh = 250
+	zero_to_hundred =5.8
+	top_speed_kmh = 267
 	turn_speed = 2.35                # Horrendous rotation; heavy understeer by design
 	brake_strength = 12.8            # Good brakes but not enough for the weight
 	lateral_friction = 1.06          # Executive sedan grip; not a track car

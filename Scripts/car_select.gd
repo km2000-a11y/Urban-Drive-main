@@ -235,7 +235,7 @@ var urban_list = [
 	"Kuro Serenity",
 	"Eisenach Bengal",
 	"Brutus Stingray",
-		"Berkshire Blunt",
+	"Eisenach Prince",
 	"Kestrel Speedster", 
 ]
 
@@ -250,6 +250,7 @@ var sedans_list = [
 
 
 var sport_list = [
+	"Berkshire Blunt",
 	"Schroder Classique Sport",
 	"Berkshire V12-S",
 	"Berkshire Tempest",
@@ -352,10 +353,10 @@ var muscle = {
 	]
 }
 var urban_racers = {
-	"Berkshire Blunt":[
-		"", "Country: UK", "HP: 406", "WEIGHT: 1832 KG",
-		"0-100 KM/H: 5.8s", "TOP SPEED: 272 KM/H",
-		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
+		"Eisenach Prince":[
+		"", "Country: Germany", "HP: 400", "WEIGHT: 1832 KG",
+		"0-100 KM/H: 5.8s", "TOP SPEED: 267 KM/H",
+		"ENGINE: V8 4.9L", "ASPIRATION: NA", "TORQUE: 500 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Kestrel Speedster":[
@@ -405,7 +406,7 @@ var sedans = {
 		"Mir Cars Transporter":[
 		"", "Country:UAE", "HP: 340", "WEIGHT: 1740 KG",
 		"0-100 KM/H: 5.5s", "TOP SPEED: 250 KM/H",
-		"ENGINE: V8 4.9L", "ASPIRATION: NA", "TORQUE: 410 NM",
+		"ENGINE: V8 4.6L", "ASPIRATION: NA", "TORQUE: 410 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
 	"Strandberg Turbo":[
@@ -416,6 +417,12 @@ var sedans = {
 	]
 }
 var sport = {
+		"Berkshire Blunt":[
+		"", "Country: UK", "HP: 406", "WEIGHT: 1832 KG",
+		"0-100 KM/H: 5.6s", "TOP SPEED: 277 KM/H",
+		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
+		"TRANSMISSION: REAR-WHEEL DRIVE"
+	],
 	"Berkshire V12-S":[
 		"", "Country: UK", "HP: 450", "WEIGHT: 1740 KG",
 		"0-100 KM/H: 5.1s", "TOP SPEED: 293 KM/H",
