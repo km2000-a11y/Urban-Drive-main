@@ -16,3 +16,8 @@ func _on_road_challenge_pressed() -> void:
 func _on_free_race_pressed() -> void:
 	GameMode.game_mode="Free Race"
 	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
+
+func _on_club_cups_pressed() -> void:
+	GameMode.game_mode="Club Cups"
+	get_tree().change_scene_to_file("res://Scenes/championships.tscn")

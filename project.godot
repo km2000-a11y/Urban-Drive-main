@@ -36,6 +36,8 @@ TrackRegistry="*res://track_registry.gd"
 RoadChallengeManager="*res://road_challenge_manager.gd"
 RoadChallengeState="*res://road_challenge_state.gd"
 RoadChallengeSave="*res://road_challenge_save.gd"
+ClubCups="*res://club_cups.gd"
+ChampionshipState="*res://championship_state.gd"
 
 [display]
 

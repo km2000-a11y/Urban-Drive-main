@@ -34,3 +34,6 @@ func _on_cop_chase_btn_pressed() -> void:
 
 	# Go straight into the race
 	get_tree().change_scene_to_file("res://Scenes/track_select.tscn")
+	
+	if GameMode.game_mode=="Club Cups":
+		hide()
