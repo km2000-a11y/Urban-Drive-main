@@ -53,10 +53,4 @@ res://Tracks/abu_dhabi.tscn
 res://Scenes/tvr_cerbera.tscn
 res://Tracks/split.tscn
 res://Scenes/win_screen_duel.tscn
-res://Scripts/audi_a8_42_2004.gd
-res://bmw_m_5_e_39.gd
-res://cars.gd
-res://Scripts/car_select.gd
-res://Scripts/jaguar_xkr_2003.gd
 res://Scenes/bmw_m5_e39.tscn
-res://music_manager.gd
