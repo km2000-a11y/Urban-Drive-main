@@ -1,4 +1,5 @@
 res://main.tscn
+res://Scripts/car_select.gd
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
 res://Scenes/audi_tt.tscn
@@ -53,3 +54,7 @@ res://Tracks/abu_dhabi.tscn
 res://Scenes/tvr_cerbera.tscn
 res://Tracks/split.tscn
 res://Scenes/win_screen_duel.tscn
+res://cars.gd
+res://normal_race_manager.gd
+res://Scenes/bmw_535d.gd
+res://Scenes/bmw_530d.gd

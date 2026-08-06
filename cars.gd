@@ -49,7 +49,7 @@ var class_lists := {
 	"sedans": [
 		"Eisenach Suppressor",
 		"Kuro Vault",
-				"Eisenach Black Panda",
+		"Mir Cars Transporter",
 		"Strandberg Turbo",
 		"Kuro Persian"
 	],

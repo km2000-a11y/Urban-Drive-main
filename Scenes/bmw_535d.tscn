@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=3 uid="uid://bwpiwbkrsqpaw"]
 
-[ext_resource type="Script" uid="uid://cdpvli3lhwi1u" path="res://Scenes/bmw_535d.gd" id="1_7jrr4"]
+[ext_resource type="Script" uid="uid://cdpvli3lhwi1u" path="res://Scenes/bmw_530d.gd" id="1_7jrr4"]
 [ext_resource type="Script" uid="uid://ffvs8ga7wgmd" path="res://Scripts/camera.gd" id="2_yb6uk"]
 [ext_resource type="AudioStream" uid="uid://bq4u8syx73uiv" path="res://SFX/freesound_community-audi-v8-acceleration-sound-6067.wav" id="3_ewial"]
 [ext_resource type="AudioStream" uid="uid://cbyhxjdmmxqg3" path="res://SFX/brake.mp3" id="4_2ihow"]
@@ -33,7 +33,7 @@ size = Vector3(0.1, 0.2, 0.35)
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0sf7n"]
-size = Vector3(0.2, 0.1, 0.1)
+size = Vector3(0.15, 0.1, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdcca"]
 albedo_color = Color(1, 0.729412, 0, 1)
@@ -182,12 +182,12 @@ material_override = SubResource("StandardMaterial3D_xk2uh")
 mesh = SubResource("BoxMesh_jfmr0")
 
 [node name="MeshInstance3D14" type="MeshInstance3D" parent="ModelRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.101871, 0.333743, 1.15569)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.101871, 0.274008, 1.15569)
 material_override = SubResource("StandardMaterial3D_ijlge")
 mesh = SubResource("BoxMesh_0sf7n")
 
 [node name="MeshInstance3D15" type="MeshInstance3D" parent="ModelRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12775, 0.333743, 1.15569)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106365, 0.270643, 1.15569)
 material_override = SubResource("StandardMaterial3D_ijlge")
 mesh = SubResource("BoxMesh_0sf7n")
 

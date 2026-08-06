@@ -404,28 +404,35 @@ func _apply_random_ai_color(car: CarController) -> void:
 
 				for s in range(surface_count):
 					mesh_instance.set_surface_override_material(s, new_mat)
+
 func _estimate_ai_finish_time_for(ai: CarController) -> int:
 	var lapline := main_scene.find_child("LapLine", true, false)
 	if lapline == null:
 		return ai.total_race_time
 
-	# Remaining distance
+	# Remaining distance to finish line
 	var remaining_dist := ai.distance_to_finish_line(lapline)
 
-	# Smoothed speed using ONLY current_speed
-	var blended_speed: float = ai.current_speed * 0.75
+	# --- FIX: Add missing lap distance ---
+	var laps_left :int= total_laps - car_laps[ai]
+	if laps_left > 0:
+		var wp_count := ai.waypoints.size()
+		var avg_wp_dist := 12.0  # typical spacing, tweak if needed
+		remaining_dist += laps_left * wp_count * avg_wp_dist
 
-	# Safety clamp
+	# Smoothed speed
+	var blended_speed := ai.current_speed * 0.75
 	if blended_speed < 5.0:
 		blended_speed = 5.0
 
-	# Estimate remaining time
+	# Remaining time
 	var remaining_time_ms := int((remaining_dist / blended_speed) * 1000)
 
-	# Slight smoothing (AI slows near finish)
+	# Slight smoothing
 	remaining_time_ms = int(remaining_time_ms * 1.10)
 
 	return ai.total_race_time + remaining_time_ms
+
 
 
 func force_player_camera():

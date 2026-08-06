@@ -243,6 +243,7 @@ var urban_list = [
 var sedans_list = [
 		"Kuro Vault",
 			"Eisenach Suppressor",
+	"Mir Cars Transporter",
 	"Kuro Persian",
 	"Strandberg Turbo"
 ]
@@ -384,9 +385,9 @@ var urban_racers = {
 }
 var sedans = {
 	"Eisenach Suppressor":[
-		"", "Country: Germany", "HP: 272", "WEIGHT: 1660 KG",
-		"0-100 KM/H: 5.7s", "TOP SPEED: 250 KM/H",
-		"ENGINE: L6 3.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 560 NM",
+		"", "Country: Germany", "HP: 218", "WEIGHT: 1660 KG",
+		"0-100 KM/H: 6.4s", "TOP SPEED: 250 KM/H",
+		"ENGINE: L6 3.0L DIESEL", "ASPIRATION: Turbo", "TORQUE: 500 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Kuro Persian":[
@@ -400,6 +401,12 @@ var sedans = {
 		"0-100 KM/H: 6.3s", "TOP SPEED: 248 KM/H",
 		"ENGINE: V8 4.3L", "ASPIRATION: NA", "TORQUE: 430 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
+	],
+		"Mir Cars Transporter":[
+		"", "Country:UAE", "HP: 340", "WEIGHT: 1740 KG",
+		"0-100 KM/H: 5.5s", "TOP SPEED: 250 KM/H",
+		"ENGINE: V8 4.9L", "ASPIRATION: NA", "TORQUE: 410 NM",
+		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
 	"Strandberg Turbo":[
 		"", "Country: Sweden", "HP: 300", "WEIGHT: 1667 KG",
