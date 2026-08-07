@@ -2,8 +2,8 @@ extends Node
 
 var unlocked := {
 	"suv": true,
-	"muscle": true,
-	"compact": true,
+	"muscle": false,
+	"compact": false,
 	"sedans": false,
 	"urban": false,
 	"sport": false,
