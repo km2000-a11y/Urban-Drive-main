@@ -54,10 +54,5 @@ res://Scenes/tvr_cerbera.tscn
 res://Tracks/split.tscn
 res://Scenes/win_screen_duel.tscn
 res://Scenes/bmw_m5_e39.tscn
-res://Scenes/main_menu.gd
-res://Scenes/championships.gd
 res://Scenes/championships.tscn
 res://Scripts/car_select.gd
-res://championship_state.gd
-res://club_cups.gd
-res://Scripts/mode_select.gd

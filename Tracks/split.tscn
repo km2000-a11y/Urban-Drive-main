@@ -248,6 +248,7 @@ background_mode = 1
 background_color = Color(0.529412, 0.705882, 0.862745, 1)
 
 [node name="Split" type="Node3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20.6217)
@@ -10873,7 +10874,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.19467, 0)
 shape = SubResource("BoxShape3D_sl8vj")
 
 [node name="SpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.49438e-07, 1.26467, -1.70937)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.1304e-06, 1.26467, -12.9303)
 
 [node name="AISpawnPoint" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.91282e-05, 0, 218.801)

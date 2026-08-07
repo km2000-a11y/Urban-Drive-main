@@ -597,6 +597,21 @@ var car_scene_paths = {
 # -------------------------
 # UI UPDATE
 # -------------------------
+func _get_filtered_list(raw_list: Array) -> Array:
+	if GameMode.game_mode != "Club Cups":
+		return raw_list
+
+	if not ChampionshipState.championship_mode:
+		return raw_list
+
+	var allowed := ClubCups.get_available_cars(ChampionshipState.active_cup)
+	var filtered := []
+
+	for car_name in raw_list:
+		if allowed.has(car_name):
+			filtered.append(car_name)
+
+	return filtered
 
 func update_car_ui(stats: Array, name: String):
 	$Control/Cars/CarName.text = name
@@ -659,67 +674,99 @@ func _process(delta):
 
 func _on_4x4suv_pressed():
 	car_class = "suv"
+
+	var list = _get_filtered_list(suv_list)
 	car_index = 0
-	car_name = suv_list[car_index]
+
+	if list.is_empty():
+		return
+
+	car_name = list[car_index]
 	update_car_ui(suv[car_name], car_name)
 	load_preview_car(car_scene_paths[car_name])
 	_reset_color()
-
 func _on_compact_cars_pressed():
 	car_class = "compact"
+
+	var list = _get_filtered_list(compact_list)
 	car_index = 0
-	car_name = compact_list[car_index]
+	if list.is_empty(): return
+
+	car_name = list[car_index]
 	update_car_ui(compact[car_name], car_name)
 	load_preview_car(car_scene_paths[car_name])
 	_reset_color()
 
 func _on_muscle_cars_pressed():
 	car_class = "muscle"
+
+	var list = _get_filtered_list(muscle_list)
 	car_index = 0
-	car_name = muscle_list[car_index]
+	if list.is_empty(): return
+
+	car_name = list[car_index]
 	update_car_ui(muscle[car_name], car_name)
 	load_preview_car(car_scene_paths[car_name])
 	_reset_color()
-
 func _on_urban_racers_pressed():
 	car_class = "urban"
+
+	var list = _get_filtered_list(urban_list)
 	car_index = 0
-	car_name = urban_list[car_index]
+	if list.is_empty(): return
+
+	car_name = list[car_index]
 	update_car_ui(urban_racers[car_name], car_name)
 	load_preview_car(car_scene_paths[car_name])
 	_reset_color()
 
 func _on_sedans_pressed():
 	car_class = "sedans"
+
+	var list = _get_filtered_list(sedans_list)
 	car_index = 0
-	car_name = sedans_list[car_index]
+	if list.is_empty(): return
+
+	car_name = list[car_index]
 	update_car_ui(sedans[car_name], car_name)
 	load_preview_car(car_scene_paths[car_name])
 	_reset_color()
 
 func _on_sport_coupe_pressed():
 	car_class = "sport"
+
+	var list = _get_filtered_list(sport_list)
 	car_index = 0
-	car_name = sport_list[car_index]
+	if list.is_empty(): return
+
+	car_name = list[car_index]
 	update_car_ui(sport[car_name], car_name)
 	load_preview_car(car_scene_paths[car_name])
 	_reset_color()
 
 func _on_supercars_pressed():
 	car_class = "supercars"
+
+	var list = _get_filtered_list(supercars_list)
 	car_index = 0
-	car_name = supercars_list[car_index]
+	if list.is_empty(): return
+
+	car_name = list[car_index]
 	update_car_ui(supercars[car_name], car_name)
 	load_preview_car(car_scene_paths[car_name])
 	_reset_color()
-
-func _on_sport_racing_pressed() -> void:
+func _on_sport_racing_pressed():
 	car_class = "sport_racing"
+
+	var list = _get_filtered_list(sport_racing_list)
 	car_index = 0
-	car_name = sport_racing_list[car_index]
+	if list.is_empty(): return
+
+	car_name = list[car_index]
 	update_car_ui(sport_racing[car_name], car_name)
 	load_preview_car(car_scene_paths[car_name])
 	_reset_color()
+
 
 # -------------------------
 # INPUT
@@ -745,47 +792,48 @@ func _input(event):
 		change_color(-1)
 
 # -------------------------
-# LEFT / RIGHT SWITCHING
-# -------------------------
-
 func switch_car(direction):
-	var list
+	var raw_list
 	var dict
 
 	match car_class:
 		"suv":
-			list = suv_list
+			raw_list = suv_list
 			dict = suv
 		"compact":
-			list = compact_list
+			raw_list = compact_list
 			dict = compact
 		"muscle":
-			list = muscle_list
+			raw_list = muscle_list
 			dict = muscle
 		"urban":
-			list = urban_list
+			raw_list = urban_list
 			dict = urban_racers
 		"sedans":
-			list = sedans_list
+			raw_list = sedans_list
 			dict = sedans
 		"sport":
-			list = sport_list
+			raw_list = sport_list
 			dict = sport
 		"supercars":
-			list = supercars_list
+			raw_list = supercars_list
 			dict = supercars
 		"sport_racing":
-			list = sport_racing_list
+			raw_list = sport_racing_list
 			dict = sport_racing
 		"track_cars":
-				list = track_cars_list
-				dict = track_cars
+			raw_list = track_cars_list
+			dict = track_cars
 
+	var list = _get_filtered_list(raw_list)
+	if list.is_empty(): return
 
+	car_index += direction
 
-	car_index = (car_index + direction) % list.size()
 	if car_index < 0:
 		car_index = list.size() - 1
+	elif car_index >= list.size():
+		car_index = 0
 
 	car_name = list[car_index]
 	update_car_ui(dict[car_name], car_name)
@@ -867,15 +915,18 @@ func _on_back_btn_pressed() -> void:
 	else:
 		get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
 
-
-
-func _on_track_cars_pressed() -> void:
+func _on_track_cars_pressed():
 	car_class = "track_cars"
+
+	var list = _get_filtered_list(track_cars_list)
 	car_index = 0
-	car_name = track_cars_list[car_index]
+	if list.is_empty(): return
+
+	car_name = list[car_index]
 	update_car_ui(track_cars[car_name], car_name)
 	load_preview_car(car_scene_paths[car_name])
 	_reset_color()
+
 
 func _update_class_locks():
 	# Free Race and Road Challenge share unlocks
