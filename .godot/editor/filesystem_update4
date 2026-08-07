@@ -1,4 +1,5 @@
 res://main.tscn
+res://Scripts/car_select.gd
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
 res://Scenes/audi_tt.tscn
@@ -55,4 +56,4 @@ res://Tracks/split.tscn
 res://Scenes/win_screen_duel.tscn
 res://Scenes/bmw_m5_e39.tscn
 res://Scenes/championships.tscn
-res://Scripts/car_select.gd
+res://road_challenge_save.gd

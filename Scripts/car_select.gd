@@ -608,10 +608,17 @@ func _get_filtered_list(raw_list: Array) -> Array:
 	var filtered := []
 
 	for car_name in raw_list:
+		# NEW: Check if the class is unlocked in Road Challenge
+		if not RoadChallengeSave.unlocked.get(car_class, false):
+			continue
+
+		# Existing: Check if the car is allowed in this cup
 		if allowed.has(car_name):
 			filtered.append(car_name)
 
-	return filtered
+	return filtered   # ⭐ REQUIRED
+
+
 
 func update_car_ui(stats: Array, name: String):
 	$Control/Cars/CarName.text = name
@@ -930,7 +937,7 @@ func _on_track_cars_pressed():
 
 func _update_class_locks():
 	# Free Race and Road Challenge share unlocks
-	if GameMode.game_mode == "Free Race" or GameMode.game_mode == "Road Challenge":
+	if GameMode.game_mode == "Free Race" or GameMode.game_mode == "Road Challenge" or GameMode.game_mode=="Club Cups":
 		$Control/ClassList/SUV.disabled = false
 		$Control/ClassList/MuscleCars.disabled = not RoadChallengeSave.unlocked["muscle"]
 		$Control/ClassList/CompactCars.disabled = not RoadChallengeSave.unlocked["compact"]
