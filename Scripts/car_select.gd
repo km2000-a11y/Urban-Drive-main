@@ -372,9 +372,9 @@ var urban_racers = {
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Eisenach Bengal":[
-		"", "Country: Germany", "HP: 230", "WEIGHT: 1450 KG",
-		"0-100 KM/H: 5.0s", "TOP SPEED: 243 KM/H",
-		"ENGINE: L6 3.0L", "ASPIRATION: NA", "TORQUE: 300 NM",
+		"", "Country: Germany", "HP: 265", "WEIGHT: 1450 KG",
+		"0-100 KM/H: 5.2s", "TOP SPEED: 243 KM/H",
+		"ENGINE: L6 3.0L", "ASPIRATION: NA", "TORQUE: 320 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Kuro Serenity":[

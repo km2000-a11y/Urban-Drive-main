@@ -10,9 +10,9 @@ var zero_to_hundred_display := 5.50
 func _ready():
 	# GAMEPLAY STATS
 	mass = 1450.0
-	horsepower = 230
+	horsepower = 265
 	max_rpm = 7000.0
-	zero_to_hundred = 5.4
+	zero_to_hundred = 5.3
 	top_speed_kmh = 245
 	turn_speed = 2.90              # slightly softer than Z4M, playful turbo cabrio feel
 	brake_strength = 13.8          # heavier car, slightly longer stopping distance
