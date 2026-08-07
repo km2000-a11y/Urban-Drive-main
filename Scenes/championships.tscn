@@ -13,12 +13,31 @@ offset_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 945.0
+offset_bottom = 50.0
 
 [node name="Colossus" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "COLOSSUS"
 
+[node name="StreetTuners" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "STREET TUNERS"
+
+[node name="MuscleHustle" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "MUSCLE HUSTLE"
+
+[node name="V6Engines" type="Button" parent="Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "V6 ENGINES"
+
 [connection signal="pressed" from="Control/VBoxContainer/Colossus" to="." method="_on_colossus_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/StreetTuners" to="." method="_on_street_tuners_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/MuscleHustle" to="." method="_on_muscle_hustle_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/V6Engines" to="." method="_on_v_6_engines_pressed"]

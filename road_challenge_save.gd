@@ -2,8 +2,8 @@ extends Node
 
 var unlocked := {
 	"suv": true,
-	"muscle": false,
-	"compact": false,
+	"muscle": true,
+	"compact": true,
 	"sedans": false,
 	"urban": false,
 	"sport": false,
@@ -24,6 +24,8 @@ var progress := {
 	"track_cars": 0
 }
 
+
+
 func unlock_next_group(group_id: String):
 	var order := [
 		"suv",
@@ -38,5 +40,15 @@ func unlock_next_group(group_id: String):
 	]
 
 	var idx := order.find(group_id)
-	if idx >= 0 and idx < order.size() - 1:
+	if idx == -1:
+		return
+
+	# Require ALL previous groups to be completed (5 wins each)
+	for i in range(idx + 1):
+		var g :String= order[i]
+		if progress[g] < 5:
+			return
+
+	# Unlock the next group
+	if idx < order.size() - 1:
 		unlocked[order[idx + 1]] = true

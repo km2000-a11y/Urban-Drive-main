@@ -72,6 +72,7 @@ func _on_quit_btn_pressed() -> void:
 	else: 
 		get_tree().change_scene_to_file(main_menu_path)
 	
+	
 
 func _on_vol_up_btn_pressed() -> void:
 	volume=clamp(volume+5,0,100)

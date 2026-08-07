@@ -9,6 +9,30 @@ var cups := {
 			"Mir Cars Nightwolf",
 			"Colossus Titan Max"
 		]
+	},
+	"street_tuners":{
+		"eligible_classes":["compact"],
+		"eligible_cars":[
+			"Schroder Atrix Q32",
+			"Schroder D-20",
+			"Zenith Horizon",
+			"Kuro Zephyr",
+			"Straeda B32"
+		]
+	},
+	"muscle_hustle":{
+		"eligible_classes":["muscle"],
+		"eligible_cars":[
+			"Brutus Viper",
+			"Mir Cars Hutch"
+		]
+	},
+	"v6_engines":{
+		"eligible_classes":["compact"],
+		"eligible_cars":[
+			"Zenith Horizon",
+			"Schroder Atrix Q32"
+		]
 	}
 }
 

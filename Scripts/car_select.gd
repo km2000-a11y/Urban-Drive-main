@@ -616,8 +616,7 @@ func _get_filtered_list(raw_list: Array) -> Array:
 		if allowed.has(car_name):
 			filtered.append(car_name)
 
-	return filtered   # ⭐ REQUIRED
-
+	return filtered   # ⭐ REQUIRE
 
 
 func update_car_ui(stats: Array, name: String):
@@ -797,6 +796,7 @@ func _input(event):
 		change_color(1)
 	if event.is_action_pressed("color_select_down"):
 		change_color(-1)
+
 
 # -------------------------
 func switch_car(direction):
