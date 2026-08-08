@@ -174,7 +174,20 @@ func _setup_duel():
 	DuelManager.ai_spawn = asp.global_position if asp else DuelManager.player_spawn
 
 	DuelManager.player_car_path = Cars.selected_car
-	DuelManager.ai_car_path = Cars.selected_ai_car if Cars.selected_ai_car != "" else Cars.selected_car
+	if GameMode.game_mode == "Club Cups":
+		var cup_id := ChampionshipState.active_cup
+		var filtered := ClubCups.get_available_cars(cup_id)
+
+		if filtered.size() > 0:
+			var chosen := filtered[randi() % filtered.size()]
+			DuelManager.ai_car_path = Cars.car_scene_paths[chosen]
+			Cars.selected_ai_car_name = chosen
+		else:
+			DuelManager.ai_car_path = Cars.selected_car
+	else:
+		# Normal Duel behavior
+		DuelManager.ai_car_path = Cars.selected_ai_car if Cars.selected_ai_car != "" else Cars.selected_car
+
 
 	DuelManager.spawn_duel(self)
 	DuelManager.main_scene = self
@@ -205,7 +218,11 @@ func _setup_normal_race():
 		var ai_sp := safe_get(root, "AISpawnPoint" + str(i))
 		NormalRaceManager.ai_spawns.append(ai_sp.global_position if ai_sp else NormalRaceManager.player_spawn)
 
-	NormalRaceManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
+	if GameMode.game_mode == "Club Cups":
+			NormalRaceManager.ai_car_paths = ClubCups.get_available_cars(ChampionshipState.active_cup)
+	else:
+			NormalRaceManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
+
 
 	NormalRaceManager.spawn_race(self)
 
@@ -238,7 +255,12 @@ func _setup_elimination():
 		EliminationManager.ai_spawns.append(ai_sp.global_position if ai_sp else EliminationManager.player_spawn)
 
 	EliminationManager.player_car_path = Cars.selected_car
-	EliminationManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
+	if GameMode.game_mode == "Club Cups":
+		var cup_id := ChampionshipState.active_cup
+		EliminationManager.ai_car_paths = ClubCups.get_available_cars(cup_id)
+	else:
+		EliminationManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
+
 
 	var hud_scene := load("res://Scenes/elimination_hud.tscn")
 	var hud: CanvasLayer = hud_scene.instantiate()
@@ -427,8 +449,13 @@ func show_finish(player_won: bool):
 	MusicManager.stop_music()
 
 	# ROAD CHALLENGE PROGRESS UPDATE
+	# ROAD CHALLENGE PROGRESS UPDATE
 	if GameMode.game_mode == "Road Challenge":
 		RoadChallengeManager.on_race_finished(player_won)
+	else:
+		# Club Cups, Free Race, Duel, Elimination, Cop Chase → do NOT count
+		pass
+	
 
 	# Leaderboard (if exists)
 	if leaderboard:

@@ -315,34 +315,62 @@ func load_color():
 			f.close()
 
 func pick_ai_car_path() -> String:
-	if selected_class == "":
-		return selected_car
+	# If NOT Club Cups → normal class-based AI
+	if GameMode.game_mode != "Club Cups":
+		var list: Array = class_lists.get(selected_class, [])
+		if list.is_empty():
+			return selected_car
 
-	var list: Array = class_lists.get(selected_class, [])
-	if list.is_empty():
-		return selected_car
+		var chosen_name: String = list[randi() % list.size()]
+		selected_ai_car_name = chosen_name
+		return car_scene_paths.get(chosen_name, selected_car)
 
-	var chosen_name: String = list[randi() % list.size()]
-	selected_ai_car_name = chosen_name
+	else:
+		# Club Cups → use filtered championship cars
+		var cup_id := ChampionshipState.active_cup
+		var filtered := ClubCups.get_available_cars(cup_id)
 
-	return car_scene_paths.get(chosen_name, selected_car)
+		if filtered.is_empty():
+			return selected_car
+
+		var chosen_name := filtered[randi() % filtered.size()]
+		selected_ai_car_name = chosen_name
+		return car_scene_paths.get(chosen_name, selected_car)
 
 func get_ai_paths_for_class(_unused):
-	var result = []
+	var result: Array = []
 
-	var list = class_lists.get(selected_class, [])
+	# If NOT Club Cups → normal class-based AI
+	if GameMode.game_mode != "Club Cups":
+		var list = class_lists.get(selected_class, [])
 
-	if list.is_empty():
+		if list.is_empty():
+			for i in range(7):
+				result.append(selected_car)
+			return result
+
 		for i in range(7):
-			result.append(selected_car)
+			var car_name = list[randi() % list.size()]
+			result.append(car_scene_paths.get(car_name, selected_car))
+
 		return result
 
-	for i in range(7):
-		var car_name = list[randi() % list.size()]
-		var path = car_scene_paths.get(car_name, selected_car)
-		result.append(path)
+	else:
+		# Club Cups → use filtered championship cars
+		var cup_id := ChampionshipState.active_cup
+		var filtered := ClubCups.get_available_cars(cup_id)
 
-	return result
+		if filtered.is_empty():
+			for i in range(7):
+				result.append(selected_car)
+			return result
+
+		for i in range(7):
+			var car_name := filtered[randi() % filtered.size()]
+			result.append(car_scene_paths.get(car_name, selected_car))
+
+		return result
+
 
 func get_radar_target_speed() -> int:
 	return radar_target_speeds.get(selected_class, 180)
