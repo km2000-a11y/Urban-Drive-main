@@ -26,7 +26,7 @@ var class_lists: Dictionary = {
 	],
 
 	"urban": [
-		"Brutus Stingray",
+		"Berkshire Blunt",
 		"Eisenach Prince",
 		"Kestrel Speedster",
 		"Eisenach Bengal",
@@ -42,7 +42,7 @@ var class_lists: Dictionary = {
 	],
 
 	"sport": [
-		"Berkshire Blunt",
+				"Brutus Stingray",
 		"Berkshire V12-S",
 		"Berkshire Tempest",
 		"Schroder Classique Sport",
@@ -50,7 +50,7 @@ var class_lists: Dictionary = {
 	],
 
 	"sport_racing": [
-		"Mir Cars Precision",
+		"Schroder Atrocity",
 		"Linetti Shepherd",
 		"Brutus Venom",
 		"Kestrel Battleaxe"
@@ -135,5 +135,9 @@ func get_available_cars(cup_id: String) -> Array[String]:
 		for car_name: String in cars_in_class:
 			if eligible_cars.has(car_name):
 				result.append(car_name)
+				print("MATCH: ",car_name)
 
+				
+
+	print("ClubCups.gd USED")
 	return result

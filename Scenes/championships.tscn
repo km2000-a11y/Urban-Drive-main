@@ -32,7 +32,6 @@ theme_override_font_sizes/font_size = 30
 text = "MUSCLE HUSTLE"
 
 [node name="V6Engines" type="Button" parent="Control/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "V6 ENGINES"
