@@ -39,7 +39,7 @@ var class_lists := {
 	],
 
 	"urban": [
-		"Brutus Stingray",
+					"Berkshire Blunt",
 		"Eisenach Prince",
 		"Kestrel Speedster",
 		"Eisenach Bengal",
@@ -55,7 +55,7 @@ var class_lists := {
 	],
 
 	"sport": [
-			"Berkshire Blunt",
+			"Brutus Stingray",
 		"Berkshire V12-S",
 		"Berkshire Tempest",
 		"Schroder Classique Sport",
@@ -63,7 +63,7 @@ var class_lists := {
 	],
 
 	"sport_racing": [
-		"Mir Cars Precision",
+		"Schroder Atrocity",
 		"Linetti Shepherd",
 		"Brutus Venom",
 		"Kestrel Battleaxe"
@@ -125,7 +125,7 @@ var car_scene_paths := {
 	"Kronstadt Crest":"res://Scenes/slk.tscn",
 
 
-	"Mir Cars Precision":"res://Scenes/bmw_m6.tscn",
+	"Schroder Atrocity":"res://Scenes/audi_s6.tscn",
 	"Kestrel Battleaxe":"res://Scenes/sagaris.tscn",
 	"Linetti Shepherd":"res://Scenes/gallardo.tscn",
 	"Brutus Venom":"res://Scenes/dodge_viper.tscn",
@@ -282,7 +282,12 @@ var car_colors := {
 ],
 	"Eisenach Bengal":[Color8(217,90,43), Color8(255,255,255), Color8(0,90,180), Color8(180,180,180)],
 
-	"Mir Cars Precision":[Color8(255,80,0), Color8(255,255,255), Color8(60,60,60), Color8(0,120,160)],
+		"Schroder Atrocity":[
+		Color8(255,0,0),    # ⭐ Default — tomato red
+		Color8(255,255,255),  # White
+		Color8(60,60,60),     # Dark grey
+		Color8(0,0,0)         # Black
+	],
 	"Kestrel Battleaxe":[Color8(180,20,35), Color8(255,255,255), Color8(255,140,0), Color8(200,40,80)],
 	"Linetti Shepherd":[Color8(50,220,40), Color8(255,255,255), Color8(255,200,0), Color8(0,160,80)],
 	"Brutus Venom":[Color8(255,0,0), Color8(255,255,255), Color8(180,180,180), Color8(0,0,0)],

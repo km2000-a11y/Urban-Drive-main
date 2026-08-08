@@ -1,6 +1,6 @@
-res://Scenes/championships.tscn
-res://club_cups.gd
+res://Scenes/jaguar_xkr.tscn
 res://main.tscn
+res://Scripts/car_select.gd
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
 res://Scenes/audi_tt.tscn
@@ -8,7 +8,6 @@ res://Scenes/speedometer.tscn
 res://Scenes/hummer_h2.tscn
 res://Scenes/lexus_ls430.tscn
 res://Scenes/nissan_350z.tscn
-res://Scenes/jaguar_xkr.tscn
 res://Scenes/chevrolet_corvette_c5.tscn
 res://Scenes/aston_db9.tscn
 res://Scenes/vanquish.tscn
@@ -56,3 +55,13 @@ res://Scenes/tvr_cerbera.tscn
 res://Tracks/split.tscn
 res://Scenes/win_screen_duel.tscn
 res://Scenes/bmw_m5_e39.tscn
+res://Scenes/championships.tscn
+res://Scenes/audi_a8.tscn
+res://Scripts/chevrolet_corvette_c5_1998.gd
+res://Scripts/jaguar_xkr_2003.gd
+res://Scenes/lexus_sc.gd
+res://cars.gd
+res://bmw_m_5_e_39.gd
+res://Scenes/championships.gd
+res://Scenes/audi_s6.tscn
+res://Scripts/bmw_m_5_e_60.gd

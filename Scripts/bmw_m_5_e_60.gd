@@ -1,23 +1,23 @@
 extends CarController
 
 # COSMETIC INFO (UI only)
-var def_car_name := "Mir Cars Precision"
+var def_car_name := "Schroder Atrocity"
 var country := "UAE"
-var engine := "V10 5.0L"
-var weight_kg := 1590
+var engine := "V10 5.2L"
+var weight_kg := 1890
 var zero_to_hundred_display := 4.50
 
 func _ready():
 	# GAMEPLAY STATS — UAE-built high-revving track machine
 	mass = 1590.0
-	horsepower = 488
+	horsepower = 440
 	max_rpm = 8250.0               # Screaming V10 tuned for track dominance
 	zero_to_hundred = 4.5
 	top_speed_kmh = 307
 	turn_speed = 3.20              # Sharper than any sedan; precision-focused steering
 	brake_strength = 14.5          # Strong brakes for repeated high-speed stops
 	lateral_friction = 1.14        # High grip RWD setup for track stability
-	transmission = "Rear wheel drive"
+	transmission = "Four wheel drive"
 
 	# Mir Cars 7-Speed Track Gearbox
 	# Short mid gears for acceleration, long 7th for top speed

@@ -32,12 +32,21 @@ theme_override_font_sizes/font_size = 30
 text = "MUSCLE HUSTLE"
 
 [node name="V6Engines" type="Button" parent="Control/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "V6 ENGINES"
+
+[node name="BackBtn" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 1027.0
+offset_top = 655.0
+offset_right = 1266.0
+offset_bottom = 705.0
+theme_override_font_sizes/font_size = 30
+text = "BACK"
 
 [connection signal="pressed" from="Control/VBoxContainer/Colossus" to="." method="_on_colossus_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/StreetTuners" to="." method="_on_street_tuners_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/MuscleHustle" to="." method="_on_muscle_hustle_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/V6Engines" to="." method="_on_v_6_engines_pressed"]
+[connection signal="pressed" from="Control/BackBtn" to="." method="_on_back_btn_pressed"]

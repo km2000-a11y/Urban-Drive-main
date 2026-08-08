@@ -179,8 +179,8 @@ var car_colors := {
 	Color8(0,70,120)       # Deep Blue (Audi signature)
 ],
 
-	"Mir Cars Precision":[
-		Color8(255,99,71),    # ⭐ Default — tomato red
+	"Schroder Atrocity":[
+		Color8(255,0,0),    # ⭐ Default — tomato red
 		Color8(255,255,255),  # White
 		Color8(60,60,60),     # Dark grey
 		Color8(0,0,0)         # Black
@@ -234,7 +234,7 @@ var muscle_list = [
 var urban_list = [  
 	"Kuro Serenity",
 	"Eisenach Bengal",
-	"Brutus Stingray",
+		"Berkshire Blunt",
 	"Eisenach Prince",
 	"Kestrel Speedster", 
 ]
@@ -250,7 +250,7 @@ var sedans_list = [
 
 
 var sport_list = [
-	"Berkshire Blunt",
+		"Brutus Stingray",
 	"Schroder Classique Sport",
 	"Berkshire V12-S",
 	"Berkshire Tempest",
@@ -259,7 +259,7 @@ var sport_list = [
 
 var sport_racing_list = [
 	"Linetti Shepherd",
-	"Mir Cars Precision",
+	"Schroder Atrocity",
 	"Brutus Venom",
 	"Kestrel Battleaxe"
 ]
@@ -355,7 +355,7 @@ var muscle = {
 var urban_racers = {
 		"Eisenach Prince":[
 		"", "Country: Germany", "HP: 400", "WEIGHT: 1832 KG",
-		"0-100 KM/H: 5.8s", "TOP SPEED: 267 KM/H",
+		"0-100 KM/H: 5.0s", "TOP SPEED: 254 KM/H",
 		"ENGINE: V8 4.9L", "ASPIRATION: NA", "TORQUE: 500 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
@@ -365,10 +365,10 @@ var urban_racers = {
 		"ENGINE: V8 4.4L", "ASPIRATION: NA", "TORQUE: 410 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
-	"Brutus Stingray":[
-		"", "Country: USA", "HP: 345", "WEIGHT: 1460 KG",
-		"0-100 KM/H: 5.0s", "TOP SPEED: 257 KM/H",
-		"ENGINE: V8 5.7L", "ASPIRATION: NA", "TORQUE: 480 NM",
+		"Berkshire Blunt":[
+		"", "Country: UK", "HP: 406", "WEIGHT: 1832 KG",
+		"0-100 KM/H: 6.1s", "TOP SPEED: 272 KM/H",
+		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Eisenach Bengal":[
@@ -379,7 +379,7 @@ var urban_racers = {
 	],
 	"Kuro Serenity":[
 		"", "Country: Japan", "HP: 260", "WEIGHT: 1640 KG",
-		"0-100 KM/H: 6.4s", "TOP SPEED: 250 KM/H",
+		"0-100 KM/H: 6.2s", "TOP SPEED: 250 KM/H",
 		"ENGINE: V8 4.0L", "ASPIRATION: NA", "TORQUE: 360 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	]
@@ -417,12 +417,6 @@ var sedans = {
 	]
 }
 var sport = {
-		"Berkshire Blunt":[
-		"", "Country: UK", "HP: 406", "WEIGHT: 1832 KG",
-		"0-100 KM/H: 5.6s", "TOP SPEED: 277 KM/H",
-		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
-		"TRANSMISSION: REAR-WHEEL DRIVE"
-	],
 	"Berkshire V12-S":[
 		"", "Country: UK", "HP: 450", "WEIGHT: 1740 KG",
 		"0-100 KM/H: 5.1s", "TOP SPEED: 293 KM/H",
@@ -434,6 +428,12 @@ var sport = {
 		"0-100 KM/H: 4.8s", "TOP SPEED: 262 KM/H",
 		"ENGINE: V8 4.2L", "ASPIRATION: NA", "TORQUE: 420 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
+	],
+		"Brutus Stingray":[
+		"", "Country: USA", "HP: 400", "WEIGHT: 1460 KG",
+		"0-100 KM/H: 5.0s", "TOP SPEED: 272 KM/H",
+		"ENGINE: V8 6.0L", "ASPIRATION: NA", "TORQUE: 540 NM",
+		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Kestrel Touring":[
 		"", "Country: UK", "HP: 360", "WEIGHT: 1150 KG",
@@ -461,11 +461,11 @@ var sport_racing = {
 		"ENGINE: V10 8.0L", "ASPIRATION: NA", "TORQUE: 630 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
-	"Mir Cars Precision":[
-		"", "Country: UAE", "HP: 488", "WEIGHT: 1590 KG",
+	"Schroder Atrocity":[
+		"", "Country: Germany", "HP: 435", "WEIGHT: 1890 KG",
 		"0-100 KM/H: 4.5s", "TOP SPEED: 307 KM/H",
-		"ENGINE: V10 5.0L", "ASPIRATION: NA", "TORQUE: 520 NM",
-		"TRANSMISSION: REAR-WHEEL DRIVE"
+		"ENGINE: V10 5.2L", "ASPIRATION: NA", "TORQUE: 540 NM",
+		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
 	"Kestrel Battleaxe":[
 		"", "Country: UK", "HP: 406", "WEIGHT: 1078 KG",
@@ -576,7 +576,7 @@ var car_scene_paths = {
 	"Strandberg Turbo":"res://Scenes/volvo_s60r.tscn",
 	"Kuro Serenity":"res://Scenes/lexus_sc.tscn",
 
-	"Mir Cars Precision":"res://Scenes/bmw_m6.tscn",
+	"Schroder Atrocity":"res://Scenes/audi_s6.tscn",
 	"Kestrel Battleaxe":"res://Scenes/sagaris.tscn",
 	"Linetti Shepherd":"res://Scenes/gallardo.tscn",
 	"Brutus Venom":"res://Scenes/dodge_viper.tscn",

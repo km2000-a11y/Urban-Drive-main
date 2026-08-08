@@ -18,7 +18,7 @@ config/name="Urban Drive v0.1"
 run/main_scene="uid://blwywdnqsnjx6"
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="uid://c71qx8h0jiubn"
+config/icon="uid://c3swb3beqmyx5"
 
 [autoload]
 
