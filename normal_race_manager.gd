@@ -80,34 +80,64 @@ func spawn_race(scene: Node) -> void:
 	# AI CARS
 	# AI CARS
 	# AI CARS — USE THE CUP LIST PROVIDED BY RaceManager
+	# ============================
+# AI CARS — UNIVERSAL SAFE BLOCK
+# ============================
+
 	ai_cars.clear()
 
-# ai_car_paths is ALREADY set by RaceManager for Club Cups
-# so we simply use it directly
+	# 1. Build AI list depending on mode
+	var final_ai_paths := []
 
+	if GameMode.game_mode == "Club Cups":
+		# Club Cups → RaceManager already set ai_car_paths
+		final_ai_paths = ai_car_paths.duplicate()
+	else:
+		# Normal modes → use class-based AI
+		final_ai_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
+
+	# 2. SAFETY: If empty, fallback to player car
+	if final_ai_paths.is_empty():
+		final_ai_paths = [player_car_path]
+
+	# 3. Spawn AI cars safely
 	for i in range(ai_spawns.size()):
-		var index := i % ai_car_paths.size()
-		var ai_path :String = ai_car_paths[index]
+		var index := i % final_ai_paths.size()   # SAFE: final_ai_paths always has at least 1
+		var ai_path :String = final_ai_paths[index]
 
 		var ai_scene := load(ai_path)
+		if ai_scene == null:
+			continue
+
 		var ai := ai_scene.instantiate() as CarController
 		scene.add_child(ai)
 
+		# Camera off
 		if ai.has_node("Camera3D"):
 			ai.get_node("Camera3D").current = false
 
+		# Spawn position
 		var spawn_node := root.get_node("AISpawnPoint" + str(i + 1))
 		ai.global_transform = spawn_node.global_transform
+
+		# AI flags
 		ai.is_ai = true
 		ai.controls_enabled = false
 
+		# Random AI name
 		ai.driver_name = ai.ai_names[randi() % ai.ai_names.size()]
 
 		# Resolve car name from path
+		var found_name := ""
 		for name in Cars.car_scene_paths.keys():
 			if Cars.car_scene_paths[name] == ai_path:
-				ai.car_name = name
+				found_name = name
 				break
+
+		if found_name == "":
+			found_name = Cars.selected_car_name
+
+		ai.car_name = found_name
 
 		_apply_random_ai_color(ai)
 		ai_cars.append(ai)
