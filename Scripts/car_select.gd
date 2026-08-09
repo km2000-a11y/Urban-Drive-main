@@ -425,7 +425,7 @@ var sport = {
 	],
 	"Schroder Classique Sport":[
 		"", "Country: Germany", "HP: 340", "WEIGHT: 1855 KG",
-		"0-100 KM/H: 4.8s", "TOP SPEED: 262 KM/H",
+		"0-100 KM/H: 4.8s", "TOP SPEED: 265 KM/H",
 		"ENGINE: V8 4.2L", "ASPIRATION: NA", "TORQUE: 420 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
@@ -507,7 +507,7 @@ var track_cars = {
 		"ENGINE: V12 7.5L", "ASPIRATION: NA", "TORQUE: 650 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
-	"Bartoli Cruiser":[
+	"Bartoli Track Cruiser":[
 		"", "Country: Italy", "HP: 621", "WEIGHT: 1335 KG",
 		"0-100 KM/H: 3.4s", "TOP SPEED: 335 KM/H",
 		"ENGINE: V12 6.0L", "ASPIRATION: NA", "TORQUE: 652 NM",
@@ -609,8 +609,11 @@ func _get_filtered_list(raw_list: Array) -> Array:
 
 	for car_name in raw_list:
 		# NEW: Check if the class is unlocked in Road Challenge
-		if not RoadChallengeSave.unlocked.get(car_class, false):
-			continue
+		# Do NOT apply Road Challenge unlocks in Club Cups
+		if GameMode.game_mode != "Club Cups":
+			if not RoadChallengeSave.unlocked.get(car_class, false):
+				continue
+
 
 		# Existing: Check if the car is allowed in this cup
 		if allowed.has(car_name):
@@ -919,6 +922,9 @@ func _on_select_pressed():
 	Cars.save_color()
 	if GameMode.game_mode != "Club Cups":
 		Cars.selected_class = car_class
+	else:
+		Cars.selected_class = ChampionshipState.active_cup
+
 
 
 	RoadChallengeState.active_group = car_class

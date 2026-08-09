@@ -79,7 +79,16 @@ var class_lists: Dictionary = {
 	],
 	"zenith_competition":[
 		"Zenith Horizon"
-	]
+	],
+	"businessman_racers":[
+		"Kuro Persian",
+		"Kuro Vault",
+		"Eisenach Suppressor",
+		"Mir Cars Transporter"
+	],
+	"speedster_tournament":[
+		"Kestrel Speedster"
+	],
 }
 
 # ============================================================
@@ -130,7 +139,19 @@ var cups: Dictionary = {
 	]
 },
 "businessman_racers":{
-	
+	"eligible_classes":["businessman_racers"],
+	"eligible_cars":[
+		"Kuro Persian",
+		"Kuro Vault",
+		"Eisenach Suppressor",
+		"Mir Cars Transporter"
+	]
+},
+"speedster_tournament":{
+	"eligible_classes":["speedster_tournament"],
+	"eligible_cars":[
+		"Kestrel Speedster"
+	]
 }
 }
 

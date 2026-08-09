@@ -13,7 +13,7 @@ func _ready():
 	horsepower = 340
 	max_rpm = 7000.0
 	zero_to_hundred = 4.9
-	top_speed_kmh = 262
+	top_speed_kmh = 265
 	turn_speed = 2.55              # heavier GT cabrio, stable not twitchy
 	brake_strength = 20.5          # strong brakes for 1.8t quattro chassis
 	lateral_friction = 1.18        # quattro grip, but softer than TT RS

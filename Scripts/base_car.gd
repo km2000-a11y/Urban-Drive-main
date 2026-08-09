@@ -74,7 +74,7 @@ var steering := 0.0
 var drifting := false
 var drift_factor := 0.0
 var boost := false
-var nitro_top_speed_multiplier := 1.12
+var nitro_top_speed_multiplier := 1.07
 
 var performance_points := 0
 var debug_enabled := true

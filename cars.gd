@@ -84,7 +84,16 @@ var class_lists := {
 ],
 	"zenith_competition":[
 		"Zenith Horizon"
-	]
+	],
+	"businessman_racers":[
+		"Kuro Persian",
+		"Kuro Vault",
+		"Eisenach Suppressor",
+		"Mir Cars Transporter"
+],
+	"speedster_tournament":[
+		"Kestrel Speedster"
+	],
 }
 
 
@@ -160,8 +169,6 @@ var radar_target_speeds := {
 	"sport": 210,
 	"sport_racing": 250,
 	"supercars": 270,
-	"torque_monsters": 200,
-	"sports_crossovers": 185,
 	"special": 230
 }
 
@@ -392,9 +399,16 @@ func apply_championship_class(cup_id: String) -> void:
 	# Use the cup ID as the selected class
 	selected_class = cup_id
 	print("Championship class applied:", selected_class)
+
 func get_ai_list_for_car(car_name:String) -> Array:
+	# Club Cups → ALWAYS use the cup class
+	if GameMode.game_mode == "Club Cups":
+		return class_lists.get(ChampionshipState.active_cup, [])
+
+	# Normal mode → find the class that contains the car
 	for key in class_lists.keys():
 		var cars_in_group = class_lists[key]
 		if car_name in cars_in_group:
 			return cars_in_group
+
 	return []
