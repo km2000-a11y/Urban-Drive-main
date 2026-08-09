@@ -1,4 +1,3 @@
-res://Scenes/chevrolet_corvette_c5.tscn
 res://main.tscn
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
@@ -8,6 +7,7 @@ res://Scenes/hummer_h2.tscn
 res://Scenes/lexus_ls430.tscn
 res://Scenes/nissan_350z.tscn
 res://Scenes/jaguar_xkr.tscn
+res://Scenes/chevrolet_corvette_c5.tscn
 res://Scenes/aston_db9.tscn
 res://Scenes/vanquish.tscn
 res://Scenes/gt500.tscn
@@ -56,4 +56,11 @@ res://Scenes/win_screen_duel.tscn
 res://Scenes/bmw_m5_e39.tscn
 res://Scenes/championships.tscn
 res://Scenes/audi_a8.tscn
+res://main.gd
+res://duel_manager.gd
+res://normal_race_manager.gd
+res://Scripts/mode_select.gd
 res://club_cups.gd
+res://cars.gd
+res://Scenes/championships.gd
+res://Scripts/car_select.gd

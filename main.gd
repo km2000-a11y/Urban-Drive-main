@@ -174,7 +174,10 @@ func _setup_duel():
 	DuelManager.ai_spawn = asp.global_position if asp else DuelManager.player_spawn
 
 	DuelManager.player_car_path = Cars.selected_car
+
 	if GameMode.game_mode == "Club Cups":
+		Cars.apply_championship_class(ChampionshipState.active_cup)
+
 		var cup_id := ChampionshipState.active_cup
 		var filtered := ClubCups.get_available_cars(cup_id)
 
@@ -185,9 +188,7 @@ func _setup_duel():
 		else:
 			DuelManager.ai_car_path = Cars.selected_car
 	else:
-		# Normal Duel behavior
 		DuelManager.ai_car_path = Cars.selected_ai_car if Cars.selected_ai_car != "" else Cars.selected_car
-
 
 	DuelManager.spawn_duel(self)
 	DuelManager.main_scene = self
@@ -195,7 +196,6 @@ func _setup_duel():
 	player_car = DuelManager.player_car
 	_force_player_camera()
 
-	# COUNTDOWN HERE
 	var cars = DuelManager.get_all_race_cars()
 	start_countdown.start_countdown(cars)
 
@@ -217,11 +217,23 @@ func _setup_normal_race():
 	for i in range(1, 8):
 		var ai_sp := safe_get(root, "AISpawnPoint" + str(i))
 		NormalRaceManager.ai_spawns.append(ai_sp.global_position if ai_sp else NormalRaceManager.player_spawn)
+	# APPLY CHAMPIONSHIP CLASS
+	Cars.apply_championship_class(ChampionshipState.active_cup)
+	print("Selected class for championship:", Cars.selected_class)
 
 	if GameMode.game_mode == "Club Cups":
-			NormalRaceManager.ai_car_paths = ClubCups.get_available_cars(ChampionshipState.active_cup)
+		var filtered_names = ClubCups.get_available_cars(ChampionshipState.active_cup)
+		var filtered_paths = []
+
+		for name in filtered_names:
+			if Cars.car_scene_paths.has(name):
+				filtered_paths.append(Cars.car_scene_paths[name])
+			else:
+				print("WARNING: No scene path for:", name)
+
+		NormalRaceManager.ai_car_paths = filtered_paths
 	else:
-			NormalRaceManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
+		NormalRaceManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
 
 
 	NormalRaceManager.spawn_race(self)
@@ -255,12 +267,14 @@ func _setup_elimination():
 		EliminationManager.ai_spawns.append(ai_sp.global_position if ai_sp else EliminationManager.player_spawn)
 
 	EliminationManager.player_car_path = Cars.selected_car
+
 	if GameMode.game_mode == "Club Cups":
+		Cars.apply_championship_class(ChampionshipState.active_cup)
+
 		var cup_id := ChampionshipState.active_cup
 		EliminationManager.ai_car_paths = ClubCups.get_available_cars(cup_id)
 	else:
 		EliminationManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
-
 
 	var hud_scene := load("res://Scenes/elimination_hud.tscn")
 	var hud: CanvasLayer = hud_scene.instantiate()
@@ -278,11 +292,9 @@ func _setup_elimination():
 	player_car = EliminationManager.player_car
 	_force_player_camera()
 
-	# COUNTDOWN HERE
 	var cars = EliminationManager.get_all_race_cars()
 	start_countdown.start_countdown(cars)
 	start_countdown.connect("countdown_finished", Callable(EliminationManager, "on_countdown_finished"))
-
 
 
 func _on_elimination_countdown_finished():

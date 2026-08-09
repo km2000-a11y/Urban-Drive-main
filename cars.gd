@@ -77,6 +77,13 @@ var class_lists := {
 	],
 	"special": [
 		"Bartoli Cruiser Interceptor"
+	],
+	"v6_engines": [
+	"Zenith Horizon",
+	"Schroder Atrix Q32"
+],
+	"zenith_competition":[
+		"Zenith Horizon"
 	]
 }
 
@@ -345,9 +352,9 @@ func get_ai_paths_for_class(_unused):
 		var list = class_lists.get(selected_class, [])
 
 		if list.is_empty():
-			for i in range(7):
-				result.append(selected_car)
-			return result
+			print("ERROR: Class", selected_class, "has no cars!")
+			return []
+
 
 		for i in range(7):
 			var car_name = list[randi() % list.size()]
@@ -381,3 +388,13 @@ func get_unlocked_cars() -> Array:
 		if car.category in RoadChallengeManager.unlocked_categories:
 			result.append(car)
 	return result
+func apply_championship_class(cup_id: String) -> void:
+	# Use the cup ID as the selected class
+	selected_class = cup_id
+	print("Championship class applied:", selected_class)
+func get_ai_list_for_car(car_name:String) -> Array:
+	for key in class_lists.keys():
+		var cars_in_group = class_lists[key]
+		if car_name in cars_in_group:
+			return cars_in_group
+	return []

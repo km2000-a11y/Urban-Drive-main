@@ -4,6 +4,7 @@ extends Node
 #  FULL CLASS LIST (LOCAL — SELF-CONTAINED)
 # ============================================================
 
+
 var class_lists: Dictionary = {
 	"suv": [
 		"Schroder Colosso",
@@ -71,6 +72,13 @@ var class_lists: Dictionary = {
 
 	"special": [
 		"Bartoli Cruiser Interceptor"
+	],
+	"v6_engines":[
+		"Schroder Atrix Q32",
+		"Zenith Horizon"
+	],
+	"zenith_competition":[
+		"Zenith Horizon"
 	]
 }
 
@@ -108,13 +116,22 @@ var cups: Dictionary = {
 		]
 	},
 
-	"v6_engines": {
-		"eligible_classes": ["compact"],
-		"eligible_cars": [
-			"Zenith Horizon",
-			"Schroder Atrix Q32"
-		]
-	}
+"v6_engines": {
+	"eligible_classes": ["v6_engines"],
+	"eligible_cars": [
+		"Zenith Horizon",
+		"Schroder Atrix Q32"
+	]
+},
+"zenith_competition":{
+	"eligible_classes":["zenith_competition"],
+	"eligible_cars":[
+		"Zenith Horizon"
+	]
+},
+"businessman_racers":{
+	
+}
 }
 
 # ============================================================

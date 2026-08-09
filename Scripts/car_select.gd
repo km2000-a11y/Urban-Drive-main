@@ -796,6 +796,23 @@ func _input(event):
 		change_color(1)
 	if event.is_action_pressed("color_select_down"):
 		change_color(-1)
+		
+	# CHEAT: Unlock all classes with F9
+	if event.is_action_pressed("ui_debug"):   # F9
+		RoadChallengeSave.unlocked["suv"] = true
+		RoadChallengeSave.unlocked["compact"] = true
+		RoadChallengeSave.unlocked["muscle"] = true
+		RoadChallengeSave.unlocked["urban"] = true
+		RoadChallengeSave.unlocked["sedans"] = true
+		RoadChallengeSave.unlocked["sport"] = true
+		RoadChallengeSave.unlocked["sport_racing"] = true
+		RoadChallengeSave.unlocked["supercars"] = true
+		RoadChallengeSave.unlocked["track_cars"] = true
+
+		print("CHEAT ACTIVATED: All classes unlocked!")
+		_update_class_locks()
+
+		
 
 
 # -------------------------
@@ -900,7 +917,9 @@ func _on_select_pressed():
 	Cars.selected_car = car_scene_paths[car_name]
 	Cars.selected_color = car_colors[car_name][color_index]
 	Cars.save_color()
-	Cars.selected_class = car_class
+	if GameMode.game_mode != "Club Cups":
+		Cars.selected_class = car_class
+
 
 	RoadChallengeState.active_group = car_class
 	RoadChallengeState.active_car = car_name

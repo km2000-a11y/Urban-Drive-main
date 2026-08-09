@@ -78,10 +78,31 @@ func spawn_race(scene: Node) -> void:
 		player_car.get_node("Camera3D").current = true
 
 	# AI CARS
+	# AI CARS
 	ai_cars.clear()
 
+	# Build AI list based on the player's car group (NO class detection)
+	var ai_list := []
+	for key in Cars.class_lists.keys():
+		var group :Array= Cars.class_lists[key]
+		if Cars.selected_car_name in group:
+			ai_list = group
+			break
+
+	# Convert car names → scene paths
+	ai_car_paths.clear()
+	for car_name in ai_list:
+		ai_car_paths.append(Cars.car_scene_paths[car_name])
+
+	# Fallback if empty
+	if ai_car_paths.is_empty():
+		ai_car_paths = [player_car_path]
+
 	for i in range(ai_spawns.size()):
-		var ai_scene := load(ai_car_paths[i])
+		var index := i % ai_car_paths.size()
+		var ai_path :String = ai_car_paths[index]
+
+		var ai_scene := load(ai_path)
 		var ai := ai_scene.instantiate() as CarController
 		scene.add_child(ai)
 
@@ -94,10 +115,20 @@ func spawn_race(scene: Node) -> void:
 		ai.controls_enabled = false
 
 		ai.driver_name = ai.ai_names[randi() % ai.ai_names.size()]
-		ai.car_name = Cars.car_scene_paths.keys()[Cars.car_scene_paths.values().find(ai_car_paths[i])]
+
+		# Resolve car name from path
+		var found_name := ""
+		for name in Cars.car_scene_paths.keys():
+			if Cars.car_scene_paths[name] == ai_path:
+				found_name = name
+				break
+
+		if found_name == "":
+			found_name = Cars.selected_car_name
+
+		ai.car_name = found_name
 
 		_apply_random_ai_color(ai)
-
 		ai_cars.append(ai)
 
 	await get_tree().process_frame

@@ -35,7 +35,10 @@ func _process(delta):
 
 func spawn_duel(main_scene: Node) -> void:
 	RaceResults.clear()
-	ai_car_path = _pick_unique_ai_car()
+	# If Club Cups already set ai_car_path, DO NOT override it
+	if GameMode.game_mode != "Club Cups":
+		ai_car_path = _pick_unique_ai_car()
+
 	# Reset unique AI name pool for this race
 	# Reset unique AI name pool for this race
 	CarController.used_ai_names = CarController.ai_names.duplicate()
