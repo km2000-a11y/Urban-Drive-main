@@ -5,7 +5,6 @@ var win_screen_radar: Node
 var player_car: CarController
 var race_started: bool = false
 
-
 @onready var finish_flash := $FinishFlash
 @onready var start_countdown := $Start
 @onready var leaderboard := $Leaderboard if has_node("Leaderboard") else null
@@ -28,9 +27,6 @@ func _ready():
 	if GameMode.game_mode == "Road Challenge":
 		Modes.mode = "Normal Race"
 
-		# -------------------------
-	# LOAD TRACK
-	# -------------------------
 	var track_name := TrackName.track_name
 
 	if not TrackRegistry.tracks.has(track_name):
@@ -51,9 +47,6 @@ func _ready():
 		push_error("Track file missing: " + track_file)
 		return
 
-	# -------------------------
-	# MODE SETUP
-	# -------------------------
 	if mode == "Duel":
 		_setup_duel()
 		_start_mode_countdown(DuelManager.get_all_race_cars())
@@ -73,7 +66,6 @@ func _ready():
 	else:
 		_spawn_player_free_drive()
 
-	# Radar race
 	if mode == "Radar Race":
 		radar_target_label.text = "Target: %d km/h" % Cars.get_radar_target_speed()
 		var ws_scene = load("res://Scenes/win_screen_radar.tscn")
@@ -88,9 +80,7 @@ func _ready():
 	if leaderboard:
 		leaderboard.visible = false
 
-
 func _start_mode_countdown(cars: Array):
-	# Freeze/unfreeze cars via countdown
 	start_countdown.start_countdown(cars)
 
 func _process(delta):
@@ -102,8 +92,6 @@ func _process(delta):
 			DuelManager.update_duel()
 
 		"Radar Race":
-			# Radar race has no continuous update except speed check
-			# So we do nothing here
 			pass
 
 		_:
@@ -114,15 +102,11 @@ func _process(delta):
 			elif mode == "Cop Chase":
 				CopChaseManager.update_chase(delta)
 
-
 func _input(event):
 	if event.is_action_pressed("pause_menu"):
 		if has_node("PauseMenu"):
 			$PauseMenu.toggle_pause()
 
-# ---------------------------------------------------------
-# FREE DRIVE
-# ---------------------------------------------------------
 func _spawn_player_free_drive():
 	var path := Cars.selected_car
 	if path == "":
@@ -161,9 +145,6 @@ func _spawn_player_free_drive():
 
 	_force_player_camera()
 
-# ---------------------------------------------------------
-# DUEL
-# ---------------------------------------------------------
 func _setup_duel():
 	var root := get_node(TrackName.track_name)
 
@@ -199,9 +180,6 @@ func _setup_duel():
 	var cars = DuelManager.get_all_race_cars()
 	start_countdown.start_countdown(cars)
 
-# ---------------------------------------------------------
-# NORMAL RACE
-# ---------------------------------------------------------
 func _setup_normal_race():
 	if player_car:
 		player_car.queue_free()
@@ -217,7 +195,7 @@ func _setup_normal_race():
 	for i in range(1, 8):
 		var ai_sp := safe_get(root, "AISpawnPoint" + str(i))
 		NormalRaceManager.ai_spawns.append(ai_sp.global_position if ai_sp else NormalRaceManager.player_spawn)
-	# APPLY CHAMPIONSHIP CLASS
+
 	Cars.apply_championship_class(ChampionshipState.active_cup)
 	print("Selected class for championship:", Cars.selected_class)
 
@@ -235,20 +213,15 @@ func _setup_normal_race():
 	else:
 		NormalRaceManager.ai_car_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
 
-
 	NormalRaceManager.spawn_race(self)
 
 	player_car = NormalRaceManager.player_car
 	_force_player_camera()
 
-	# COUNTDOWN HERE
 	var cars = NormalRaceManager.get_all_race_cars()
 	start_countdown.start_countdown(cars)
 	start_countdown.connect("countdown_finished", Callable(NormalRaceManager, "on_countdown_finished"))
 
-# ---------------------------------------------------------
-# ELIMINATION
-# ---------------------------------------------------------
 func _setup_elimination():
 	if player_car:
 		player_car.queue_free()
@@ -296,7 +269,6 @@ func _setup_elimination():
 	start_countdown.start_countdown(cars)
 	start_countdown.connect("countdown_finished", Callable(EliminationManager, "on_countdown_finished"))
 
-
 func _on_elimination_countdown_finished():
 	if EliminationManager.hud:
 		EliminationManager.hud.visible = true
@@ -307,9 +279,6 @@ func _on_player_eliminated():
 func _on_elimination_win(car):
 	show_finish(true)
 
-# ---------------------------------------------------------
-# COP CHASE
-# ---------------------------------------------------------
 func _setup_cop_chase():
 	if player_car:
 		player_car.queue_free()
@@ -336,12 +305,9 @@ func _setup_cop_chase():
 	player_car = CopChaseManager.player_car
 	_force_player_camera()
 
-	# COUNTDOWN HERE
 	var cars = CopChaseManager.get_all_race_cars()
 	start_countdown.start_countdown(cars)
 	start_countdown.connect("countdown_finished", Callable(CopChaseManager, "on_countdown_finished"))
-
-
 
 func _on_chase_failed():
 	show_finish(false)
@@ -359,9 +325,6 @@ func _on_cop_chase_countdown_finished():
 	if cop_chase_hud:
 		cop_chase_hud.visible = true
 
-# ---------------------------------------------------------
-# CAMERA
-# ---------------------------------------------------------
 func _force_player_camera():
 	if not player_car:
 		return
@@ -374,9 +337,6 @@ func _force_player_camera():
 	if player_car.has_node("Camera3D"):
 		player_car.get_node("Camera3D").current = true
 
-# ---------------------------------------------------------
-# COLOR
-# ---------------------------------------------------------
 func _apply_color_to_car(car: CarController, color: Color):
 	if car.has_node("ModelRoot/Body"):
 		var body = car.get_node("ModelRoot/Body")
@@ -386,9 +346,6 @@ func _apply_color_to_car(car: CarController, color: Color):
 				if mat:
 					mat.albedo_color = color
 
-# ---------------------------------------------------------
-# RADAR RACE
-# ---------------------------------------------------------
 func _on_radar_trap_body_entered(body):
 	if mode != "Radar Race":
 		return
@@ -410,9 +367,6 @@ func _on_radar_trap_body_entered(body):
 	finish_flash.flash()
 	_screech_to_halt()
 
-# ---------------------------------------------------------
-# DIRECTION FIX
-# ---------------------------------------------------------
 func _fix_wrong_way(car: CarController, root: Node):
 	if car == null:
 		print("Cannot fix direction: car is null")
@@ -435,9 +389,6 @@ func _fix_wrong_way(car: CarController, root: Node):
 	car.global_transform.basis = basis
 	print("AI direction forced using basis")
 
-# ---------------------------------------------------------
-# GLOBAL AI DISABLE
-# ---------------------------------------------------------
 func disable_all_ai():
 	for node in get_tree().get_nodes_in_group("cars"):
 		if node is CarController:
@@ -450,9 +401,6 @@ func _screech_to_halt():
 			node.hard_frozen = true
 			node.velocity = Vector3.ZERO
 
-# ---------------------------------------------------------
-# FINISH SCREEN
-# ---------------------------------------------------------
 func show_finish(player_won: bool):
 	finish_flash.visible = true
 	finish_flash.flash()
@@ -460,16 +408,9 @@ func show_finish(player_won: bool):
 	_screech_to_halt()
 	MusicManager.stop_music()
 
-	# ROAD CHALLENGE PROGRESS UPDATE
-	# ROAD CHALLENGE PROGRESS UPDATE
 	if GameMode.game_mode == "Road Challenge":
 		RoadChallengeManager.on_race_finished(player_won)
-	else:
-		# Club Cups, Free Race, Duel, Elimination, Cop Chase → do NOT count
-		pass
-	
 
-	# Leaderboard (if exists)
 	if leaderboard:
 		leaderboard.visible = true
 		leaderboard.show_results(player_won)
@@ -479,9 +420,6 @@ func show_finish(player_won: bool):
 	else:
 		print("YOU LOSE!")
 
-# ---------------------------------------------------------
-# LAP LINE FACING (SAFE)
-# ---------------------------------------------------------
 func _face_away_from_lap_line(car: CarController, root: Node):
 	var lap_line := safe_get(root, "LapLine")
 	if lap_line == null:

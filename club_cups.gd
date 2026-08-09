@@ -89,6 +89,12 @@ var class_lists: Dictionary = {
 	"speedster_tournament":[
 		"Kestrel Speedster"
 	],
+	"kuro_cup":[
+		"Kuro Zephyr",
+		"Kuro Vault",
+		"Kuro Persian",
+		"Kuro Serenity"
+	],
 }
 
 # ============================================================
@@ -151,6 +157,15 @@ var cups: Dictionary = {
 	"eligible_classes":["speedster_tournament"],
 	"eligible_cars":[
 		"Kestrel Speedster"
+	]
+},
+"kuro_cup":{
+	"eligible_classes":["kuro_cup"],
+	"eligible_cars":[
+		"Kuro Zephyr",
+		"Kuro Vault",
+		"Kuro Persian",
+		"Kuro Serenity"
 	]
 }
 }

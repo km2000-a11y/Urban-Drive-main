@@ -682,6 +682,7 @@ func _process(delta):
 # -------------------------
 
 func _on_4x4suv_pressed():
+	
 	car_class = "suv"
 
 	var list = _get_filtered_list(suv_list)

@@ -61,3 +61,11 @@ func _on_speedster_tournament_pressed() -> void:
 	ChampionshipState.championship_mode=true
 	
 	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
+
+func _on_kuro_cup_pressed() -> void:
+	GameMode.game_mode="Kuro Cup"
+	ChampionshipState.active_cup="speedster_tournament"
+	ChampionshipState.championship_mode=true
+	
+	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")

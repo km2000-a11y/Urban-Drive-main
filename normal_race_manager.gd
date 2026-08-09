@@ -79,24 +79,11 @@ func spawn_race(scene: Node) -> void:
 
 	# AI CARS
 	# AI CARS
+	# AI CARS — USE THE CUP LIST PROVIDED BY RaceManager
 	ai_cars.clear()
 
-	# Build AI list based on the player's car group (NO class detection)
-	var ai_list := []
-	for key in Cars.class_lists.keys():
-		var group :Array= Cars.class_lists[key]
-		if Cars.selected_car_name in group:
-			ai_list = group
-			break
-
-	# Convert car names → scene paths
-	ai_car_paths.clear()
-	for car_name in ai_list:
-		ai_car_paths.append(Cars.car_scene_paths[car_name])
-
-	# Fallback if empty
-	if ai_car_paths.is_empty():
-		ai_car_paths = [player_car_path]
+# ai_car_paths is ALREADY set by RaceManager for Club Cups
+# so we simply use it directly
 
 	for i in range(ai_spawns.size()):
 		var index := i % ai_car_paths.size()
@@ -117,19 +104,14 @@ func spawn_race(scene: Node) -> void:
 		ai.driver_name = ai.ai_names[randi() % ai.ai_names.size()]
 
 		# Resolve car name from path
-		var found_name := ""
 		for name in Cars.car_scene_paths.keys():
 			if Cars.car_scene_paths[name] == ai_path:
-				found_name = name
+				ai.car_name = name
 				break
-
-		if found_name == "":
-			found_name = Cars.selected_car_name
-
-		ai.car_name = found_name
 
 		_apply_random_ai_color(ai)
 		ai_cars.append(ai)
+
 
 	await get_tree().process_frame
 	await get_tree().process_frame

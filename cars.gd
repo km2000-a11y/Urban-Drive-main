@@ -94,6 +94,12 @@ var class_lists := {
 	"speedster_tournament":[
 		"Kestrel Speedster"
 	],
+		"kuro_cup":[
+		"Kuro Zephyr",
+		"Kuro Vault",
+		"Kuro Persian",
+		"Kuro Serenity"
+	],
 }
 
 

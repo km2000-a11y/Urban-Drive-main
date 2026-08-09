@@ -1,8 +1,5 @@
-res://Scenes/championships.tscn
-res://cars.gd
-res://club_cups.gd
-res://Scenes/championships.gd
 res://main.tscn
+res://Scripts/car_select.gd
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
 res://Scenes/audi_tt.tscn
@@ -58,7 +55,10 @@ res://Scenes/tvr_cerbera.tscn
 res://Tracks/split.tscn
 res://Scenes/win_screen_duel.tscn
 res://Scenes/bmw_m5_e39.tscn
+res://Scenes/championships.tscn
 res://Scenes/audi_a8.tscn
-res://Scripts/car_select.gd
-res://Scripts/base_car.gd
-res://Scenes/audi_s4.gd
+res://cars.gd
+res://main.gd
+res://normal_race_manager.gd
+res://Scenes/championships.gd
+res://club_cups.gd
