@@ -70,6 +70,8 @@ func spawn_duel(main_scene: Node) -> void:
 	var all_cars = get_all_race_cars()
 	# WAYPOINTS
 	main_scene.get_node("Start").start_countdown(all_cars)
+	# FIX: Auto-detect class for any mode that is NOT Club Cups
+	Cars.apply_auto_class_if_not_club()
 
 
 	player_laps = 0

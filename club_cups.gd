@@ -95,6 +95,18 @@ var class_lists: Dictionary = {
 		"Kuro Persian",
 		"Kuro Serenity"
 	],
+	"all_wheel_grip":[
+		"Strandberg Turbo",
+		"Mir Cars Transporter",
+		"Schroder Classique Sport",
+		"Schroder Atrix Q32",
+		"Straeda B32"
+	],
+	"eisenach_cup":[
+		"Eisenach Suppressor",
+		"Eisenach Bengal",
+		"Eisenach Prince"
+	]
 }
 
 # ============================================================
@@ -166,6 +178,24 @@ var cups: Dictionary = {
 		"Kuro Vault",
 		"Kuro Persian",
 		"Kuro Serenity"
+	]
+},
+"all_wheel_grip":{
+	"eligible_classes":["all_wheel_grip"],
+	"eligible_cars":[
+		"Strandberg Turbo",
+		"Mir Cars Transporter",
+		"Schroder Classique Sport",
+		"Schroder Atrix Q32",
+		"Straeda B32"
+	]
+},
+"eisenach_cup":{
+	"eligible_classes":["eisenach_cup"],
+	"eligible_cars":[
+		"Eisenach Suppressor",
+		"Eisenach Bengal",
+		"Eisenach Prince"
 	]
 }
 }

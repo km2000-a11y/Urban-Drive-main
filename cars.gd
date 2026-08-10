@@ -100,6 +100,18 @@ var class_lists := {
 		"Kuro Persian",
 		"Kuro Serenity"
 	],
+		"all_wheel_grip":[
+		"Strandberg Turbo",
+		"Mir Cars Transporter",
+		"Schroder Classique Sport",
+		"Schroder Atrix Q32",
+		"Straeda B32"
+	],
+		"eisenach_cup":[
+		"Eisenach Suppressor",
+		"Eisenach Bengal",
+		"Eisenach Prince"
+	]
 }
 
 
@@ -318,6 +330,7 @@ var car_colors := {
 	"Mir Cars Raptor":[Color8(225,20,40), Color8(255,255,255), Color8(160,160,160), Color8(0,40,80)]
 }
 
+
 func save_color():
 	var f = FileAccess.open("user://car_color.save", FileAccess.WRITE)
 	if f:
@@ -369,6 +382,7 @@ func get_ai_paths_for_class(_unused):
 			return []
 
 
+
 		for i in range(7):
 			var car_name = list[randi() % list.size()]
 			result.append(car_scene_paths.get(car_name, selected_car))
@@ -418,3 +432,22 @@ func get_ai_list_for_car(car_name:String) -> Array:
 			return cars_in_group
 
 	return []
+func apply_auto_class_if_not_club():
+	# If championship already set a class → DO NOT overwrite
+	if GameMode.game_mode == "Club Cups":
+		return
+
+	# If selected_class already has a value → DO NOT overwrite
+	if selected_class != "":
+		return
+
+	# Otherwise auto-detect class
+	selected_class = get_class_of_car(selected_car_name)
+	print("Auto class applied:", selected_class)
+
+func get_class_of_car(car_name:String) -> String:
+	for class_id in class_lists.keys():
+		var cars = class_lists[class_id]
+		if car_name in cars:
+			return class_id
+	return ""

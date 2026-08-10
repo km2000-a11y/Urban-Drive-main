@@ -87,6 +87,9 @@ func spawn_race(scene: Node) -> void:
 	ai_cars.clear()
 
 	# 1. Build AI list depending on mode
+	# FIX: Auto-detect class for any mode that is NOT Club Cups
+	if GameMode.game_mode!="Club Cups":
+		Cars.apply_auto_class_if_not_club()
 	var final_ai_paths := []
 
 	if GameMode.game_mode == "Club Cups":
@@ -133,6 +136,7 @@ func spawn_race(scene: Node) -> void:
 			if Cars.car_scene_paths[name] == ai_path:
 				found_name = name
 				break
+				
 
 		if found_name == "":
 			found_name = Cars.selected_car_name

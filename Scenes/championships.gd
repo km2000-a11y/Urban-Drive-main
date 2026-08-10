@@ -64,8 +64,24 @@ func _on_speedster_tournament_pressed() -> void:
 
 
 func _on_kuro_cup_pressed() -> void:
-	GameMode.game_mode="Kuro Cup"
-	ChampionshipState.active_cup="speedster_tournament"
+	GameMode.game_mode="Club Cups"
+	ChampionshipState.active_cup="kuro_cup"
+	ChampionshipState.championship_mode=true
+	
+	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
+
+func _on_all_wheel_grip_pressed() -> void:
+	GameMode.game_mode="Club Cups"
+	ChampionshipState.active_cup="all_wheel_grip"
+	ChampionshipState.championship_mode=true
+	
+	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
+
+func _on_eisenach_cup_pressed() -> void:
+	GameMode.game_mode="Club Cups"
+	ChampionshipState.active_cup="eisenach_cup"
 	ChampionshipState.championship_mode=true
 	
 	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")

@@ -52,10 +52,19 @@ theme_override_font_sizes/font_size = 30
 text = "SPEEDSTER TOURNAMENT"
 
 [node name="KuroCup" type="Button" parent="Control/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "KURO CUP"
+
+[node name="AllWheelGrip" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "ALL-WHEEL GRIP"
+
+[node name="EisenachCup" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "EISENACH CUP"
 
 [node name="BackBtn" type="Button" parent="Control"]
 layout_mode = 0
@@ -74,4 +83,6 @@ text = "BACK"
 [connection signal="pressed" from="Control/VBoxContainer/BusinessmanRacers" to="." method="_on_businessman_racers_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/SpeedsterTournament" to="." method="_on_speedster_tournament_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/KuroCup" to="." method="_on_kuro_cup_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/AllWheelGrip" to="." method="_on_all_wheel_grip_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/EisenachCup" to="." method="_on_eisenach_cup_pressed"]
 [connection signal="pressed" from="Control/BackBtn" to="." method="_on_back_btn_pressed"]

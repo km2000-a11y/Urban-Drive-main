@@ -77,6 +77,9 @@ func spawn_race(scene: Node) -> void:
 
 	# AI
 	ai_cars.clear()
+	# FIX: Auto-detect class for any mode that is NOT Club Cups
+	Cars.apply_auto_class_if_not_club()
+
 
 	for i in range(ai_spawns.size()):
 		var ai_scene := load(ai_car_paths[i])

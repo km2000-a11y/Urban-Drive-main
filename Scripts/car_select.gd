@@ -431,7 +431,7 @@ var sport = {
 	],
 		"Brutus Stingray":[
 		"", "Country: USA", "HP: 400", "WEIGHT: 1460 KG",
-		"0-100 KM/H: 5.0s", "TOP SPEED: 272 KM/H",
+		"0-100 KM/H: 4.7s", "TOP SPEED: 275 KM/H",
 		"ENGINE: V8 6.0L", "ASPIRATION: NA", "TORQUE: 540 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
