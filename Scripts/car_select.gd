@@ -354,7 +354,7 @@ var muscle = {
 }
 var urban_racers = {
 		"Eisenach Prince":[
-		"", "Country: Germany", "HP: 396", "WEIGHT: 1832 KG",
+		"", "Country: Germany", "HP: 394", "WEIGHT: 1832 KG",
 		"0-100 KM/H: 5.0s", "TOP SPEED: 254 KM/H",
 		"ENGINE: V8 4.9L", "ASPIRATION: NA", "TORQUE: 500 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
@@ -366,8 +366,8 @@ var urban_racers = {
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 		"Berkshire Blunt":[
-		"", "Country: UK", "HP: 406", "WEIGHT: 1832 KG",
-		"0-100 KM/H: 6.1s", "TOP SPEED: 272 KM/H",
+		"", "Country: UK", "HP: 396", "WEIGHT: 1832 KG",
+		"0-100 KM/H: 5.8s", "TOP SPEED: 266 KM/H",
 		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
@@ -431,7 +431,7 @@ var sport = {
 	],
 		"Brutus Stingray":[
 		"", "Country: USA", "HP: 400", "WEIGHT: 1460 KG",
-		"0-100 KM/H: 4.7s", "TOP SPEED: 275 KM/H",
+		"0-100 KM/H: 4.7s", "TOP SPEED: 282 KM/H",
 		"ENGINE: V8 6.0L", "ASPIRATION: NA", "TORQUE: 540 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],

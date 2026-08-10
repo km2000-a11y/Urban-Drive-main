@@ -1,4 +1,5 @@
 res://main.tscn
+res://Scenes/main_menu.gd
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
 res://Scenes/audi_tt.tscn
@@ -56,3 +57,4 @@ res://Scenes/win_screen_duel.tscn
 res://Scenes/bmw_m5_e39.tscn
 res://Scenes/championships.tscn
 res://Scenes/audi_a8.tscn
+res://cars.gd

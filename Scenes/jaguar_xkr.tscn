@@ -186,6 +186,7 @@ func _physics_process(delta: float) -> void:
 "
 
 [node name="JAGUAR XKR" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000451744, 0.00133637, -2.46167e-05)
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_8csix")
@@ -268,12 +269,12 @@ material_override = SubResource("StandardMaterial3D_76pp5")
 mesh = SubResource("BoxMesh_kyfk5")
 
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="ModelRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.146643, 0.210394, -0.339235)
+transform = Transform3D(1, 1.09631e-09, 3.97904e-12, -1.09631e-09, 0.999974, 0.00726051, 3.97904e-12, -0.00726051, 0.999974, 0.146643, 0.210394, -0.317575)
 material_override = SubResource("StandardMaterial3D_at21j")
 mesh = SubResource("BoxMesh_r7kti")
 
 [node name="MeshInstance3D12" type="MeshInstance3D" parent="ModelRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.374891, 0.210394, -0.358492)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.374891, 0.210394, -0.324297)
 material_override = SubResource("StandardMaterial3D_at21j")
 mesh = SubResource("BoxMesh_r7kti")
 

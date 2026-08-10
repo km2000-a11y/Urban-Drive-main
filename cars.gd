@@ -9,6 +9,7 @@ var selected_ai_car_name: String = ""  # car name string
 var selected_color: Color = Color.WHITE
 var selected_class: String = ""
 var all_cars: Array = []
+var manual_class_clear := false
 
 
 var class_lists := {
@@ -438,10 +439,15 @@ func apply_auto_class_if_not_club():
 		return
 
 	# If selected_class already has a value → DO NOT overwrite
-	if selected_class != "":
+	if true:
 		return
 
+
 	# Otherwise auto-detect class
+	# Otherwise auto-detect class ONLY if a car is actually selected
+	if selected_car_name == "":
+		return
+
 	selected_class = get_class_of_car(selected_car_name)
 	print("Auto class applied:", selected_class)
 
@@ -451,3 +457,6 @@ func get_class_of_car(car_name:String) -> String:
 		if car_name in cars:
 			return class_id
 	return ""
+func reset_class_if_not_club():
+	if GameMode.game_mode != "Club Cups":
+		selected_class = ""
