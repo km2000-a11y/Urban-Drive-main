@@ -106,6 +106,33 @@ var class_lists: Dictionary = {
 		"Eisenach Suppressor",
 		"Eisenach Bengal",
 		"Eisenach Prince"
+	],
+	"under_400_hp":[
+		"Schroder Colosso",
+		"Colossus Behemoth",
+		"Mir Cars Nightwolf",
+		"Colossus Titan Max",
+				"Zenith Horizon",
+		"Schroder Atrix Q32",
+		"Straeda B32",
+		"Kuro Zephyr",
+		"Schroder D-20",
+				"Mir Cars Hutch",
+		"Brutus Viper",
+				"Eisenach Suppressor",
+		"Kuro Vault",
+		"Mir Cars Transporter",
+		"Strandberg Turbo",
+		"Kuro Persian",
+				"Kestrel Touring",
+							"Berkshire Blunt",
+		"Eisenach Prince",
+		"Kestrel Speedster",
+		"Eisenach Bengal",
+		"Kuro Serenity"	
+	],
+	"stingray_competition":[
+		"Brutus Stingray"
 	]
 }
 
@@ -196,6 +223,39 @@ var cups: Dictionary = {
 		"Eisenach Suppressor",
 		"Eisenach Bengal",
 		"Eisenach Prince"
+	]
+},
+"under_400_hp":{
+	"eligible_classes":["under_400_hp"],
+	"eligible_cars":[
+				"Schroder Colosso",
+		"Colossus Behemoth",
+		"Mir Cars Nightwolf",
+		"Colossus Titan Max",
+				"Zenith Horizon",
+		"Schroder Atrix Q32",
+		"Straeda B32",
+		"Kuro Zephyr",
+		"Schroder D-20",
+				"Mir Cars Hutch",
+		"Brutus Viper",
+				"Eisenach Suppressor",
+		"Kuro Vault",
+		"Mir Cars Transporter",
+		"Strandberg Turbo",
+		"Kuro Persian",
+				"Kestrel Touring",
+							"Berkshire Blunt",
+		"Eisenach Prince",
+		"Kestrel Speedster",
+		"Eisenach Bengal",
+		"Kuro Serenity"	
+	]
+},
+"stingray_competition":{
+	"eligible_classes":["stingray_competition"],
+	"eligible_cars":[
+		"Brutus Stingray"
 	]
 }
 }

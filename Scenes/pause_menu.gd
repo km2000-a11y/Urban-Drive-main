@@ -2,7 +2,7 @@ extends CanvasLayer
 
 var is_paused:=false
 var volume:=80
-var main_menu_path:="res://Scenes/mode_select.tscn"
+
 
 
 func _ready() -> void:
@@ -67,11 +67,11 @@ func _on_retry_btn_pressed() -> void:
 	
 func _on_quit_btn_pressed() -> void:
 	get_tree().paused=false
-	if GameMode.game_mode=="Road Challenge":
-		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
-	else: 
-		get_tree().change_scene_to_file(main_menu_path)
-	
+	ChampionshipState.active_cup = ""
+	ChampionshipState.championship_mode = false
+	GameMode.game_mode = ""
+
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 	
 
 func _on_vol_up_btn_pressed() -> void:

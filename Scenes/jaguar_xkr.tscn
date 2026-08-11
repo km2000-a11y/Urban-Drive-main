@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bosrka0n87x30"]
+[gd_scene load_steps=40 format=3 uid="uid://bosrka0n87x30"]
 
 [ext_resource type="Script" uid="uid://bl6s5amr84tgr" path="res://Scripts/jaguar_xkr_2003.gd" id="1_8csix"]
 [ext_resource type="Script" uid="uid://ffvs8ga7wgmd" path="res://Scripts/camera.gd" id="2_8csix"]
@@ -64,13 +64,6 @@ albedo_color = Color(0, 0.258824, 0.145098, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rdxp4"]
 size = Vector3(0.75, 0.3, 0.35)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8csix"]
-albedo_color = Color(0.705882, 0.705882, 0.705882, 1)
-metallic = 0.7
-
-[sub_resource type="BoxMesh" id="BoxMesh_hckqp"]
-size = Vector3(0.15, 0.2, 0.05)
 
 [sub_resource type="BoxMesh" id="BoxMesh_oetsa"]
 size = Vector3(0.5, 0.05, 0.8)
@@ -322,16 +315,6 @@ material_override = SubResource("StandardMaterial3D_433em")
 mesh = SubResource("BoxMesh_rdxp4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ModelRoot/Body/MeshInstance3D5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.186096, 0.195555, 0.072562)
-material_override = SubResource("StandardMaterial3D_8csix")
-mesh = SubResource("BoxMesh_hckqp")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="ModelRoot/Body/MeshInstance3D5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.191894, 0.195555, 0.0618729)
-material_override = SubResource("StandardMaterial3D_8csix")
-mesh = SubResource("BoxMesh_hckqp")
-
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="ModelRoot/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0728667, 0.0850645, 0.30272)
 mesh = SubResource("BoxMesh_oetsa")
@@ -363,12 +346,12 @@ material_override = SubResource("StandardMaterial3D_kicw4")
 mesh = SubResource("BoxMesh_dag8e")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="ModelRoot"]
-transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 0.0618795, 0.225902, 0.00411915)
+transform = Transform3D(1, 0, 0, 0, 0.7, 0, 0, 0, 1, 0.0618795, 0.225902, 0.00411915)
 material_override = SubResource("StandardMaterial3D_pf3kd")
 mesh = SubResource("BoxMesh_gnug7")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="ModelRoot"]
-transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, -0.273845, 0.225902, 0.0041191)
+transform = Transform3D(1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.273845, 0.225902, 0.0041191)
 material_override = SubResource("StandardMaterial3D_pf3kd")
 mesh = SubResource("BoxMesh_gnug7")
 

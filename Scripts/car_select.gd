@@ -923,7 +923,7 @@ func _on_select_pressed():
 	Cars.selected_color = car_colors[car_name][color_index]
 	Cars.save_color()
 	if GameMode.game_mode != "Club Cups":
-		Cars.selected_class = car_class
+		Cars.on_car_selected(car_name)
 	else:
 		Cars.selected_class = ChampionshipState.active_cup
 

@@ -11,64 +11,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 0
-offset_right = 945.0
-offset_bottom = 50.0
-
-[node name="Colossus" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "COLOSSUS"
-
-[node name="StreetTuners" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "STREET TUNERS"
-
-[node name="MuscleHustle" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "MUSCLE HUSTLE"
-
-[node name="V6Engines" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "V6 ENGINES"
-
-[node name="ZenithCompetition" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "ZENITH COMPETITION"
-
-[node name="BusinessmanRacers" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "BUSINESSMAN RACERS"
-
-[node name="SpeedsterTournament" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "SPEEDSTER TOURNAMENT"
-
-[node name="KuroCup" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "KURO CUP"
-
-[node name="AllWheelGrip" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "ALL-WHEEL GRIP"
-
-[node name="EisenachCup" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "EISENACH CUP"
-
-[node name="Button" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-
 [node name="BackBtn" type="Button" parent="Control"]
 layout_mode = 0
 offset_left = 1068.0
@@ -78,14 +20,84 @@ offset_bottom = 705.0
 theme_override_font_sizes/font_size = 30
 text = "BACK"
 
-[connection signal="pressed" from="Control/VBoxContainer/Colossus" to="." method="_on_colossus_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/StreetTuners" to="." method="_on_street_tuners_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/MuscleHustle" to="." method="_on_muscle_hustle_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/V6Engines" to="." method="_on_v_6_engines_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/ZenithCompetition" to="." method="_on_zenith_competition_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/BusinessmanRacers" to="." method="_on_businessman_racers_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/SpeedsterTournament" to="." method="_on_speedster_tournament_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/KuroCup" to="." method="_on_kuro_cup_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/AllWheelGrip" to="." method="_on_all_wheel_grip_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/EisenachCup" to="." method="_on_eisenach_cup_pressed"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
+layout_mode = 0
+offset_right = 519.0
+offset_bottom = 719.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/ScrollContainer"]
+layout_mode = 2
+
+[node name="Colossus" type="Button" parent="Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "COLOSSUS"
+
+[node name="StreetTuners" type="Button" parent="Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "STREET TUNERS"
+
+[node name="MuscleHustle" type="Button" parent="Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "MUSCLE HUSTLE"
+
+[node name="V6Engines" type="Button" parent="Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "V6 ENGINES"
+
+[node name="ZenithCompetition" type="Button" parent="Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "ZENITH COMPETITION"
+
+[node name="BusinessmanRacers" type="Button" parent="Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "BUSINESSMAN RACERS"
+
+[node name="SpeedsterTournament" type="Button" parent="Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SPEEDSTER TOURNAMENT"
+
+[node name="KuroCup" type="Button" parent="Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "KURO CUP"
+
+[node name="AllWheelGrip" type="Button" parent="Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "ALL-WHEEL GRIP"
+
+[node name="EisenachCup" type="Button" parent="Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "EISENACH CUP"
+
+[node name="Under400HP" type="Button" parent="Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "UNDER 400 HP"
+
+[node name="StingrayCompetition" type="Button" parent="Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "BRUTUS STINGRAY COMPETITION"
+
 [connection signal="pressed" from="Control/BackBtn" to="." method="_on_back_btn_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/Colossus" to="." method="_on_colossus_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/StreetTuners" to="." method="_on_street_tuners_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/MuscleHustle" to="." method="_on_muscle_hustle_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/V6Engines" to="." method="_on_v_6_engines_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/ZenithCompetition" to="." method="_on_zenith_competition_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/BusinessmanRacers" to="." method="_on_businessman_racers_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/SpeedsterTournament" to="." method="_on_speedster_tournament_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/KuroCup" to="." method="_on_kuro_cup_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/AllWheelGrip" to="." method="_on_all_wheel_grip_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/EisenachCup" to="." method="_on_eisenach_cup_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/Under400HP" to="." method="_on_under_400hp_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/StingrayCompetition" to="." method="_on_stingray_competition_pressed"]
