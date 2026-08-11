@@ -11,7 +11,7 @@ func show_win(success: bool):
 	# ROAD CHALLENGE PROGRESS
 	if GameMode.game_mode == "Road Challenge":
 		var group := RoadChallengeState.active_group
-		var done :int= RoadChallengeSave.progress[group]
+		var done :intw= RoadChallengeSave.progress[group]
 		var left := 5 - done
 
 		if left > 0:

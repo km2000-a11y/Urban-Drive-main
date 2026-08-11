@@ -331,132 +331,159 @@ var car_colors := {
 	"Mir Cars Raptor":[Color8(225,20,40), Color8(255,255,255), Color8(160,160,160), Color8(0,40,80)]
 }
 
+func _ready() -> void:
+	load_color()
 
-func save_color():
-	var f = FileAccess.open("user://car_color.save", FileAccess.WRITE)
+	if GameMode.game_mode != "Club Cups":
+		selected_class = ""   # clear ONLY
+
+	all_cars = get_unlocked_cars()
+
+
+func on_car_selected(car_name: String) -> void:
+	selected_car_name = car_name
+
+	if GameMode.game_mode == "Club Cups":
+		selected_class = ChampionshipState.active_cup
+	else:
+		selected_class = get_class_of_car(car_name)
+
+	print("Car selected:", car_name, "→ class:", selected_class)
+
+
+
+func on_game_mode_changed(new_mode: String) -> void:
+	selected_class = ""
+	print("GameMode switched to", new_mode, "→ class cleared")
+
+func save_color() -> void:
+	var f: FileAccess = FileAccess.open("user://car_color.save", FileAccess.WRITE)
 	if f:
-		f.store_line(str(selected_color.r) + "," + str(selected_color.g) + "," + str(selected_color.b) + "," + str(selected_color.a))
+		f.store_line("%s,%s,%s,%s" % [selected_color.r, selected_color.g, selected_color.b, selected_color.a])
 		f.close()
 
-func load_color():
+
+func load_color() -> void:
 	if FileAccess.file_exists("user://car_color.save"):
-		var f = FileAccess.open("user://car_color.save", FileAccess.READ)
+		var f: FileAccess = FileAccess.open("user://car_color.save", FileAccess.READ)
 		if f:
-			var line = f.get_line()
-			var parts = line.split(",")
+			var parts: PackedStringArray = f.get_line().split(",")
 			if parts.size() == 4:
-				selected_color = Color(parts[0].to_float(), parts[1].to_float(), parts[2].to_float(), parts[3].to_float())
+				selected_color = Color(
+					parts[0].to_float(),
+					parts[1].to_float(),
+					parts[2].to_float(),
+					parts[3].to_float()
+				)
 			f.close()
 
+
 func pick_ai_car_path() -> String:
-	# If NOT Club Cups → normal class-based AI
 	if GameMode.game_mode != "Club Cups":
+		if selected_class == "" and selected_car_name != "":
+			selected_class = get_class_of_car(selected_car_name)
+
+		var list: Array[String] = class_lists.get(selected_class, [])
+		if list.is_empty():
+			print("AI ERROR: Class", selected_class, "has no cars")
+			return selected_car
+
+		var chosen: String = list[randi() % list.size()]
+		selected_ai_car_name = chosen
+		return car_scene_paths.get(chosen, selected_car)
+
+	var cup_id: String = ChampionshipState.active_cup
+	var filtered: Array[String] = ClubCups.get_available_cars(cup_id)
+
+	if filtered.is_empty():
+		return selected_car
+
+	var chosen_cup: String = filtered[randi() % filtered.size()]
+	selected_ai_car_name = chosen_cup
+	return car_scene_paths.get(chosen_cup, selected_car)
+
+
+
+func get_ai_paths_for_class(_unused: Variant) -> Array[String]:
+	var result: Array[String] = []
+
+	if GameMode.game_mode != "Club Cups":
+		if selected_class == "" and selected_car_name != "":
+			selected_class = get_class_of_car(selected_car_name)
+
 		var list: Array = class_lists.get(selected_class, [])
 		if list.is_empty():
-			return selected_car
-
-		var chosen_name: String = list[randi() % list.size()]
-		selected_ai_car_name = chosen_name
-		return car_scene_paths.get(chosen_name, selected_car)
-
-	else:
-		# Club Cups → use filtered championship cars
-		var cup_id := ChampionshipState.active_cup
-		var filtered := ClubCups.get_available_cars(cup_id)
-
-		if filtered.is_empty():
-			return selected_car
-
-		var chosen_name := filtered[randi() % filtered.size()]
-		selected_ai_car_name = chosen_name
-		return car_scene_paths.get(chosen_name, selected_car)
-
-func get_ai_paths_for_class(_unused):
-	var result: Array = []
-
-	# If NOT Club Cups → normal class-based AI
-	if GameMode.game_mode != "Club Cups":
-		var list = class_lists.get(selected_class, [])
-
-		if list.is_empty():
-			print("ERROR: Class", selected_class, "has no cars!")
+			print("AI ERROR: Class", selected_class, "has no cars, returning empty AI list")
 			return []
 
-
-
 		for i in range(7):
-			var car_name = list[randi() % list.size()]
+			var car_name: String = list[randi() % list.size()]
 			result.append(car_scene_paths.get(car_name, selected_car))
 
 		return result
 
-	else:
-		# Club Cups → use filtered championship cars
-		var cup_id := ChampionshipState.active_cup
-		var filtered := ClubCups.get_available_cars(cup_id)
+	var cup_id: String = ChampionshipState.active_cup
+	var filtered: Array[String] = ClubCups.get_available_cars(cup_id)
 
-		if filtered.is_empty():
-			for i in range(7):
-				result.append(selected_car)
-			return result
-
+	if filtered.is_empty():
 		for i in range(7):
-			var car_name := filtered[randi() % filtered.size()]
-			result.append(car_scene_paths.get(car_name, selected_car))
-
+			result.append(selected_car)
 		return result
+
+	for i in range(7):
+		var car_name_cup: String = filtered[randi() % filtered.size()]
+		result.append(car_scene_paths.get(car_name_cup, selected_car))
+
+	return result
 
 
 func get_radar_target_speed() -> int:
 	return radar_target_speeds.get(selected_class, 180)
 
+
 func get_unlocked_cars() -> Array:
-	var result = []
+	var result: Array = []
 	for car in all_cars:
 		if car.category in RoadChallengeManager.unlocked_categories:
 			result.append(car)
 	return result
+
+
 func apply_championship_class(cup_id: String) -> void:
-	# Use the cup ID as the selected class
+	# Club Cups → class is exactly the cup ID
 	selected_class = cup_id
 	print("Championship class applied:", selected_class)
 
-func get_ai_list_for_car(car_name:String) -> Array:
-	# Club Cups → ALWAYS use the cup class
+
+func get_ai_list_for_car(car_name: String) -> Array[String]:
 	if GameMode.game_mode == "Club Cups":
 		return class_lists.get(ChampionshipState.active_cup, [])
 
-	# Normal mode → find the class that contains the car
-	for key in class_lists.keys():
-		var cars_in_group = class_lists[key]
+	for key: String in class_lists.keys():
+		var cars_in_group: Array[String] = class_lists[key]
 		if car_name in cars_in_group:
 			return cars_in_group
 
 	return []
-func apply_auto_class_if_not_club():
-	# If championship already set a class → DO NOT overwrite
+
+
+func apply_auto_class_if_not_club() -> void:
 	if GameMode.game_mode == "Club Cups":
 		return
 
-	# If selected_class already has a value → DO NOT overwrite
-	if true:
-		return
+	if selected_class == "" and selected_car_name != "":
+		selected_class = get_class_of_car(selected_car_name)
 
 
-	# Otherwise auto-detect class
-	# Otherwise auto-detect class ONLY if a car is actually selected
-	if selected_car_name == "":
-		return
 
-	selected_class = get_class_of_car(selected_car_name)
-	print("Auto class applied:", selected_class)
-
-func get_class_of_car(car_name:String) -> String:
-	for class_id in class_lists.keys():
-		var cars = class_lists[class_id]
+func get_class_of_car(car_name: String) -> String:
+	for class_id: String in class_lists.keys():
+		var cars: Array = class_lists[class_id]
 		if car_name in cars:
 			return class_id
 	return ""
-func reset_class_if_not_club():
+
+
+func reset_class_if_not_club() -> void:
 	if GameMode.game_mode != "Club Cups":
 		selected_class = ""
