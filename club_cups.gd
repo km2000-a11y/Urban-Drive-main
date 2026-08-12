@@ -39,6 +39,7 @@ var class_lists: Dictionary = {
 		"Kuro Vault",
 		"Mir Cars Transporter",
 		"Strandberg Turbo",
+		"Kronstadt Fortress",
 		"Kuro Persian"
 	],
 
@@ -84,6 +85,7 @@ var class_lists: Dictionary = {
 		"Kuro Persian",
 		"Kuro Vault",
 		"Eisenach Suppressor",
+		"Kronstadt Fortress",
 		"Mir Cars Transporter"
 	],
 	"speedster_tournament":[
@@ -112,6 +114,7 @@ var class_lists: Dictionary = {
 		"Colossus Behemoth",
 		"Mir Cars Nightwolf",
 		"Colossus Titan Max",
+		"Kronstadt Fortress",
 				"Zenith Horizon",
 		"Schroder Atrix Q32",
 		"Straeda B32",
@@ -133,7 +136,20 @@ var class_lists: Dictionary = {
 	],
 	"stingray_competition":[
 		"Brutus Stingray"
-	]
+	],
+	"schroder_cup":[
+		"Schroder D-20",
+		"Schroder Atrix Q32",
+		"Schroder Colosso",
+		"Schroder Classique Sport",
+		"Schroder Atrocity"
+	],
+	"gentleman_racers":[
+		"Berkshire Blunt",
+		"Berkshire V12-S",
+		"Berkshire Tempest",
+		"Kestrel Speedster"
+	],
 }
 
 # ============================================================
@@ -257,7 +273,26 @@ var cups: Dictionary = {
 	"eligible_cars":[
 		"Brutus Stingray"
 	]
-}
+},
+"schroder_cup":{
+	"eligible_classes":["schroder_cup"],
+	"eligible_cars":[
+				"Schroder D-20",
+		"Schroder Atrix Q32",
+		"Schroder Colosso",
+		"Schroder Classique Sport",
+		"Schroder Atrocity"
+	]
+},
+"gentleman_racers":{
+	"eligible_classes":["gentleman_racers"],
+	"eligible_cars":[
+		"Berkshire Blunt",
+		"Berkshire V12-S",
+		"Berkshire Tempest",
+		"Kestrel Speedster"
+	]
+},
 }
 
 # ============================================================

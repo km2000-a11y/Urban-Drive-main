@@ -453,33 +453,38 @@ func _apply_random_ai_color(car: CarController) -> void:
 					mesh_instance.set_surface_override_material(s, new_mat)
 
 func _estimate_ai_finish_time_for(ai: CarController) -> int:
-	var lapline := main_scene.find_child("LapLine", true, false)
+	var lapline: Node3D = main_scene.find_child("LapLine", true, false)
 	if lapline == null:
 		return ai.total_race_time
 
 	# Remaining distance to finish line
-	var remaining_dist := ai.distance_to_finish_line(lapline)
+	var remaining_dist: float = ai.distance_to_finish_line(lapline)
 
-	# --- FIX: Add missing lap distance ---
-	var laps_left :int= total_laps - car_laps[ai]
+	# Remaining laps
+	var laps_left: int = total_laps - car_laps.get(ai, 0)
 	if laps_left > 0:
-		var wp_count := ai.waypoints.size()
-		var avg_wp_dist := 12.0  # typical spacing, tweak if needed
-		remaining_dist += laps_left * wp_count * avg_wp_dist
+		var wp: Array = ai.waypoints
+		var lap_dist: float = 0.0
+
+		# Compute actual lap distance
+		for i in range(wp.size()):
+			var a: Vector3 = wp[i].global_position
+			var b: Vector3 = wp[(i + 1) % wp.size()].global_position
+			lap_dist += a.distance_to(b)
+
+		remaining_dist += lap_dist * float(laps_left)
 
 	# Smoothed speed
-	var blended_speed := ai.current_speed * 0.75
-	if blended_speed < 5.0:
-		blended_speed = 5.0
+	var speed: float = ai.current_speed
+	var blended_speed: float = clamp(speed * 0.85, 8.0, 120.0)
 
-	# Remaining time
-	var remaining_time_ms := int((remaining_dist / blended_speed) * 1000)
+	# Time = distance / speed
+	var remaining_time_ms: int = int((remaining_dist / blended_speed) * 1000)
 
 	# Slight smoothing
-	remaining_time_ms = int(remaining_time_ms * 1.10)
+	remaining_time_ms = int(remaining_time_ms * 1.05)
 
 	return ai.total_race_time + remaining_time_ms
-
 
 
 func force_player_camera():

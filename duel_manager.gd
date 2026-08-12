@@ -326,24 +326,35 @@ func _update_laps_from_progress() -> void:
 		ai_crossed_start = false
 		
 func _estimate_ai_finish_time() -> int:
-	var lapline := main_scene.find_child("LapLine", true, false)
+	var lapline: Node3D = main_scene.find_child("LapLine", true, false)
 	if lapline == null:
 		return ai_car.total_race_time
 
-	# Remaining distance
-	var remaining_dist := ai_car.distance_to_finish_line(lapline)
+	# Remaining distance to finish line
+	var remaining_dist: float = ai_car.distance_to_finish_line(lapline)
 
-	# Smoothed speed WITHOUT extra variables
-	var blended_speed: float = ai_car.current_speed * 0.75
+	# Remaining laps
+	var laps_left: int = total_laps - ai_laps
+	if laps_left > 0:
+		var wp: Array = ai_car.waypoints
+		var lap_dist: float = 0.0
 
-	# Safety clamp
-	if blended_speed < 5.0:
-		blended_speed = 5.0
+		# Compute actual lap distance
+		for i in range(wp.size()):
+			var a: Vector3 = wp[i].global_position
+			var b: Vector3 = wp[(i + 1) % wp.size()].global_position
+			lap_dist += a.distance_to(b)
 
-	# Estimate remaining time
-	var remaining_time_ms := int((remaining_dist / blended_speed) * 1000)
+		remaining_dist += lap_dist * float(laps_left)
 
-	# Slight smoothing (AI slows near finish)
-	remaining_time_ms = int(remaining_time_ms * 1.10)
+	# Smoothed speed
+	var speed: float = ai_car.current_speed
+	var blended_speed: float = clamp(speed * 0.85, 8.0, 120.0)
+
+	# Time = distance / speed
+	var remaining_time_ms: int = int((remaining_dist / blended_speed) * 1000)
+
+	# Slight smoothing
+	remaining_time_ms = int(remaining_time_ms * 1.05)
 
 	return ai_car.total_race_time + remaining_time_ms

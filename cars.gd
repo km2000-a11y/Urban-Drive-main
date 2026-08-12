@@ -51,6 +51,7 @@ var class_lists := {
 		"Eisenach Suppressor",
 		"Kuro Vault",
 		"Mir Cars Transporter",
+		"Kronstadt Fortress",
 		"Strandberg Turbo",
 		"Kuro Persian"
 	],
@@ -90,6 +91,7 @@ var class_lists := {
 		"Kuro Persian",
 		"Kuro Vault",
 		"Eisenach Suppressor",
+		"Kronstadt Fortress",
 		"Mir Cars Transporter"
 ],
 	"speedster_tournament":[
@@ -117,6 +119,7 @@ var class_lists := {
 		"Schroder Colosso",
 		"Colossus Behemoth",
 		"Mir Cars Nightwolf",
+		"Kronstadt Fortress",
 		"Colossus Titan Max",
 				"Zenith Horizon",
 		"Schroder Atrix Q32",
@@ -139,7 +142,20 @@ var class_lists := {
 	],
 		"stingray_competition":[
 		"Brutus Stingray"
-	]
+	],
+		"schroder_cup":[
+		"Schroder D-20",
+		"Schroder Atrix Q32",
+		"Schroder Colosso",
+		"Schroder Classique Sport",
+		"Schroder Atrocity"
+	],
+		"gentleman_racers":[
+		"Berkshire Blunt",
+		"Berkshire V12-S",
+		"Berkshire Tempest",
+		"Kestrel Speedster"
+	],
 }
 
 
@@ -177,6 +193,7 @@ var car_scene_paths := {
 	"Eisenach Suppressor":"res://Scenes/bmw_535d.tscn",
 	"Schroder D-20":"res://Scenes/audi_a3.tscn",
 		"Kuro Serenity":"res://Scenes/lexus_sc.tscn",
+		"Kronstadt Fortress":"res://Scenes/s600.tscn",
 
 	"Schroder Atrix Sport":"res://Scenes/audi_tt_rs.tscn",
 	"Bartoli Cruiser":"res://Scenes/granturismo.tscn",
@@ -273,12 +290,17 @@ var car_colors := {
 
 
 "Kestrel Touring":[
-	Color8(45,54,35),     # ⭐ Midnight Blackpool (default)
+	Color8(255,54,35),     # ⭐ Midnight Blackpool (default)
 	Color8(160,40,200),   # Toxic Purple
 	Color8(120,255,40),   # Radioactive Lime
 	Color8(255,90,20)     # Cerbera Flame Orange
 ],
-
+	"Kronstadt Fortress":[
+	Color8(0,0,0),       # Black (default)
+	Color8(255,255,255), # White
+	Color8(180,180,180), # Silver
+	Color8(0,40,80)      # Navy Blue
+],
 
 	"Mir Cars Hutch":[Color8(180,20,20), Color8(255,255,255), Color8(60,60,60), Color8(0,40,80)],
 	"Brutus Viper":[Color8(0,0,128), Color8(255,255,255), Color8(200,200,200), Color8(160,0,0)],

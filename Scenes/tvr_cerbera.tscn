@@ -23,7 +23,7 @@ bottom_radius = 0.05
 height = 0.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpcag"]
-albedo_color = Color(0.180392, 0.211765, 0.25098, 1)
+albedo_color = Color(1, 0.211765, 0.25098, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_l215d"]
 size = Vector3(0.8, 0.1, 0.7)
@@ -62,25 +62,25 @@ albedo_color = Color(0, 0, 0, 1)
 size = Vector3(0.4, 0.04, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emdka"]
-albedo_color = Color(0.180392, 0.211765, 0.25098, 1)
+albedo_color = Color(1, 0.211765, 0.25098, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mmf8n"]
 size = Vector3(0.8, 0.3, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tf7do"]
-albedo_color = Color(0.180392, 0.211765, 0.25098, 1)
+albedo_color = Color(1, 0.211765, 0.25098, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ati5w"]
 size = Vector3(0.8, 0.1, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_03bty"]
-albedo_color = Color(0.180392, 0.211765, 0.25098, 1)
+albedo_color = Color(1, 0.211765, 0.25098, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_f36x5"]
 size = Vector3(0.1, 0.35, 0.75)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bqext"]
-albedo_color = Color(0.180392, 0.211765, 0.25098, 1)
+albedo_color = Color(1, 0.211765, 0.25098, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_eemg7"]
 size = Vector3(0.8, 0.25, 0.3)
@@ -257,7 +257,7 @@ mesh = SubResource("BoxMesh_o20h4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375327, 0)
 
 [node name="MeshInstance3D14" type="MeshInstance3D" parent="ModelRoot"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.35424, 0.511303, 0.205878)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.35424, 0.511303, 0.240792)
 material_override = SubResource("StandardMaterial3D_unmbb")
 mesh = SubResource("PrismMesh_1oqrs")
 

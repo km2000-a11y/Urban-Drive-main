@@ -104,3 +104,19 @@ func _on_stingray_competition_pressed() -> void:
 	ChampionshipState.championship_mode=true
 	
 	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
+
+func _on_schroder_cup_pressed() -> void:
+	GameMode.game_mode="Club Cups"
+	ChampionshipState.active_cup="schroder_cup"
+	ChampionshipState.championship_mode=true
+	
+	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
+
+func _on_gentleman_racers_pressed() -> void:
+	GameMode.game_mode="Club Cups"
+	ChampionshipState.active_cup="gentleman_racers"
+	ChampionshipState.championship_mode=true
+	
+	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")

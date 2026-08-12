@@ -32,6 +32,12 @@ var car_colors := {
 		Color8(60,60,60),    # Dark Grey
 		Color8(0,70,120)     # Deep Blue
 	],
+	"Kronstadt Fortress":[
+	Color8(0,0,0),       # Black (default)
+	Color8(255,255,255), # White
+	Color8(180,180,180), # Silver
+	Color8(0,40,80)      # Navy Blue
+],
 	"Colossus Behemoth":[Color8(215,255,1), Color8(255,255,255), Color8(200,180,120), Color8(160,0,0)],
 	"Mir Cars Nightwolf":[Color8(0,0,192), Color8(255,255,255), Color8(64,64,64), Color8(0,80,160)],
 	"Colossus Titan Max":[Color8(255,0,0), Color8(180,180,180), Color8(210,180,90), Color8(120,40,40)],
@@ -121,7 +127,7 @@ var car_colors := {
 ],
 
 "Kestrel Touring":[
-	Color8(45,54,35),     # ⭐ Midnight Blackpool (default)
+	Color8(255,54,35),     # ⭐ Midnight Blackpool (default)
 	Color8(160,40,200),   # Toxic Purple
 	Color8(120,255,40),   # Radioactive Lime
 	Color8(255,90,20)     # Cerbera Flame Orange
@@ -244,6 +250,7 @@ var sedans_list = [
 		"Kuro Vault",
 			"Eisenach Suppressor",
 	"Mir Cars Transporter",
+	"Kronstadt Fortress",
 	"Kuro Persian",
 	"Strandberg Turbo"
 ]
@@ -367,7 +374,7 @@ var urban_racers = {
 	],
 		"Berkshire Blunt":[
 		"", "Country: UK", "HP: 396", "WEIGHT: 1832 KG",
-		"0-100 KM/H: 5.8s", "TOP SPEED: 266 KM/H",
+		"0-100 KM/H: 5.6s", "TOP SPEED: 266 KM/H",
 		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
@@ -409,6 +416,13 @@ var sedans = {
 		"ENGINE: V8 4.6L", "ASPIRATION: NA", "TORQUE: 410 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],
+	"Kronstadt Fortress":[
+	"", "Country: Germany", "HP: 398", "WEIGHT: 2150 KG",
+	"0-100 KM/H: 6.6s", "TOP SPEED: 272 KM/H",
+	"ENGINE: V12 6.0L", "ASPIRATION: NA", "TORQUE: 580 NM",
+	"TRANSMISSION: REAR-WHEEL DRIVE"
+],
+
 	"Strandberg Turbo":[
 		"", "Country: Sweden", "HP: 300", "WEIGHT: 1667 KG",
 		"0-100 KM/H: 5.8s", "TOP SPEED: 250 KM/H",
@@ -443,7 +457,7 @@ var sport = {
 	],
 	"Berkshire Tempest":[
 		"", "Country: UK", "HP: 460", "WEIGHT: 1875 KG",
-		"0-100 KM/H: 5.6s", "TOP SPEED: 303 KM/H",
+		"0-100 KM/H: 5.4s", "TOP SPEED: 303 KM/H",
 		"ENGINE: V12 5.9L", "ASPIRATION: NA", "TORQUE: 580 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	]
@@ -581,6 +595,7 @@ var car_scene_paths = {
 	"Linetti Shepherd":"res://Scenes/gallardo.tscn",
 	"Brutus Venom":"res://Scenes/dodge_viper.tscn",
 	"Kuro Persian":"res://Scenes/lexus_gs430.tscn",
+	"Kronstadt Fortress":"res://Scenes/s600.tscn",
 
 	"Linetti Terror":"res://Scenes/murcielago.tscn",
 	"Linetti Firestorm":"res://Scenes/diablo_road.tscn",
