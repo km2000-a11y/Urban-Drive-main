@@ -1,7 +1,9 @@
-[gd_scene load_steps=84 format=3 uid="uid://bjwgdoy37jk5f"]
+[gd_scene load_steps=86 format=3 uid="uid://bjwgdoy37jk5f"]
 
 [ext_resource type="Script" uid="uid://dthur0h1nvj6s" path="res://Tracks/lap_line.gd" id="1_1c3gv"]
 [ext_resource type="Script" uid="uid://b5tj0bpuxvh85" path="res://Tracks/barrier_3.gd" id="1_nio6u"]
+[ext_resource type="PackedScene" uid="uid://bosrka0n87x30" path="res://Scenes/jaguar_xkr.tscn" id="3_j57xf"]
+[ext_resource type="PackedScene" uid="uid://cvnfh2jbifk0m" path="res://Scenes/bmw_1m.tscn" id="4_glhnk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7qwg"]
 albedo_color = Color(0.176471, 0.176471, 0.176471, 1)
@@ -11028,6 +11030,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18073, 0.038784, -288.392)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ppuhi")
+
+[node name="JAGUAR XKR" parent="." instance=ExtResource("3_j57xf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -879.135, 1.12703, 715.073)
+
+[node name="BMW 1M" parent="." instance=ExtResource("4_glhnk")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -879.149, 0.715568, 715.827)
 
 [connection signal="body_entered" from="MeshInstance3D/MeshInstance3D13/CharacterBody3D10/Area3D" to="MeshInstance3D/MeshInstance3D13/CharacterBody3D10" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="MeshInstance3D/MeshInstance3D13/CharacterBody3D11/Area3D" to="MeshInstance3D/MeshInstance3D13/CharacterBody3D11" method="_on_area_3d_body_entered"]
