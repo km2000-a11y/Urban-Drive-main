@@ -443,8 +443,8 @@ var sedans = {
 var sport = {
 	"Eisenach Goblin":[
 	"", "Country: Germany", "HP: 340", "WEIGHT: 1500 KG",
-	"0-100 KM/H: 4.6s", "TOP SPEED: 253 KM/H",
-	"ENGINE: L6 3.0L TWIN-TURBO", "ASPIRATION: Turbo", "TORQUE: 500 NM",
+	"0-100 KM/H: 4.6s", "TOP SPEED: 258 KM/H",
+	"ENGINE: L6 3.0L", "ASPIRATION: Turbo", "TORQUE: 500 NM",
 	"TRANSMISSION: REAR-WHEEL DRIVE"
 ],
 	"Berkshire V12-S":[

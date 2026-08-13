@@ -118,6 +118,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "V12 ENGINES"
 
+[node name="Supercars" type="Button" parent="Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SUPERCARS"
+
 [connection signal="pressed" from="Control/BackBtn" to="." method="_on_back_btn_pressed"]
 [connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/Colossus" to="." method="_on_colossus_pressed"]
 [connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/StreetTuners" to="." method="_on_street_tuners_pressed"]
@@ -137,3 +142,4 @@ text = "V12 ENGINES"
 [connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/GentlemanRacers" to="." method="_on_gentleman_racers_pressed"]
 [connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/KestrelMax" to="." method="_on_kestrel_max_pressed"]
 [connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/V12Engines" to="." method="_on_v_12_engines_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/Supercars" to="." method="_on_supercars_pressed"]

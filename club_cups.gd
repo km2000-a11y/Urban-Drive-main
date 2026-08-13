@@ -369,6 +369,15 @@ var cups: Dictionary = {
 		"Linetti Firestorm",
 		"Linetti Terror"
 	]
+},
+"supercars":{
+	"eligible_classess":["supercars"],
+	"eligible_cars":[
+				"Linetti Terror",
+		"Linetti Firestorm",
+		"Kestrel Guillotine",
+		"Mir Cars Raptor"
+	]
 }
 }
 

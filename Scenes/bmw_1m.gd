@@ -13,7 +13,7 @@ func _ready():
 	horsepower = 340
 	max_rpm = 7000.0
 	zero_to_hundred = 4.6
-	top_speed_kmh = 253                 # angry mid‑range, limited top speed
+	top_speed_kmh = 258                 # angry mid‑range, limited top speed
 	turn_speed = 3.05                   # short‑wheelbase rotation, lively front bite
 	brake_strength = 14.2               # strong brakes for a compact GT
 	lateral_friction = 1.14             # grippy but still playful; turbo oversteer possible
