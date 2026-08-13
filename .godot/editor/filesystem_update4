@@ -1,9 +1,4 @@
-res://Scenes/s600.tscn
-res://cars.gd
-res://Scripts/car_select.gd
-res://Scenes/s_600.gd
 res://main.tscn
-res://club_cups.gd
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
 res://Scenes/audi_tt.tscn
@@ -61,7 +56,12 @@ res://Scenes/win_screen_duel.tscn
 res://Scenes/bmw_m5_e39.tscn
 res://Scenes/championships.tscn
 res://Scenes/audi_a8.tscn
-res://duel_manager.gd
-res://normal_race_manager.gd
-res://Scenes/championships.gd
+res://Scenes/s600.tscn
+res://Scenes/bmw_1m.tscn
+res://bmw_m_5_e_39.gd
+res://cars.gd
+res://Scripts/car_select.gd
+res://club_cups.gd
+res://Scenes/bmw_1m.gd
 res://Scripts/jaguar_xkr_2003.gd
+res://Scenes/championships.gd

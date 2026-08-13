@@ -31,6 +31,7 @@ var class_lists: Dictionary = {
 		"Eisenach Prince",
 		"Kestrel Speedster",
 		"Eisenach Bengal",
+				"Strandberg Turbo",
 		"Kuro Serenity"
 	],
 
@@ -38,7 +39,6 @@ var class_lists: Dictionary = {
 		"Eisenach Suppressor",
 		"Kuro Vault",
 		"Mir Cars Transporter",
-		"Strandberg Turbo",
 		"Kronstadt Fortress",
 		"Kuro Persian"
 	],
@@ -46,6 +46,7 @@ var class_lists: Dictionary = {
 	"sport": [
 				"Brutus Stingray",
 		"Berkshire V12-S",
+		"Eisenach Goblin",
 		"Berkshire Tempest",
 		"Schroder Classique Sport",
 		"Kestrel Touring"
@@ -107,12 +108,14 @@ var class_lists: Dictionary = {
 	"eisenach_cup":[
 		"Eisenach Suppressor",
 		"Eisenach Bengal",
+		"Eisenach Goblin",
 		"Eisenach Prince"
 	],
 	"under_400_hp":[
 		"Schroder Colosso",
 		"Colossus Behemoth",
 		"Mir Cars Nightwolf",
+		"Eisenach Goblin",
 		"Colossus Titan Max",
 		"Kronstadt Fortress",
 				"Zenith Horizon",
@@ -150,6 +153,37 @@ var class_lists: Dictionary = {
 		"Berkshire Tempest",
 		"Kestrel Speedster"
 	],
+		"japanese_cup":[
+		"Zenith Horizon",
+		"Kuro Zephyr",
+		"Kuro Persian",
+		"Kuro Serenity",
+		"Kuro Vault"
+	],
+		"german_cup":[
+		"Schroder D-20",
+		"Schroder Atrix Q32",
+		"Schroder Colosso",
+		"Schroder Classique Sport",
+		"Schroder Atrocity",
+				"Eisenach Suppressor",
+		"Eisenach Goblin",
+		"Eisenach Bengal",
+		"Eisenach Prince",
+		"Straeda B32"
+	],
+		"kestrel_max":[
+		"Kestrel Touring",
+		"Kestrel Battleaxe",
+		"Kestrel Guillotine"
+	],
+		"v12_engines":[
+		"Kronstadt Fortress",
+		"Berkshire V12-S",
+		"Berkshire Tempest",
+		"Linetti Firestorm",
+		"Linetti Terror"
+	]
 }
 
 # ============================================================
@@ -293,6 +327,49 @@ var cups: Dictionary = {
 		"Kestrel Speedster"
 	]
 },
+"japanese_cup":{
+	"eligible_classes":["japanese_cup"],
+	"eligible_cars":[
+			"Zenith Horizon",
+		"Kuro Zephyr",
+		"Kuro Persian",
+		"Kuro Serenity",
+		"Kuro Vault"
+	]
+},
+"german_cup":{
+	"eligible_classes":["german_cup"],
+	"eligible_cars":[
+				"Schroder D-20",
+		"Schroder Atrix Q32",
+		"Schroder Colosso",
+		"Schroder Classique Sport",
+		"Schroder Atrocity",
+				"Eisenach Suppressor",
+		"Eisenach Goblin",
+		"Eisenach Bengal",
+		"Eisenach Prince",
+		"Straeda B32"
+	]
+},
+"kestrel_max":{
+	"eligible_classes":["kestrel_max"],
+	"eligible_cars":[
+				"Kestrel Touring",
+		"Kestrel Battleaxe",
+		"Kestrel Guillotine"
+	]
+},
+"v12_engines":{
+	"eligible_classes":["v12_engines"],
+	"eligible_cars":[
+			"Kronstadt Fortress",
+		"Berkshire V12-S",
+		"Berkshire Tempest",
+		"Linetti Firestorm",
+		"Linetti Terror"
+	]
+}
 }
 
 # ============================================================

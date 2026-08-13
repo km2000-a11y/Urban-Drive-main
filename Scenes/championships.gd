@@ -120,3 +120,36 @@ func _on_gentleman_racers_pressed() -> void:
 	ChampionshipState.championship_mode=true
 	
 	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
+
+func _on_japanese_cup_pressed() -> void:
+	GameMode.game_mode="Club Cups"
+	ChampionshipState.active_cup="japanese_cup"
+	ChampionshipState.championship_mode=true
+	
+	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
+
+
+func _on_german_cup_pressed() -> void:
+	GameMode.game_mode="Club Cups"
+	ChampionshipState.active_cup="german_cup"
+	ChampionshipState.championship_mode=true
+	
+	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
+
+func _on_kestrel_max_pressed() -> void:
+	GameMode.game_mode="Club Cups"
+	ChampionshipState.active_cup="kestrel_max"
+	ChampionshipState.championship_mode=true
+	
+	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
+
+func _on_v_12_engines_pressed() -> void:
+	GameMode.game_mode="Club Cups"
+	ChampionshipState.active_cup="v12_engines"
+	ChampionshipState.championship_mode=true
+	
+	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")

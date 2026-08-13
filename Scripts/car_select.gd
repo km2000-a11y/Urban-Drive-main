@@ -32,6 +32,13 @@ var car_colors := {
 		Color8(60,60,60),    # Dark Grey
 		Color8(0,70,120)     # Deep Blue
 	],
+	"Eisenach Goblin":[
+	Color8(237,132,69),    # ⭐ Fire Orange (default — BMW 1M signature)
+	Color8(255,255,255),  # White
+	Color8(60,60,60),     # Graphite
+	Color8(0,90,180)      # Deep Blue
+],
+
 	"Kronstadt Fortress":[
 	Color8(0,0,0),       # Black (default)
 	Color8(255,255,255), # White
@@ -163,7 +170,7 @@ var car_colors := {
 	"Berkshire V12-S":[Color8(46,54,64), Color8(255,255,255), Color8(80,120,160), Color8(160,160,160)],
 	"Bartoli Cruiser":[Color8(0,157,192), Color8(255,255,255), Color8(180,180,180), Color8(0,90,160)],
 	"Eisenach Bengal":[
-	Color8(217,90,43),   # Same default as Roadstar
+	Color8(113,115,120),   # Same default as Roadstar
 	Color8(255,255,255),
 	Color8(0,90,180),
 	Color8(180,180,180)
@@ -240,6 +247,7 @@ var muscle_list = [
 var urban_list = [  
 	"Kuro Serenity",
 	"Eisenach Bengal",
+	"Strandberg Turbo",
 		"Berkshire Blunt",
 	"Eisenach Prince",
 	"Kestrel Speedster", 
@@ -252,13 +260,14 @@ var sedans_list = [
 	"Mir Cars Transporter",
 	"Kronstadt Fortress",
 	"Kuro Persian",
-	"Strandberg Turbo"
+	
 ]
 
 
 var sport_list = [
-		"Brutus Stingray",
-	"Schroder Classique Sport",
+		"Eisenach Goblin",
+			"Schroder Classique Sport",
+	"Brutus Stingray",
 	"Berkshire V12-S",
 	"Berkshire Tempest",
 	"Kestrel Touring"
@@ -372,9 +381,15 @@ var urban_racers = {
 		"ENGINE: V8 4.4L", "ASPIRATION: NA", "TORQUE: 410 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
+		"Strandberg Turbo":[
+		"", "Country: Sweden", "HP: 300", "WEIGHT: 1667 KG",
+		"0-100 KM/H: 5.8s", "TOP SPEED: 250 KM/H",
+		"ENGINE: L5 2.5L", "ASPIRATION: Turbo", "TORQUE: 350 NM",
+		"TRANSMISSION: FOUR-WHEEL DRIVE"
+	],
 		"Berkshire Blunt":[
 		"", "Country: UK", "HP: 396", "WEIGHT: 1832 KG",
-		"0-100 KM/H: 5.6s", "TOP SPEED: 266 KM/H",
+		"0-100 KM/H: 5.6s", "TOP SPEED: 268 KM/H",
 		"ENGINE: V8 4.2L", "ASPIRATION: Supercharged", "TORQUE: 553 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
@@ -423,14 +438,15 @@ var sedans = {
 	"TRANSMISSION: REAR-WHEEL DRIVE"
 ],
 
-	"Strandberg Turbo":[
-		"", "Country: Sweden", "HP: 300", "WEIGHT: 1667 KG",
-		"0-100 KM/H: 5.8s", "TOP SPEED: 250 KM/H",
-		"ENGINE: L5 2.5L", "ASPIRATION: Turbo", "TORQUE: 350 NM",
-		"TRANSMISSION: FOUR-WHEEL DRIVE"
-	]
+
 }
 var sport = {
+	"Eisenach Goblin":[
+	"", "Country: Germany", "HP: 340", "WEIGHT: 1500 KG",
+	"0-100 KM/H: 4.6s", "TOP SPEED: 253 KM/H",
+	"ENGINE: L6 3.0L TWIN-TURBO", "ASPIRATION: Turbo", "TORQUE: 500 NM",
+	"TRANSMISSION: REAR-WHEEL DRIVE"
+],
 	"Berkshire V12-S":[
 		"", "Country: UK", "HP: 450", "WEIGHT: 1740 KG",
 		"0-100 KM/H: 5.1s", "TOP SPEED: 293 KM/H",
@@ -589,6 +605,8 @@ var car_scene_paths = {
 	"Berkshire Tempest":"res://Scenes/vanquish.tscn",
 	"Strandberg Turbo":"res://Scenes/volvo_s60r.tscn",
 	"Kuro Serenity":"res://Scenes/lexus_sc.tscn",
+	"Eisenach Goblin":"res://Scenes/bmw_1m.tscn",
+
 
 	"Schroder Atrocity":"res://Scenes/audi_s6.tscn",
 	"Kestrel Battleaxe":"res://Scenes/sagaris.tscn",

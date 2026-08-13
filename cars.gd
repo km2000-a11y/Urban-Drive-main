@@ -43,6 +43,7 @@ var class_lists := {
 					"Berkshire Blunt",
 		"Eisenach Prince",
 		"Kestrel Speedster",
+			"Strandberg Turbo",
 		"Eisenach Bengal",
 		"Kuro Serenity"
 	],
@@ -52,12 +53,12 @@ var class_lists := {
 		"Kuro Vault",
 		"Mir Cars Transporter",
 		"Kronstadt Fortress",
-		"Strandberg Turbo",
 		"Kuro Persian"
 	],
 
 	"sport": [
 			"Brutus Stingray",
+			"Eisenach Goblin",
 		"Berkshire V12-S",
 		"Berkshire Tempest",
 		"Schroder Classique Sport",
@@ -112,6 +113,7 @@ var class_lists := {
 	],
 		"eisenach_cup":[
 		"Eisenach Suppressor",
+		"Eisenach Goblin",
 		"Eisenach Bengal",
 		"Eisenach Prince"
 	],
@@ -128,6 +130,7 @@ var class_lists := {
 		"Schroder D-20",
 				"Mir Cars Hutch",
 		"Brutus Viper",
+		"Eisenach Goblin",
 				"Eisenach Suppressor",
 		"Kuro Vault",
 		"Mir Cars Transporter",
@@ -156,6 +159,37 @@ var class_lists := {
 		"Berkshire Tempest",
 		"Kestrel Speedster"
 	],
+	"japanese_cup":[
+		"Zenith Horizon",
+		"Kuro Zephyr",
+		"Kuro Persian",
+		"Kuro Serenity",
+		"Kuro Vault"
+	],
+	"german_cup":[
+		"Schroder D-20",
+		"Schroder Atrix Q32",
+		"Schroder Colosso",
+		"Schroder Classique Sport",
+		"Schroder Atrocity",
+				"Eisenach Suppressor",
+		"Eisenach Goblin",
+		"Eisenach Bengal",
+		"Eisenach Prince",
+		"Straeda B32"
+	],
+	"kestrel_max":[
+		"Kestrel Touring",
+		"Kestrel Battleaxe",
+		"Kestrel Guillotine"
+	],
+	"v12_engines":[
+		"Kronstadt Fortress",
+		"Berkshire V12-S",
+		"Berkshire Tempest",
+		"Linetti Firestorm",
+		"Linetti Terror"
+	]
 }
 
 
@@ -194,6 +228,8 @@ var car_scene_paths := {
 	"Schroder D-20":"res://Scenes/audi_a3.tscn",
 		"Kuro Serenity":"res://Scenes/lexus_sc.tscn",
 		"Kronstadt Fortress":"res://Scenes/s600.tscn",
+			"Eisenach Goblin":"res://Scenes/bmw_1m.tscn",
+
 
 	"Schroder Atrix Sport":"res://Scenes/audi_tt_rs.tscn",
 	"Bartoli Cruiser":"res://Scenes/granturismo.tscn",
@@ -209,6 +245,8 @@ var car_scene_paths := {
 	"Linetti Shepherd":"res://Scenes/gallardo.tscn",
 	"Brutus Venom":"res://Scenes/dodge_viper.tscn",
 	"Kestrel Touring":"res://Scenes/tvr_cerbera.tscn",
+
+
 
 	"Linetti Terror":"res://Scenes/murcielago.tscn",
 	"Linetti Firestorm":"res://Scenes/diablo_road.tscn",
@@ -269,6 +307,13 @@ var car_colors := {
 		Color8(60,60,60),    # Graphite
 		Color8(0,80,160)     # Deep Blue
 	],
+		"Eisenach Goblin":[
+	Color8(237,132,69),    # ⭐ Fire Orange (default — BMW 1M signature)
+	Color8(255,255,255),  # White
+	Color8(60,60,60),     # Graphite
+	Color8(0,90,180)      # Deep Blue
+],
+
 	"Eisenach Escorter":[
 		Color8(180,180,180), # Silver (default BMW SUV vibe)
 		Color8(255,255,255), # White
@@ -362,7 +407,7 @@ var car_colors := {
 	Color8(180,180,180), # Silver
 	Color8(200,40,40)    # Red
 ],
-	"Eisenach Bengal":[Color8(217,90,43), Color8(255,255,255), Color8(0,90,180), Color8(180,180,180)],
+	"Eisenach Bengal":[Color8(113,115,120), Color8(255,255,255), Color8(0,90,180), Color8(180,180,180)],
 
 		"Schroder Atrocity":[
 		Color8(255,0,0),    # ⭐ Default — tomato red
