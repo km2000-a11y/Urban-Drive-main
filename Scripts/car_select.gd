@@ -979,6 +979,8 @@ func _on_select_pressed():
 func _on_back_btn_pressed() -> void:
 	if GameMode.game_mode == "Road Challenge":
 		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	elif GameMode.game_mode=="Club Cups":
+		get_tree().change_scene_to_file("res://Scenes/championships.tscn")
 	else:
 		get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
 

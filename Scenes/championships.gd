@@ -39,7 +39,7 @@ func _on_back_btn_pressed():
 	ChampionshipState.active_cup = ""
 	ChampionshipState.championship_mode = false
 	GameMode.game_mode = ""
-	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 
 func _on_zenith_competition_pressed() -> void:
@@ -158,6 +158,14 @@ func _on_v_12_engines_pressed() -> void:
 func _on_supercars_pressed() -> void:
 	GameMode.game_mode="Club Cups"
 	ChampionshipState.active_cup="supercars"
+	ChampionshipState.championship_mode=true
+	
+	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
+
+func _on_track_cars_pressed() -> void:
+	GameMode.game_mode="Club Cups"
+	ChampionshipState.active_cup="track_cars"
 	ChampionshipState.championship_mode=true
 	
 	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")

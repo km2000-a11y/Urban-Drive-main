@@ -378,6 +378,14 @@ var cups: Dictionary = {
 		"Kestrel Guillotine",
 		"Mir Cars Raptor"
 	]
+},
+"track_cars":{
+	"eligible_classes":["track_cars"],
+	"eligible_cars":[
+		"Mir Cars Athletic C70",
+		"Bartoli Track Cruiser",
+		"Brutus Thunderbolt"
+	]
 }
 }
 

@@ -408,8 +408,16 @@ func show_finish(player_won: bool):
 	_screech_to_halt()
 	MusicManager.stop_music()
 
+	# Do NOT override Duel, Elimination, Cop Chase, Club Cups, Radar Race
 	if GameMode.game_mode == "Road Challenge":
-		RoadChallengeManager.on_race_finished(player_won)
+		if Modes.mode == "Free Race":
+			pass  # free race stays free race
+		elif Modes.mode == "Normal Race":
+			Modes.mode = "Normal Race"  # Road Challenge race
+		else:
+			# Any other mode should NOT be treated as Road Challenge
+			GameMode.game_mode = Modes.mode
+
 
 	if leaderboard:
 		leaderboard.visible = true

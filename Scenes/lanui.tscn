@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://cco5jg83si4sc"]
+
+[ext_resource type="Script" uid="uid://syj0jvgf5bbb" path="res://Scenes/lanui.gd" id="1_kq6l4"]
+
+[node name="LANUI" type="CanvasLayer"]
+script = ExtResource("1_kq6l4")
+
+[node name="LANMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HostButton" type="Button" parent="LANMenu"]
+layout_mode = 0
+offset_right = 324.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 30
+text = "HOST LAN"
+
+[node name="JoinButton" type="Button" parent="LANMenu"]
+layout_mode = 0
+offset_top = 57.0
+offset_right = 325.0
+offset_bottom = 107.0
+theme_override_font_sizes/font_size = 30
+text = "JOIN LAN"
+
+[node name="LineEdit" type="LineEdit" parent="LANMenu"]
+layout_mode = 0
+offset_top = 130.0
+offset_right = 522.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 30
+placeholder_text = "ENTER IP OF HOST TO JOIN GAME"

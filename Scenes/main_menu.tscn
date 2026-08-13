@@ -31,6 +31,13 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "CLUB CUPS"
 
+[node name="MultiDevice" type="Button" parent="Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "MULTI-DEVICE PLAY"
+
 [connection signal="pressed" from="Control/VBoxContainer/RoadChallenge" to="." method="_on_road_challenge_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/FreeRace" to="." method="_on_free_race_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/ClubCups" to="." method="_on_club_cups_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/MultiDevice" to="." method="_on_multi_device_pressed"]

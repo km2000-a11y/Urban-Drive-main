@@ -123,6 +123,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "SUPERCARS"
 
+[node name="TrackCars" type="Button" parent="Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "TRACK CARS"
+
 [connection signal="pressed" from="Control/BackBtn" to="." method="_on_back_btn_pressed"]
 [connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/Colossus" to="." method="_on_colossus_pressed"]
 [connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/StreetTuners" to="." method="_on_street_tuners_pressed"]
@@ -143,3 +148,4 @@ text = "SUPERCARS"
 [connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/KestrelMax" to="." method="_on_kestrel_max_pressed"]
 [connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/V12Engines" to="." method="_on_v_12_engines_pressed"]
 [connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/Supercars" to="." method="_on_supercars_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/VBoxContainer/TrackCars" to="." method="_on_track_cars_pressed"]
