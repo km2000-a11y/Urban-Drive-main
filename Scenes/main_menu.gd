@@ -24,4 +24,5 @@ func _on_club_cups_pressed() -> void:
 
 
 func _on_multi_device_pressed() -> void:
-		GameMode.game_mode = "Multi-Device"
+	GameMode.game_mode = "Multi-Device"
+	get_tree().change_scene_to_file("res://Scenes/lanui.tscn")

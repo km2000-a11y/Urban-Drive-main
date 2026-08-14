@@ -17,6 +17,8 @@ static var used_ai_names := []
 var speed_samples := []
 var avg_speed := 0.0
 
+@export var sync_velocity: Vector3
+@export var sync_transform: Transform3D
 
 
 # --- AI INPUT ---
@@ -172,7 +174,13 @@ func update_gears(speed_kmh: float) -> void:
 	current_gear = clamp(current_gear, 1, gear_count)
 
 func _physics_process(delta: float) -> void:
-
+	if is_multiplayer_authority():
+		sync_velocity = velocity
+		sync_transform = global_transform
+	if not is_multiplayer_authority():
+		velocity = sync_velocity
+		global_transform = sync_transform
+		return
 	speed_samples.append(current_speed)
 	if speed_samples.size() > 60: # last 1 second
 		speed_samples.pop_front()

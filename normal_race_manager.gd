@@ -84,29 +84,39 @@ func spawn_race(scene: Node) -> void:
 # AI CARS — UNIVERSAL SAFE BLOCK
 # ============================
 
+	# ============================
+# AI CARS — SINGLE PLAYER ONLY
+# ============================
+
+		# AI CARS — UNIVERSAL SAFE BLOCK
 	ai_cars.clear()
 
-	# 1. Build AI list depending on mode
-	# FIX: Auto-detect class for any mode that is NOT Club Cups
-	if GameMode.game_mode!="Club Cups":
-		Cars.apply_auto_class_if_not_club()
-	var final_ai_paths := []
+	# Single-player: up to 7 AI (8 cars total)
+	# Multi-Device (LAN): 4 players total, NO AI here
+	var final_ai_paths: Array[String] = []
 
+	# LAN mode → let LANManager handle remote players, we only keep the local player here
+	if GameMode.game_mode == "Multi-Device":
+		# No AI spawning in LAN; player_car already spawned above.
+		return
+
+	# Non-LAN: normal AI logic
 	if GameMode.game_mode == "Club Cups":
-		# Club Cups → RaceManager already set ai_car_paths
+		# Club Cups → ai_car_paths already configured by the cup system
 		final_ai_paths = ai_car_paths.duplicate()
 	else:
-		# Normal modes → use class-based AI
+		# Normal modes → auto-detect class and get AI list from Cars
+		Cars.apply_auto_class_if_not_club()
 		final_ai_paths = Cars.get_ai_paths_for_class(Cars.selected_class)
 
-	# 2. SAFETY: If empty, fallback to player car
+	# Safety: if nothing came back, at least use the player car as AI
 	if final_ai_paths.is_empty():
 		final_ai_paths = [player_car_path]
 
-	# 3. Spawn AI cars safely
+	# Spawn up to 7 AI for single-player (SpawnPoint1..7)
 	for i in range(ai_spawns.size()):
-		var index := i % final_ai_paths.size()   # SAFE: final_ai_paths always has at least 1
-		var ai_path :String = final_ai_paths[index]
+		var index := i % final_ai_paths.size()
+		var ai_path: String = final_ai_paths[index]
 
 		var ai_scene := load(ai_path)
 		if ai_scene == null:
@@ -136,7 +146,6 @@ func spawn_race(scene: Node) -> void:
 			if Cars.car_scene_paths[name] == ai_path:
 				found_name = name
 				break
-				
 
 		if found_name == "":
 			found_name = Cars.selected_car_name
@@ -145,6 +154,9 @@ func spawn_race(scene: Node) -> void:
 
 		_apply_random_ai_color(ai)
 		ai_cars.append(ai)
+
+
+
 
 
 	await get_tree().process_frame

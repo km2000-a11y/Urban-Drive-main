@@ -1,5 +1,8 @@
-LineEdit
+Label
+MultiplayerSynchronizer
+MultiplayerSpawner
 Button
+LineEdit
 Control
 CanvasLayer
 MeshInstance3D
@@ -10,6 +13,3 @@ WorldEnvironment
 CollisionShape3D
 StaticBody3D
 Node3D
-Area3D
-CharacterBody3D
-Label

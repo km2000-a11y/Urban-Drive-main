@@ -4,6 +4,8 @@ var mode: String
 var win_screen_radar: Node
 var player_car: CarController
 var race_started: bool = false
+var is_lan := false
+
 
 @onready var finish_flash := $FinishFlash
 @onready var start_countdown := $Start
@@ -23,6 +25,7 @@ func _ready():
 	mode = Modes.mode
 	Cars.load_color()
 	MusicManager.play_race_music()
+	is_lan = GameMode.game_mode == "Multi-Device"
 	$EliminationWinScreen.visible = false
 	if GameMode.game_mode == "Road Challenge":
 		Modes.mode = "Normal Race"
@@ -62,9 +65,11 @@ func _ready():
 	elif mode == "Cop Chase":
 		_setup_cop_chase()
 		_start_mode_countdown(CopChaseManager.get_all_race_cars())
-
 	else:
-		_spawn_player_free_drive()
+		if is_lan:
+			_spawn_lan_player()
+		else:
+			_spawn_player_free_drive()
 
 	if mode == "Radar Race":
 		radar_target_label.text = "Target: %d km/h" % Cars.get_radar_target_speed()
@@ -439,3 +444,68 @@ func _face_away_from_lap_line(car: CarController, root: Node):
 
 	var target_pos := car.global_position + away
 	car.look_at(target_pos, Vector3.UP)
+
+func _spawn_lan_player():
+	var path := Cars.selected_car
+	if path == "":
+		push_error("No player car selected!")
+		return
+
+	var scene := load(path)
+	if scene == null:
+		push_error("Player car scene missing: " + path)
+		return
+
+	# Instantiate car
+	player_car = scene.instantiate()
+
+	# Add MultiplayerSynchronizer
+	var sync := MultiplayerSynchronizer.new()
+	player_car.add_child(sync)
+
+	# Assign ownership
+	player_car.set_multiplayer_authority(multiplayer.get_unique_id())
+
+	add_child(player_car)
+
+	# Apply color
+	_apply_color_to_car(player_car, Cars.selected_color)
+
+	# Spawn position
+	var root := get_node(TrackName.track_name)
+	var spawn := safe_get(root, "SpawnPoint")
+
+	if spawn:
+		player_car.global_transform = spawn.global_transform
+	else:
+		player_car.global_transform.origin = Vector3.ZERO
+
+	# Force camera
+	_force_player_camera()
+
+	print("LAN player spawned with authority:", multiplayer.get_unique_id())
+
+func _spawn_lan_remote_player(id, car_path):
+	var scene := load(car_path)
+	if scene == null:
+		push_error("Remote car scene missing: " + car_path)
+		return
+
+	var car :CarController= scene.instantiate()
+
+	var sync := MultiplayerSynchronizer.new()
+	car.add_child(sync)
+
+	car.set_multiplayer_authority(id)
+	add_child(car)
+
+	# Spawn position
+	var root := get_node(TrackName.track_name)
+	var spawn := safe_get(root, "AISpawnPoint" + str(id))
+	if spawn:
+		car.global_transform = spawn.global_transform
+
+	print("Spawned remote player", id)
+@rpc("any_peer")
+func spawn_remote_player(id, car_path):
+	_spawn_lan_remote_player(id, car_path)
