@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var status_label = $Control/StatusLabel
 
 func _ready():
+	hide()
 	host_button.pressed.connect(_on_host_pressed)
 	join_button.pressed.connect(_on_join_pressed)
 	back_button.pressed.connect(_on_back_pressed)
@@ -16,6 +17,8 @@ func _ready():
 		LanManager.status_changed.connect(_on_status_changed)
 
 	status_label.text = ""
+	
+	
 
 
 func _on_host_pressed():

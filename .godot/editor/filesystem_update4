@@ -1,4 +1,5 @@
 res://main.tscn
+res://Scenes/track_select.gd
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
 res://Scenes/audi_tt.tscn
@@ -60,8 +61,4 @@ res://Scenes/s600.tscn
 res://Scenes/bmw_1m.tscn
 res://Scenes/lanui.tscn
 res://Scenes/lanui.gd
-res://main.gd
-res://lan_manager.gd
-res://Scripts/car_select.gd
-res://Scenes/track_select.gd
-res://normal_race_manager.gd
+res://Scenes/main_menu.gd

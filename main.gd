@@ -59,11 +59,12 @@ func _ready():
 		_start_mode_countdown(DuelManager.get_all_race_cars())
 
 	elif mode.to_lower() == "normal race":
-		_setup_normal_race()
-
 		if is_lan:
-			_spawn_lan_player()   # ⭐ REQUIRED FOR CLIENT
-			_start_mode_countdown(NormalRaceManager.get_all_race_cars())
+			_spawn_lan_player()   # spawn LAN car FIRST
+
+		_setup_normal_race()       # now safe
+
+		_start_mode_countdown(NormalRaceManager.get_all_race_cars())
 
 
 	elif mode == "Elimination":
@@ -101,20 +102,28 @@ func _process(delta):
 		return
 
 	match mode:
-		"Duel":
-			DuelManager.update_duel()
+			"Duel":
+				DuelManager.update_duel()
 
-		"Radar Race":
-			pass
+			"Radar Race":
+				pass
 
-		_:
-			if mode.to_lower() == "normal race":
-				if player_car and is_instance_valid(player_car):
-					NormalRaceManager.update_race()
-			elif mode == "Elimination":
-				EliminationManager.update_race()
-			elif mode == "Cop Chase":
-				CopChaseManager.update_chase(delta)
+			_:
+				if mode.to_lower() == "normal race":
+					if is_lan:
+						# LAN safety: only update if car is valid
+						if player_car and is_instance_valid(player_car):
+							NormalRaceManager.update_race()
+					else:
+						# SINGLE PLAYER: always update
+						NormalRaceManager.update_race()
+
+				elif mode == "Elimination":
+					EliminationManager.update_race()
+
+				elif mode == "Cop Chase":
+					CopChaseManager.update_chase(delta)
+
 
 
 func _input(event):
@@ -196,9 +205,11 @@ func _setup_duel():
 	start_countdown.start_countdown(cars)
 
 func _setup_normal_race():
-	if player_car:
-		player_car.queue_free()
-	player_car = null
+	if not is_lan:
+		if player_car:
+			player_car.queue_free()
+		player_car = null
+
 
 	var root := get_node(TrackName.track_name)
 

@@ -354,16 +354,37 @@ func _end_race(winner: String) -> void:
 
 
 func update_race() -> void:
-	if not race_active or not is_instance_valid(player_car):  
+	# Race not active → nothing to update
+	if not race_active:
 		return
 
+	# Player car must exist AND be valid
+	if player_car == null or not is_instance_valid(player_car):
+		return
+
+	# Waypoints must exist (prevents early-frame crashes)
+	if player_car.waypoints.is_empty():
+		return
+
+	# Get sorted cars safely
 	var sorted := _sorted_cars()
+	if sorted.is_empty():
+		return
+
+	# Calculate player position safely
 	var player_pos := _calculate_position()
 
+	# HUD updates (player_car guaranteed valid here)
 	hud.update_stopwatch(player_car.total_race_time)
-	hud.update_lap(car_laps[player_car] + 1, total_laps)
+
+	# Lap dictionary must use instance_id (LAN-safe)
+	var pid := player_car.get_instance_id()
+	var lap :int= car_laps.get(pid, 0)
+
+	hud.update_lap(lap + 1, total_laps)
 	hud.update_position(player_pos, ai_cars.size() + 1)
 
+	# Finish check
 	_check_finish()
 
 

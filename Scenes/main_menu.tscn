@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://blwywdnqsnjx6"]
+[gd_scene load_steps=3 format=3 uid="uid://blwywdnqsnjx6"]
 
 [ext_resource type="Script" uid="uid://dwrxifbaa3ou3" path="res://Scenes/main_menu.gd" id="1_28flt"]
+[ext_resource type="PackedScene" uid="uid://cco5jg83si4sc" path="res://Scenes/lanui.tscn" id="2_48xlc"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_28flt")
@@ -36,6 +37,8 @@ visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "MULTI-DEVICE PLAY"
+
+[node name="LANUI" parent="." instance=ExtResource("2_48xlc")]
 
 [connection signal="pressed" from="Control/VBoxContainer/RoadChallenge" to="." method="_on_road_challenge_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/FreeRace" to="." method="_on_free_race_pressed"]
