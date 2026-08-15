@@ -370,9 +370,9 @@ var muscle = {
 }
 var urban_racers = {
 		"Eisenach Prince":[
-		"", "Country: Germany", "HP: 394", "WEIGHT: 1832 KG",
-		"0-100 KM/H: 5.0s", "TOP SPEED: 254 KM/H",
-		"ENGINE: V8 4.9L", "ASPIRATION: NA", "TORQUE: 500 NM",
+		"", "Country: Germany", "HP: 285", "WEIGHT: 1725 KG",
+		"0-100 KM/H: 5.9s", "TOP SPEED: 263 KM/H",
+		"ENGINE: V8 4.4L", "ASPIRATION: NA", "TORQUE: 440 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
 	"Kestrel Speedster":[
@@ -383,7 +383,7 @@ var urban_racers = {
 	],
 		"Strandberg Turbo":[
 		"", "Country: Sweden", "HP: 300", "WEIGHT: 1667 KG",
-		"0-100 KM/H: 5.8s", "TOP SPEED: 250 KM/H",
+		"0-100 KM/H: 5.7s", "TOP SPEED: 250 KM/H",
 		"ENGINE: L5 2.5L", "ASPIRATION: Turbo", "TORQUE: 350 NM",
 		"TRANSMISSION: FOUR-WHEEL DRIVE"
 	],

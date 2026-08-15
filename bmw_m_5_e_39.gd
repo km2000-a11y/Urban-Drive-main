@@ -3,8 +3,8 @@ extends CarController
 # COSMETIC INFO (UI only)
 var def_car_name := "Eisenach Prince"
 var country := "Germany"
-var engine := "V8 4.9L"
-var weight_kg := 1740
+var engine := "V8 4.4L"
+var weight_kg := 1725
 var zero_to_hundred_display := 4.60
 
 func _ready():
@@ -12,8 +12,8 @@ func _ready():
 	mass = 1740.0
 	horsepower = 396
 	max_rpm = 7000.0                 # High‑rev V8 but not torque‑friendly
-	zero_to_hundred =5.0
-	top_speed_kmh = 257
+	zero_to_hundred =5.9
+	top_speed_kmh = 263
 	turn_speed = 2.35                # Horrendous rotation; heavy understeer by design
 	brake_strength = 12.8            # Good brakes but not enough for the weight
 	lateral_friction = 1.06          # Executive sedan grip; not a track car

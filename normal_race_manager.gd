@@ -378,8 +378,8 @@ func update_race() -> void:
 	hud.update_stopwatch(player_car.total_race_time)
 
 	# Lap dictionary must use instance_id (LAN-safe)
-	var pid := player_car.get_instance_id()
-	var lap :int= car_laps.get(pid, 0)
+	var lap :int = car_laps.get(player_car, 0)
+
 
 	hud.update_lap(lap + 1, total_laps)
 	hud.update_position(player_pos, ai_cars.size() + 1)

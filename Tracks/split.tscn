@@ -241,7 +241,7 @@ size = Vector3(1, 10, 1)
 size = Vector3(12, 10, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e8ux5"]
-size = Vector3(12, 10, 1)
+size = Vector3(10, 10, 1)
 
 [sub_resource type="Environment" id="Environment_ppuhi"]
 background_mode = 1
@@ -10901,7 +10901,7 @@ transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -136.584
 transform = Transform3D(-0.573576, 0, 0.819152, 0, 1, 0, -0.819152, 0, -0.573576, -229.091, 0, 632.09)
 
 [node name="LapLine" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -209.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -227.594)
 script = ExtResource("1_1c3gv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LapLine"]

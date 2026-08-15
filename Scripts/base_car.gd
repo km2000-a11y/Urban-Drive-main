@@ -95,7 +95,7 @@ var ai_overtake_offset: float = 0.0
 var ai_overtake_side: float = 0.0 # -1 left, +1 right
 
 func apply_stats() -> void:
-	acceleration_calc = (27.78 / zero_to_hundred) * 2.0
+	acceleration_calc = (27.78 / zero_to_hundred) * 2.5
 	torque = (horsepower * 5252.0) / max_rpm
 
 	if is_diesel:
