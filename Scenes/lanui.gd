@@ -17,6 +17,7 @@ func _ready():
 
 	status_label.text = ""
 
+
 func _on_host_pressed():
 	status_label.text = "Hosting game..."
 	LanManager.start_host()

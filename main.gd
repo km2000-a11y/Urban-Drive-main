@@ -22,14 +22,18 @@ func safe_get(node: Node, path: String) -> Node:
 	return null
 
 func _ready():
-	mode = Modes.mode
+	mode = Modes.mode if Modes.mode != null else ""
+	if mode == "":
+		mode = "Normal Race"
+
+
 	Cars.load_color()
 	MusicManager.play_race_music()
 	is_lan = GameMode.game_mode == "Multi-Device"
 	$EliminationWinScreen.visible = false
 	if GameMode.game_mode == "Road Challenge":
 		Modes.mode = "Normal Race"
-
+	
 	var track_name := TrackName.track_name
 
 	if not TrackRegistry.tracks.has(track_name):
@@ -56,7 +60,11 @@ func _ready():
 
 	elif mode.to_lower() == "normal race":
 		_setup_normal_race()
-		_start_mode_countdown(NormalRaceManager.get_all_race_cars())
+
+		if is_lan:
+			_spawn_lan_player()   # ⭐ REQUIRED FOR CLIENT
+			_start_mode_countdown(NormalRaceManager.get_all_race_cars())
+
 
 	elif mode == "Elimination":
 		_setup_elimination()
@@ -101,11 +109,13 @@ func _process(delta):
 
 		_:
 			if mode.to_lower() == "normal race":
-				NormalRaceManager.update_race()
+				if player_car and is_instance_valid(player_car):
+					NormalRaceManager.update_race()
 			elif mode == "Elimination":
 				EliminationManager.update_race()
 			elif mode == "Cop Chase":
 				CopChaseManager.update_chase(delta)
+
 
 func _input(event):
 	if event.is_action_pressed("pause_menu"):

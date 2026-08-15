@@ -74,8 +74,10 @@ func spawn_race(scene: Node) -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 
-	if player_car.has_node("Camera3D"):
-		player_car.get_node("Camera3D").current = true
+	if player_car and is_instance_valid(player_car):
+		if player_car.has_node("Camera3D"):
+			player_car.get_node("Camera3D").current = true
+
 
 	# AI CARS
 	# AI CARS
@@ -93,7 +95,7 @@ func spawn_race(scene: Node) -> void:
 
 	# Single-player: up to 7 AI (8 cars total)
 	# Multi-Device (LAN): 4 players total, NO AI here
-	var final_ai_paths: Array[String] = []
+	var final_ai_paths: Array = []
 
 	# LAN mode → let LANManager handle remote players, we only keep the local player here
 	if GameMode.game_mode == "Multi-Device":

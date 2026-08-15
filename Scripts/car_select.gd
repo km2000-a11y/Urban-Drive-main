@@ -949,30 +949,31 @@ func update_color_ui():
 # SELECT BUTTON
 # -------------------------
 
+# -------------------------
+# SELECT BUTTON (LAN FIX)
+# -------------------------
 func _on_select_pressed():
 	Cars.on_car_selected(car_name)
 	Cars.selected_car_name = car_name
 	Cars.selected_car = car_scene_paths[car_name]
 	Cars.selected_color = car_colors[car_name][color_index]
 	Cars.save_color()
-	if GameMode.game_mode != "Club Cups":
-		Cars.on_car_selected(car_name)
-	else:
-		Cars.selected_class = ChampionshipState.active_cup
-
-
 
 	RoadChallengeState.active_group = car_class
 	RoadChallengeState.active_car = car_name
 	RoadChallengeState.active_color = car_colors[car_name][color_index]
 
-	if GameMode.game_mode == "Free Race":
-		# Free Race → do NOT activate Road Challenge
-		get_tree().change_scene_to_file("res://Scenes/track_select.tscn")
+	# LAN MODE FIX
+	if GameMode.game_mode == "Multi-Device":
+		if multiplayer.is_server():
+			# HOST → go to TrackSelect
+			get_tree().change_scene_to_file("res://Scenes/track_select.tscn")
+		else:
+			# CLIENT → stay here and wait for host
+			print("Client waiting for host to choose track")
 		return
 
-	# Road Challenge → normal behavior
-	GameMode.game_mode = "Road Challenge"
+	# SINGLE PLAYER
 	get_tree().change_scene_to_file("res://Scenes/track_select.tscn")
 
 
