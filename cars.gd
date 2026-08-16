@@ -44,6 +44,7 @@ var class_lists := {
 		"Eisenach Prince",
 		"Kestrel Speedster",
 			"Strandberg Turbo",
+				"Kronstadt Essence",
 		"Eisenach Bengal",
 		"Kuro Serenity"
 	],
@@ -123,6 +124,7 @@ var class_lists := {
 		"Mir Cars Nightwolf",
 		"Kronstadt Fortress",
 		"Colossus Titan Max",
+				"Kronstadt Essence",
 				"Zenith Horizon",
 		"Schroder Atrix Q32",
 		"Straeda B32",
@@ -157,6 +159,7 @@ var class_lists := {
 		"Berkshire Blunt",
 		"Berkshire V12-S",
 		"Berkshire Tempest",
+				"Kronstadt Essence",
 		"Kestrel Speedster"
 	],
 	"japanese_cup":[
@@ -175,6 +178,8 @@ var class_lists := {
 				"Eisenach Suppressor",
 		"Eisenach Goblin",
 		"Eisenach Bengal",
+		"Kronstadt Fortress",
+		"Kronstadt Essence",
 		"Eisenach Prince",
 		"Straeda B32"
 	],
@@ -237,6 +242,7 @@ var car_scene_paths := {
 	"Berkshire Tempest":"res://Scenes/vanquish.tscn",
 	"Eisenach Black Panda":"res://Scenes/bmw_330d.tscn",
 	"Kuro Persian":"res://Scenes/lexus_gs430.tscn",
+		"Kronstadt Essence":"res://Scenes/clk_55.tscn",
 	"Kronstadt Crest":"res://Scenes/slk.tscn",
 
 
@@ -377,6 +383,12 @@ var car_colors := {
 	Color8(0,60,120),
 	Color8(180,180,180),
 	Color8(120,0,0)
+],
+"Kronstadt Essence":[
+	Color8(20,20,20),     # Obsidian Black (default AMG vibe)
+	Color8(255,255,255),  # Arctic White
+	Color8(180,180,180),  # Iridium Silver
+	Color8(0,70,120)      # Cavansite Blue
 ],
 "Schroder Fastback":[
 	Color8(180,180,180),   # Silver (default, executive)

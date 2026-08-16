@@ -180,12 +180,12 @@ material_override = SubResource("StandardMaterial3D_kceoh")
 mesh = SubResource("CapsuleMesh_v7ldy")
 
 [node name="MeshInstance3D18" type="MeshInstance3D" parent="ModelRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.130669, 0.401816, 0.928707)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0302611, 0.257086, 0.928707)
 material_override = SubResource("StandardMaterial3D_8lu5v")
 mesh = SubResource("BoxMesh_bb72w")
 
 [node name="MeshInstance3D19" type="MeshInstance3D" parent="ModelRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0506773, 0.401816, 0.928707)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0358169, 0.401816, 0.928707)
 material_override = SubResource("StandardMaterial3D_8lu5v")
 mesh = SubResource("BoxMesh_bb72w")
 

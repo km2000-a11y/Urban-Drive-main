@@ -3278,7 +3278,7 @@ material_override = SubResource("StandardMaterial3D_tnsgo")
 mesh = SubResource("BoxMesh_pxcwx")
 
 [node name="SpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.7021, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.40498e-07, 1.7021, -6.18257)
 
 [node name="AISpawnPoint" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 75.5669)

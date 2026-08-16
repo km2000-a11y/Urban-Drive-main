@@ -204,6 +204,12 @@ var car_colors := {
 	Color8(0,110,130),     # Teal Mist (compact-class signature color)
 	Color8(70,70,70)       # Graphite Shadow (dark matte grey)
 ],
+"Kronstadt Essence":[
+	Color8(20,20,20),     # Obsidian Black (default AMG vibe)
+	Color8(255,255,255),  # Arctic White
+	Color8(180,180,180),  # Iridium Silver
+	Color8(0,70,120)      # Cavansite Blue
+],
 
 
 	"Linetti Terror":[Color8(65,66,76), Color8(255,255,255), Color8(255,200,0), Color8(160,160,160)],
@@ -249,6 +255,7 @@ var urban_list = [
 	"Eisenach Bengal",
 	"Strandberg Turbo",
 		"Berkshire Blunt",
+		"Kronstadt Essence",
 	"Eisenach Prince",
 	"Kestrel Speedster", 
 ]
@@ -399,6 +406,13 @@ var urban_racers = {
 		"ENGINE: L6 3.0L", "ASPIRATION: NA", "TORQUE: 320 NM",
 		"TRANSMISSION: REAR-WHEEL DRIVE"
 	],
+	"Kronstadt Essence":[
+	"", "Country: Germany", "HP: 342", "WEIGHT: 1640 KG",
+	"0-100 KM/H: 5.1s", "TOP SPEED: 257 KM/H",
+	"ENGINE: V8 5.4L", "ASPIRATION: NA", "TORQUE: 376 NM",
+	"TRANSMISSION: REAR-WHEEL DRIVE"
+],
+
 	"Kuro Serenity":[
 		"", "Country: Japan", "HP: 260", "WEIGHT: 1640 KG",
 		"0-100 KM/H: 6.2s", "TOP SPEED: 250 KM/H",
@@ -570,6 +584,7 @@ var car_scene_paths = {
 
 	"Schroder Atrix Q32":"res://Scenes/audi_tt.tscn",
 	"Straeda B32":"res://Scenes/new_beetle.tscn",
+	"Kronstadt Essence":"res://Scenes/clk_55.tscn",
 	"Zenith Horizon":"res://Scenes/nissan_350z.tscn",
 	"Straeda G25":"res://Scenes/golf_v_gti.tscn",
 	"Schroder D-20":"res://Scenes/audi_a3.tscn",
