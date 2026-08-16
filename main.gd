@@ -59,9 +59,6 @@ func _ready():
 		_start_mode_countdown(DuelManager.get_all_race_cars())
 
 	elif mode.to_lower() == "normal race":
-		if is_lan:
-			_spawn_lan_player()   # spawn LAN car FIRST
-
 		_setup_normal_race()       # now safe
 
 		_start_mode_countdown(NormalRaceManager.get_all_race_cars())
@@ -468,43 +465,27 @@ func _face_away_from_lap_line(car: CarController, root: Node):
 
 func _spawn_lan_player():
 	var path := Cars.selected_car
-	if path == "":
-		push_error("No player car selected!")
-		return
-
 	var scene := load(path)
-	if scene == null:
-		push_error("Player car scene missing: " + path)
-		return
-
-	# Instantiate car
 	player_car = scene.instantiate()
 
-	# Add MultiplayerSynchronizer
 	var sync := MultiplayerSynchronizer.new()
 	player_car.add_child(sync)
 
-	# Assign ownership
 	player_car.set_multiplayer_authority(multiplayer.get_unique_id())
-
 	add_child(player_car)
 
-	# Apply color
 	_apply_color_to_car(player_car, Cars.selected_color)
 
-	# Spawn position
 	var root := get_node(TrackName.track_name)
 	var spawn := safe_get(root, "SpawnPoint")
+	player_car.global_transform = spawn.global_transform
 
-	if spawn:
-		player_car.global_transform = spawn.global_transform
-	else:
-		player_car.global_transform.origin = Vector3.ZERO
-
-	# Force camera
 	_force_player_camera()
 
-	print("LAN player spawned with authority:", multiplayer.get_unique_id())
+	# Tell others to spawn this player
+	rpc("spawn_remote_player", multiplayer.get_unique_id(), path)
+
+	print("Spawned local LAN player:", multiplayer.get_unique_id())
 
 func _spawn_lan_remote_player(id, car_path):
 	var scene := load(car_path)

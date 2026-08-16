@@ -492,32 +492,41 @@ func _estimate_ai_finish_time_for(ai: CarController) -> int:
 	if lapline == null:
 		return ai.total_race_time
 
-	# Remaining distance to finish line
+	# 1) Compute full lap distance from waypoints
+	var wp: Array = ai.waypoints
+	if wp.is_empty():
+		return ai.total_race_time
+
+	var lap_dist: float = 0.0
+	for i in range(wp.size()):
+		var a: Vector3 = wp[i].global_position
+		var b: Vector3 = wp[(i + 1) % wp.size()].global_position
+		lap_dist += a.distance_to(b)
+
+	# 2) Remaining laps
+	var laps_done: int = car_laps.get(ai, 0)
+	var laps_left: int = max(total_laps - laps_done, 0)
+
+	# 3) Distance from current position to LapLine on this lap
 	var remaining_dist: float = ai.distance_to_finish_line(lapline)
 
-	# Remaining laps
-	var laps_left: int = total_laps - car_laps.get(ai, 0)
-	if laps_left > 0:
-		var wp: Array = ai.waypoints
-		var lap_dist: float = 0.0
+	# Add full laps still to go
+	remaining_dist += lap_dist * float(laps_left)
 
-		# Compute actual lap distance
-		for i in range(wp.size()):
-			var a: Vector3 = wp[i].global_position
-			var b: Vector3 = wp[(i + 1) % wp.size()].global_position
-			lap_dist += a.distance_to(b)
+	# 4) Use average race speed instead of raw current speed
+	# Assume ai.total_race_time is in ms and current_speed is km/h or m/s depending on your setup.
+	var race_time_sec: float = max(float(ai.total_race_time) / 1000.0, 0.1)
+	var avg_speed: float = ai.distance_travelled / race_time_sec  # you should track this on the car
 
-		remaining_dist += lap_dist * float(laps_left)
+	# Fallback if avg_speed is not tracked or too small
+	if avg_speed <= 1.0:
+		avg_speed = clamp(ai.current_speed * 0.8, 10.0, 120.0)
 
-	# Smoothed speed
-	var speed: float = ai.current_speed
-	var blended_speed: float = clamp(speed * 0.85, 8.0, 120.0)
-
-	# Time = distance / speed
-	var remaining_time_ms: int = int((remaining_dist / blended_speed) * 1000)
+	# 5) Time = distance / speed
+	var remaining_time_ms: int = int((remaining_dist / avg_speed) * 1000)
 
 	# Slight smoothing
-	remaining_time_ms = int(remaining_time_ms * 1.05)
+	remaining_time_ms = int(remaining_time_ms * 1.03)
 
 	return ai.total_race_time + remaining_time_ms
 
