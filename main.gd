@@ -22,6 +22,11 @@ func safe_get(node: Node, path: String) -> Node:
 	return null
 
 func _ready():
+	if GameMode.game_mode == "Multi-Device":
+			_spawn_lan_player()
+			return
+
+
 	mode = Modes.mode if Modes.mode != null else ""
 	if mode == "":
 		mode = "Normal Race"
