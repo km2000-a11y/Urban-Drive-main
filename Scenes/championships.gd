@@ -168,3 +168,26 @@ func _on_track_cars_pressed() -> void:
 	ChampionshipState.championship_mode=true
 	
 	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
+
+func _on_sport_racing_pressed() -> void:
+	GameMode.game_mode="Club Cups"
+	ChampionshipState.active_cup="sport_racing"
+	ChampionshipState.championship_mode=true
+	
+	get_tree().change_scene_to_file("res://Scenes/mode_select.tscn")
+
+
+func _on_car_dealership_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/car_select.tscn")
+
+	# Wait until the scene is actually loaded
+	while get_tree().current_scene == null:
+		await get_tree().process_frame
+
+	var cs = get_tree().current_scene
+
+	if cs.has_method("enable_dealership_mode"):
+		cs.enable_dealership_mode()
+	else:
+		print("ERROR: CarSelect scene missing enable_dealership_mode()")
