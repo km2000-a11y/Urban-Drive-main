@@ -36,8 +36,7 @@ func _on_v_6_engines_pressed() -> void:
 
 
 func _on_back_btn_pressed():
-	ChampionshipState.active_cup = ""
-	ChampionshipState.championship_mode = false
+	ChampionshipState.reset()
 	GameMode.game_mode = ""
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
