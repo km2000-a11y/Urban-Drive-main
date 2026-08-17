@@ -124,6 +124,7 @@ theme_override_font_sizes/font_size = 30
 text = "TRACK CARS"
 
 [node name="CarDealership" type="Button" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 803.0
 offset_top = 522.0

@@ -656,27 +656,31 @@ func reset_class_if_not_club() -> void:
 		selected_class = ""
 func save_progress():
 	var data = {
-		"unlocked_cars": unlocked_cars
+		"unlocked_cars": unlocked_cars,
+		"money": money
 	}
 	var file = FileAccess.open("user://progress.save", FileAccess.WRITE)
 	file.store_var(data)
 	file.close()
 	print("Progress saved.")
-	
 
 func load_progress():
-	if not FileAccess.file_exists("user://progress.save"):
-		print("No save file found, using defaults.")
+	var path = "user://progress.save"
+
+	if not FileAccess.file_exists(path):
+		print("Save file missing, creating new one")
+		unlocked_cars = ["Colossus Behemoth"]
+		money = 0
+		save_progress()
 		return
 
-	var file = FileAccess.open("user://progress.save", FileAccess.READ)
-	var data = file.get_var()
-	file.close()
+	var file = FileAccess.open(path, FileAccess.READ)
+	if file:
+		var data = file.get_var()
+		unlocked_cars = data.get("unlocked_cars", ["Colossus Behemoth"])
+		money = data.get("money", 0)
 
-	if data.has("unlocked_cars"):
-		unlocked_cars = data["unlocked_cars"]
 
-	print("Progress loaded:", unlocked_cars)
 func buy_car(car_name: String) -> bool:
 	if unlocked_cars.has(car_name):
 		print("Already owned:", car_name)

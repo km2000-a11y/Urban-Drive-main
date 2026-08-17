@@ -22,7 +22,12 @@ func safe_get(node: Node, path: String) -> Node:
 	return null
 
 func _ready():
-	Cars.load_progress()
+	if GameMode.game_mode == "Road Challenge" or Modes.mode == "Free Race":
+		RoadChallengeSave.load()
+		Cars.unlocked_cars = RoadChallengeSave.unlocked_cars
+	else:
+			Cars.load_progress()  # dealership save
+
 	ChampionshipState.load_progress()
 
 	if GameMode.game_mode == "Multi-Device":

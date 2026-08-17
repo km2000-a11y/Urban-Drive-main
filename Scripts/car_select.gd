@@ -19,17 +19,11 @@ var rotation_speed := 1.0
 
 func enable_dealership_mode():
 	dealership_mode = true
-
-	# Hide selection UI
-	$Control/SelectButton.visible = false
+	$Select.visible = false
 	$Control/ColorSelector.visible = false
-
-	# Show dealership UI
 	$Control/BuyButton.visible = true
 	$Control/MoneyLabel.visible = true
 
-	_update_class_locks()
-	_update_money_display()
 
 func _update_money_display():
 	if has_node("Control/MoneyLabel"):
@@ -1039,18 +1033,28 @@ func update_color_ui():
 # SELECT BUTTON (LAN FIX)
 # -------------------------
 func _on_select_pressed():
-	# ⭐ Cannot select cars in dealership
 	if dealership_mode:
 		return
 
-	# ⭐ ClubCups: only unlocked cars allowed
-	if GameMode.game_mode == "Club Cups":
-		if not Cars.unlocked_cars.has(car_name):
-			print("Car locked:", car_name)
-			return
+	if car_name == "":
+		print("ERROR: No car selected")
+		return
+
+	if not Cars.unlocked_cars.has(car_name):
+		print("Car locked:", car_name)
+		return
+
+	# ⭐ ACTUALLY SELECT THE CAR
+	Cars.selected_car = Cars.car_scene_paths[car_name]
+	Cars.selected_car_name = car_name
+	Cars.selected_color = car_colors[car_name][color_index]
 
 	Cars.on_car_selected(car_name)
-	Cars.selected_car = Cars.car_scene_paths[car_name]
+	Cars.save_progress()
+
+	print("Selected car:", car_name, "→ scene:", Cars.selected_car)
+
+	get_tree().change_scene_to_file("res://Scenes/track_select.tscn")
 
 
 func _on_back_btn_pressed() -> void:
