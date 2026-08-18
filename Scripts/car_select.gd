@@ -586,7 +586,15 @@ var track_cars = {
 
 func _ready():
 	dealership_mode = false
-	Cars.load_progress()
+
+	if GameMode.game_mode == "Club Cups":
+		Cars.load_progress()  # dealership uses money + purchases
+	elif GameMode.game_mode == "Free Race" or GameMode.game_mode == "Road Challenge":
+		RoadChallengeSave.load()
+		Cars.unlocked_cars = RoadChallengeSave.unlocked_cars
+	else:
+		Cars.load_progress()
+
 	disable_dealership_mode()
 	MusicManager.play_menu_music()
 	$Control/ColorSelector.visible = false
@@ -754,8 +762,19 @@ func load_preview_car(path: String):
 		return
 
 	var car = car_scene.instantiate()
+
+	# Force unique materials so preview never inherits AI colors
+	if car.has_node("ModelRoot/Body"):
+		var body = car.get_node("ModelRoot/Body")
+		for child in body.get_children():
+			if child is MeshInstance3D:
+				var base_mat = child.get_active_material(0)
+				if base_mat:
+					child.material_override = base_mat.duplicate()
+
 	preview_holder.add_child(car)
 	preview_car = car
+
 
 	var model_root: Node3D = null
 	if car.has_node("ModelRoot"):
