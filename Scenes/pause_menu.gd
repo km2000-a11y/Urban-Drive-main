@@ -65,13 +65,13 @@ func _on_retry_btn_pressed() -> void:
 
 
 	
-func _on_quit_btn_pressed() -> void:
-	get_tree().paused=false
+func _on_quit_btn_pressed():
+	Cars.save_progress()
+	ChampionshipState.save_progress()
 	ChampionshipState.reset()
 	GameMode.game_mode = ""
-
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
-	
+
 
 func _on_vol_up_btn_pressed() -> void:
 	volume=clamp(volume+5,0,100)

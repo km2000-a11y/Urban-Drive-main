@@ -4,6 +4,7 @@ extends Node
 #  FULL CLASS LIST (LOCAL — SELF-CONTAINED)
 # ============================================================
 
+var unlocked_cars := ["Colossus Behemoth"]  # ONLY H2 unlocked
 
 var class_lists: Dictionary = {
 	"suv": [
@@ -85,6 +86,7 @@ var class_lists: Dictionary = {
 	"businessman_racers":[
 		"Kuro Persian",
 		"Kuro Vault",
+		"Eisenach Prince",
 		"Eisenach Suppressor",
 		"Kronstadt Fortress",
 		"Mir Cars Transporter"
@@ -243,6 +245,7 @@ var cups: Dictionary = {
 	"eligible_cars":[
 		"Kuro Persian",
 		"Kuro Vault",
+		"Eisenach Prince",
 		"Eisenach Suppressor",
 		"Mir Cars Transporter"
 	]
@@ -396,6 +399,15 @@ var cups: Dictionary = {
 		"Bartoli Track Cruiser",
 		"Brutus Thunderbolt"
 	]
+},
+"sport_racing":{
+	"eligible_classes":["sport_racing"],
+	"eligible_cars":[
+			"Schroder Atrocity",
+		"Linetti Shepherd",
+		"Brutus Venom",
+		"Kestrel Battleaxe"
+	]
 }
 }
 
@@ -423,3 +435,28 @@ func get_available_cars(cup_id: String) -> Array[String]:
 
 	print("ClubCups.gd USED")
 	return result
+var rewards := {
+	"colossus": "Kuro Zephyr",
+	"street_tuners": "Brutus Viper",
+	"muscle_hustle": "Schroder Atrix Q32",
+	"v6_engines": "Zenith Horizon",
+	"zenith_competition": "Mir Cars Transporter",
+	"businessman_racers": "Kuro Serenity",
+	"japanese_cup": "Strandberg Turbo",
+	"all_wheel_grip": "Kestrel Speedster",
+	"speedster_tournament": "Eisenach Goblin",
+	"eisenach_cup": "Schroder Classique Sport",
+	"schroder_cup": "Berkshire Blunt",
+	"under_400_hp": "Brutus Stingray",
+	"stingray_competition": "Berkshire V12-S",
+	"gentleman_racers": "Kestrel Touring",
+	"kestrel_max": "Linetti Shepherd",
+	"sport_racing": "Linetti Firestorm",
+	"v12_engines": "Mir Cars Raptor",
+	"supercars": "Bartoli Track Cruiser",
+	"track_cars": "Mir Cars Athletic C70"
+}
+func get_reward(cup_id: String) -> String:
+	if rewards.has(cup_id):
+		return rewards[cup_id]
+	return ""

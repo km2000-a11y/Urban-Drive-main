@@ -8,11 +8,26 @@ var car_class := ""
 var car_name := ""
 var car_index := 0
 var color_index := 0
+var dealership_mode: bool = false
+
 
 # 3D Preview
 @onready var preview_holder: Node3D = $SubViewportContainer/SubViewport/CarPreview/CarHolder
 var preview_car: Node3D = null
 var rotation_speed := 1.0
+
+
+func enable_dealership_mode():
+	dealership_mode = true
+	$Select.visible = false
+	$Control/ColorSelector.visible = false
+	$Control/BuyButton.visible = true
+	$Control/MoneyLabel.visible = true
+
+
+func _update_money_display():
+	if has_node("Control/MoneyLabel"):
+		$Control/MoneyLabel.text = "Money: $" + str(Cars.money)
 
 # -------------------------
 # COLOR DATA
@@ -570,11 +585,28 @@ var track_cars = {
 # -------------------------
 
 func _ready():
+	dealership_mode = false
+
+	if GameMode.game_mode == "Club Cups":
+		Cars.load_progress()  # dealership uses money + purchases
+	elif GameMode.game_mode == "Free Race" or GameMode.game_mode == "Road Challenge":
+		RoadChallengeSave.load()
+		Cars.unlocked_cars = RoadChallengeSave.unlocked_cars
+	else:
+		Cars.load_progress()
+
+	disable_dealership_mode()
 	MusicManager.play_menu_music()
 	$Control/ColorSelector.visible = false
 
 	_update_class_locks()
 
+func disable_dealership_mode():
+	dealership_mode = false
+	$Select.visible = true
+	$Control/BuyButton.visible = false
+	$Control/MoneyLabel.visible = false
+	$Control/ColorSelector.visible = true
 
 var car_scene_paths = {
 	"Colossus Titan Max":"res://Scenes/hummer_h1.tscn",
@@ -646,28 +678,40 @@ var car_scene_paths = {
 # UI UPDATE
 # -------------------------
 func _get_filtered_list(raw_list: Array) -> Array:
-	if GameMode.game_mode != "Club Cups":
+	# ⭐ Dealership mode shows ALL cars
+	if dealership_mode:
 		return raw_list
 
-	if not ChampionshipState.championship_mode:
-		return raw_list
+	# ⭐ ClubCups mode: show only unlocked AND allowed cars
+	if GameMode.game_mode == "ClubCups":
+		var filtered := []
 
-	var allowed := ClubCups.get_available_cars(ChampionshipState.active_cup)
+		# If championship mode is active, filter by cup rules
+		if ChampionshipState.championship_mode:
+			var allowed := ClubCups.get_available_cars(ChampionshipState.active_cup)
+
+			for car_name in raw_list:
+				if allowed.has(car_name) and Cars.unlocked_cars.has(car_name):
+					filtered.append(car_name)
+
+			return filtered
+
+		# If NOT in championship mode (just browsing cars)
+		# show ONLY unlocked cars
+		for car_name in raw_list:
+			if Cars.unlocked_cars.has(car_name):
+				filtered.append(car_name)
+
+		return filtered
+
+	# ⭐ Normal mode: only unlocked cars
 	var filtered := []
-
 	for car_name in raw_list:
-		# NEW: Check if the class is unlocked in Road Challenge
-		# Do NOT apply Road Challenge unlocks in Club Cups
-		if GameMode.game_mode != "Club Cups":
-			if not RoadChallengeSave.unlocked.get(car_class, false):
-				continue
-
-
-		# Existing: Check if the car is allowed in this cup
-		if allowed.has(car_name):
+		if Cars.unlocked_cars.has(car_name):
 			filtered.append(car_name)
 
-	return filtered   # ⭐ REQUIRE
+	return filtered
+
 
 
 func update_car_ui(stats: Array, name: String):
@@ -683,6 +727,27 @@ func update_car_ui(stats: Array, name: String):
 	$Control/CarStats/TorqueLabel.text = stats[8]
 	$Control/CarStats/TransmissionLabel.text = stats[9]
 
+	# ============================
+# PRICE + OWNED STATUS DISPLAY
+# ============================
+	if dealership_mode:
+		# Show price
+		if Cars.car_prices.has(name):
+			$Control/CarStats/PriceLabel.text = "Price: $" + str(Cars.car_prices[name])
+		else:
+			$Control/CarStats/PriceLabel.text = "Price: N/A"
+
+		# Show owned status
+		if Cars.unlocked_cars.has(name):
+			$Control/CarStats/OwnedLabel.text = "Owned"
+			$Control/CarStats/OwnedLabel.modulate = Color(0,1,0)
+		else:
+			$Control/CarStats/OwnedLabel.text = "Not Owned"
+			$Control/CarStats/OwnedLabel.modulate = Color(1,0,0)
+	else:
+		# Hide dealership info in normal mode
+		$Control/CarStats/PriceLabel.text = ""
+		$Control/CarStats/OwnedLabel.text = ""
 
 # -------------------------
 # 3D PREVIEW LOADING
@@ -697,8 +762,19 @@ func load_preview_car(path: String):
 		return
 
 	var car = car_scene.instantiate()
+
+	# Force unique materials so preview never inherits AI colors
+	if car.has_node("ModelRoot/Body"):
+		var body = car.get_node("ModelRoot/Body")
+		for child in body.get_children():
+			if child is MeshInstance3D:
+				var base_mat = child.get_active_material(0)
+				if base_mat:
+					child.material_override = base_mat.duplicate()
+
 	preview_holder.add_child(car)
 	preview_car = car
+
 
 	var model_root: Node3D = null
 	if car.has_node("ModelRoot"):
@@ -923,9 +999,17 @@ func switch_car(direction):
 
 func _reset_color():
 	color_index = 0
+
+	# ⭐ Hide color selector in dealership mode
+	if dealership_mode:
+		$Control/ColorSelector.visible = false
+		return
+
+	# Normal mode
 	$Control/ColorSelector.visible = true
 	apply_color_to_preview(car_colors[car_name][0])
 	update_color_ui()
+
 
 func change_color(direction):
 	var colors = car_colors[car_name]
@@ -968,27 +1052,27 @@ func update_color_ui():
 # SELECT BUTTON (LAN FIX)
 # -------------------------
 func _on_select_pressed():
-	Cars.on_car_selected(car_name)
-	Cars.selected_car_name = car_name
-	Cars.selected_car = car_scene_paths[car_name]
-	Cars.selected_color = car_colors[car_name][color_index]
-	Cars.save_color()
-
-	RoadChallengeState.active_group = car_class
-	RoadChallengeState.active_car = car_name
-	RoadChallengeState.active_color = car_colors[car_name][color_index]
-
-	# LAN MODE FIX
-	if GameMode.game_mode == "Multi-Device":
-		if multiplayer.is_server():
-			# HOST → go to TrackSelect
-			get_tree().change_scene_to_file("res://Scenes/track_select.tscn")
-		else:
-			# CLIENT → stay here and wait for host
-			print("Client waiting for host to choose track")
+	if dealership_mode:
 		return
 
-	# SINGLE PLAYER
+	if car_name == "":
+		print("ERROR: No car selected")
+		return
+
+	if not Cars.unlocked_cars.has(car_name):
+		print("Car locked:", car_name)
+		return
+
+	# ⭐ ACTUALLY SELECT THE CAR
+	Cars.selected_car = Cars.car_scene_paths[car_name]
+	Cars.selected_car_name = car_name
+	Cars.selected_color = car_colors[car_name][color_index]
+
+	Cars.on_car_selected(car_name)
+	Cars.save_progress()
+
+	print("Selected car:", car_name, "→ scene:", Cars.selected_car)
+
 	get_tree().change_scene_to_file("res://Scenes/track_select.tscn")
 
 
@@ -1015,7 +1099,7 @@ func _on_track_cars_pressed():
 
 func _update_class_locks():
 	# Free Race and Road Challenge share unlocks
-	if GameMode.game_mode == "Free Race" or GameMode.game_mode == "Road Challenge" or GameMode.game_mode=="Club Cups":
+	if GameMode.game_mode == "Free Race" or GameMode.game_mode == "Road Challenge":
 		$Control/ClassList/SUV.disabled = false
 		$Control/ClassList/MuscleCars.disabled = not RoadChallengeSave.unlocked["muscle"]
 		$Control/ClassList/CompactCars.disabled = not RoadChallengeSave.unlocked["compact"]
@@ -1030,3 +1114,24 @@ func _update_class_locks():
 	# Normal modes → unlock everything
 	for btn in $Control/ClassList.get_children():
 		btn.disabled = false
+func is_car_unlocked(name: String) -> bool:
+	return Cars.unlocked_cars.has(name)
+
+
+func _on_buy_button_pressed() -> void:
+	if not dealership_mode:
+		return
+
+	if not Cars.car_prices.has(car_name):
+		print("Car has no price:", car_name)
+		return
+
+	var success := Cars.buy_car(car_name)
+
+	if success:
+		print("Purchased:", car_name)
+		_update_class_locks()
+		$Control/MoneyLabel.text = "Money: $" + str(Cars.money)
+	else:
+		print("Purchase failed")
+	_update_money_display()

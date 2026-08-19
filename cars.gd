@@ -10,7 +10,68 @@ var selected_color: Color = Color.WHITE
 var selected_class: String = ""
 var all_cars: Array = []
 var manual_class_clear := false
+var unlocked_cars := ["Colossus Behemoth"]  # ONLY H2 unlocked
+var money: int = 0
 
+var car_prices := {
+	# Starter (FREE)
+	"Colossus Behemoth": 0,
+
+	# Tier 1 — Cheap (3–5 wins = $12k–$20k)
+	"Colossus Titan Max": 12000,
+	"Schroder Colosso": 15000,
+	"Mir Cars Nightwolf": 18000,
+	"Schroder D-20": 14000,
+	"Straeda B32": 16000,
+
+	# Tier 2 — Entry Performance (5–7 wins = $20k–$28k)
+	"Kuro Zephyr": 20000,
+	"Schroder Atrix Q32": 24000,
+	"Zenith Horizon": 26000,
+	"Straeda Pitbull": 22000,
+
+	# Tier 3 — Muscle (7–10 wins = $28k–$40k)
+	"Brutus Viper": 35000,
+	"Mir Cars Hutch": 32000,
+
+	# Tier 4 — Urban Racers / Sedans (10–14 wins = $40k–$56k)
+	"Kuro Serenity": 42000,
+	"Eisenach Bengal": 38000,
+	"Strandberg Turbo": 40000,
+	"Berkshire Blunt": 48000,
+	"Kronstadt Essence": 50000,
+	"Eisenach Prince": 46000,
+	"Kuro Vault": 42000,
+	"Eisenach Suppressor": 38000,
+	"Mir Cars Transporter": 44000,
+	"Kuro Persian": 43000,
+	"Kronstadt Fortress": 56000,
+
+	# Tier 5 — Sport Cars (14–18 wins = $56k–$72k)
+	"Eisenach Goblin": 60000,
+	"Schroder Classique Sport": 58000,
+	"Brutus Stingray": 65000,
+	"Berkshire V12-S": 70000,
+	"Berkshire Tempest": 76000,
+	"Kestrel Touring": 72000,
+
+	# Tier 6 — Sport Racing (18–25 wins = $72k–$100k)
+	"Linetti Shepherd": 90000,
+	"Schroder Atrocity": 85000,
+	"Brutus Venom": 82000,
+	"Kestrel Battleaxe": 95000,
+
+	# Tier 7 — Supercars (25–35 wins = $100k–$140k)
+	"Linetti Terror": 130000,
+	"Linetti Firestorm": 125000,
+	"Kestrel Guillotine": 120000,
+	"Mir Cars Raptor": 140000,
+
+	# Tier 8 — Track / Hypercars (35–50 wins = $140k–$200k)
+	"Mir Cars Athletic C70": 180000,
+	"Bartoli Track Cruiser": 175000,
+	"Brutus Thunderbolt": 160000
+}
 
 var class_lists := {
 	"suv": [
@@ -593,3 +654,50 @@ func get_class_of_car(car_name: String) -> String:
 func reset_class_if_not_club() -> void:
 	if GameMode.game_mode != "Club Cups":
 		selected_class = ""
+func save_progress():
+	var data = {
+		"unlocked_cars": unlocked_cars,
+		"money": money
+	}
+	var file = FileAccess.open("user://progress.save", FileAccess.WRITE)
+	file.store_var(data)
+	file.close()
+	print("Progress saved.")
+
+func load_progress():
+	var path = "user://progress.save"
+
+	if not FileAccess.file_exists(path):
+		print("Save file missing, creating new one")
+		unlocked_cars = ["Colossus Behemoth"]
+		money = 0
+		save_progress()
+		return
+
+	var file = FileAccess.open(path, FileAccess.READ)
+	if file:
+		var data = file.get_var()
+		unlocked_cars = data.get("unlocked_cars", ["Colossus Behemoth"])
+		money = data.get("money", 0)
+
+
+func buy_car(car_name: String) -> bool:
+	if unlocked_cars.has(car_name):
+		print("Already owned:", car_name)
+		return false
+
+	if not car_prices.has(car_name):
+		print("Car has no price:", car_name)
+		return false
+
+	var price :int= car_prices[car_name]
+
+	if money < price:
+		print("Not enough money!")
+		return false
+
+	money -= price
+	unlocked_cars.append(car_name)
+	save_progress()
+	print("Purchased:", car_name)
+	return true

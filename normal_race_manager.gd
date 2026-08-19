@@ -39,7 +39,7 @@ func spawn_race(scene: Node) -> void:
 	ai_cars.clear()
 	
 	# Career lap rules
-	if Cars.selected_class == "suv":
+	if Cars.selected_class == "suv"or "colossus":
 		total_laps = 2
 	else:
 		total_laps = 3

@@ -108,6 +108,14 @@ layout_mode = 2
 [node name="TorqueLabel" type="Label" parent="Control/CarStats"]
 layout_mode = 2
 
+[node name="PriceLabel" type="Label" parent="Control/CarStats"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="OwnedLabel" type="Label" parent="Control/CarStats"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
 [node name="ColorSelector" type="VBoxContainer" parent="Control"]
 layout_mode = 0
 offset_left = 713.0
@@ -138,6 +146,24 @@ offset_right = 253.0
 offset_bottom = 648.0
 theme_override_font_sizes/font_size = 40
 text = "BACK"
+
+[node name="BuyButton" type="Button" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 452.0
+offset_top = 513.0
+offset_right = 1220.0
+offset_bottom = 564.0
+theme_override_font_sizes/font_size = 30
+text = "BUY"
+
+[node name="MoneyLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 452.0
+offset_top = 480.0
+offset_right = 828.0
+offset_bottom = 581.0
+theme_override_font_sizes/font_size = 30
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 anchors_preset = -1
@@ -187,4 +213,5 @@ text = "SELECT CAR
 [connection signal="pressed" from="Control/ClassList/Supercars" to="." method="_on_supercars_pressed"]
 [connection signal="pressed" from="Control/ClassList/TrackCars" to="." method="_on_track_cars_pressed"]
 [connection signal="pressed" from="Control/BackBtn" to="." method="_on_back_btn_pressed"]
+[connection signal="pressed" from="Control/BuyButton" to="." method="_on_buy_button_pressed"]
 [connection signal="pressed" from="Select" to="." method="_on_select_pressed"]

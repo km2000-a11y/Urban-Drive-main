@@ -22,6 +22,14 @@ func safe_get(node: Node, path: String) -> Node:
 	return null
 
 func _ready():
+	if GameMode.game_mode == "Road Challenge" or Modes.mode == "Free Race":
+		RoadChallengeSave.load()
+		Cars.unlocked_cars = RoadChallengeSave.unlocked_cars
+	else:
+			Cars.load_progress()  # dealership save
+
+	ChampionshipState.load_progress()
+
 	if GameMode.game_mode == "Multi-Device":
 			_spawn_lan_player()
 			return
@@ -455,6 +463,53 @@ func show_finish(player_won: bool):
 		print("YOU WIN!")
 	else:
 		print("YOU LOSE!")
+		# ============================================================
+#  MONEY REWARD FOR WINNING RACES
+# ============================================================
+	if player_won:
+		var reward_money := 4000
+		Cars.money += reward_money
+		print("Money earned: $%d" % reward_money)
+		Cars.save_progress()
+
+	# ============================================================
+#  CHAMPIONSHIP PROGRESSION (4 MODES REQUIRED)
+	# ============================================================
+	if player_won and ChampionshipState.championship_mode:
+		var cup_id := ChampionshipState.active_cup
+
+		# Mark the mode as completed
+		match mode:
+			"Normal Race":
+				ChampionshipState.cup_progress[cup_id]["normal"] = true
+			"Duel":
+				ChampionshipState.cup_progress[cup_id]["duel"] = true
+			"Elimination":
+				ChampionshipState.cup_progress[cup_id]["elimination"] = true
+			"Radar Race":
+				ChampionshipState.cup_progress[cup_id]["radar"] = true
+
+		# Check if all 4 modes are completed
+		var p :Dictionary= ChampionshipState.cup_progress[cup_id]
+		var completed :bool= (
+			p["normal"] and
+			p["duel"] and
+			p["elimination"] and
+			p["radar"]
+		)
+
+		if completed:
+			var reward :String= ClubCups.get_reward(cup_id)
+			if reward != "":
+				Cars.unlock_car(reward)
+				print("Reward granted:", reward)
+
+			ChampionshipState.completed_cups.append(cup_id)
+			ChampionshipState.reset()
+
+		Cars.save_progress()
+		ChampionshipState.save_progress()
+
 
 func _face_away_from_lap_line(car: CarController, root: Node):
 	var lap_line := safe_get(root, "LapLine")
