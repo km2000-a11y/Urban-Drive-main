@@ -456,6 +456,51 @@ var rewards := {
 	"supercars": "Bartoli Track Cruiser",
 	"track_cars": "Mir Cars Athletic C70"
 }
+var championship_order := [
+	"colossus",
+	"street_tuners",
+	"muscle_hustle",
+	"v6_engines",
+	"zenith_competition",
+	"businessman_racers",
+	"speedster_tournament",
+	"kuro_cup",
+	"all_wheel_grip",
+	"eisenach_cup",
+	"under_400_hp",
+	"stingray_competition",
+	"schroder_cup",
+	"gentleman_racers",
+	"japanese_cup",
+	"german_cup",
+	"kestrel_max",
+	"v12_engines",
+	"sport_racing",
+	"supercars",
+	"track_cars"
+]
+var save_path := "user://career_save.json"
+var progress := {
+	"unlocked_cars": unlocked_cars,
+	"completed_cups": []
+}
+
+func save_progress():
+	var file = File.new()
+	if file.open(save_path, File.WRITE) == OK:
+		file.store_string(JSON.print(progress))
+		file.close()
+
+func load_progress():
+	var file = File.new()
+	if file.file_exists(save_path):
+		if file.open(save_path, File.READ) == OK:
+			var data = JSON.parse(file.get_as_text())
+			if data.error == OK:
+				progress = data.result
+				unlocked_cars = progress["unlocked_cars"]
+			file.close()
+
 func get_reward(cup_id: String) -> String:
 	if rewards.has(cup_id):
 		return rewards[cup_id]
