@@ -635,7 +635,7 @@ var track_cars = {
 
 func _ready():
 	dealership_mode = Cars.dealership_mode
-	#Hello why 
+	#Hello why am I here 
 	if dealership_mode:
 		$Select.text = "BUY"
 		$Control/ColorSelector.visible = false
