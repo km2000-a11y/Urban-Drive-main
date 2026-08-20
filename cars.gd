@@ -657,18 +657,21 @@ func reset_class_if_not_club() -> void:
 func save_progress():
 	var data = {
 		"unlocked_cars": unlocked_cars,
-		"money": money
+		"money": money,
+		"selected_car": selected_car,
+		"selected_car_name": selected_car_name,
+		"selected_color": selected_color
 	}
-	var file = FileAccess.open("user://progress.save", FileAccess.WRITE)
-	file.store_var(data)
-	file.close()
-	print("Progress saved.")
+	var file = FileAccess.open("user://cars.save", FileAccess.WRITE)
+	if file:
+		file.store_var(data)
+		file.close()
+		print("Cars progress saved.")
 
 func load_progress():
-	var path = "user://progress.save"
-
+	var path = "user://cars.save"
 	if not FileAccess.file_exists(path):
-		print("Save file missing, creating new one")
+		print("Cars save missing, creating new one")
 		unlocked_cars = ["Colossus Behemoth"]
 		money = 0
 		save_progress()
@@ -679,6 +682,12 @@ func load_progress():
 		var data = file.get_var()
 		unlocked_cars = data.get("unlocked_cars", ["Colossus Behemoth"])
 		money = data.get("money", 0)
+		selected_car = data.get("selected_car", "")
+		selected_car_name = data.get("selected_car_name", "")
+		selected_color = data.get("selected_color", Color.WHITE)
+		file.close()
+		print("Cars progress loaded.")
+
 
 
 func buy_car(car_name: String) -> bool:
@@ -700,4 +709,39 @@ func buy_car(car_name: String) -> bool:
 	unlocked_cars.append(car_name)
 	save_progress()
 	print("Purchased:", car_name)
-	return true
+	return true# ============================================================
+# Championship Progression Integration
+# ============================================================
+
+func unlock_car(car_name: String) -> void:
+	if not unlocked_cars.has(car_name):
+		unlocked_cars.append(car_name)
+		print("Car unlocked via championship:", car_name)
+		save_progress()
+
+func is_car_unlocked(car_name: String) -> bool:
+	return unlocked_cars.has(car_name)
+
+func mark_championship_completed(cup_id: String) -> void:
+	if not ClubCups.progress["completed_cups"].has(cup_id):
+		ClubCups.progress["completed_cups"].append(cup_id)
+		print("Championship completed:", cup_id)
+		ClubCups.save_progress()
+
+		# Unlock reward car
+		var reward := ClubCups.get_reward(cup_id)
+		if reward != "" and not unlocked_cars.has(reward):
+			unlock_car(reward)
+			print("Reward car granted:", reward)
+
+func get_completed_championships() -> Array:
+	return ClubCups.progress["completed_cups"]
+
+# ============================================================
+#  MONEY SYSTEM — RACE REWARDS
+# ============================================================
+
+func add_race_reward(amount: int = 4000) -> void:
+	money += amount
+	print("Race reward earned: $%d" % amount)
+	save_progress()

@@ -583,23 +583,44 @@ var track_cars = {
 # -------------------------
 # SCENE PATHS
 # -------------------------
-
 func _ready():
 	dealership_mode = false
-
-	if GameMode.game_mode == "Club Cups":
-		Cars.load_progress()  # dealership uses money + purchases
-	elif GameMode.game_mode == "Free Race" or GameMode.game_mode == "Road Challenge":
-		RoadChallengeSave.load()
-		Cars.unlocked_cars = RoadChallengeSave.unlocked_cars
+	if not ClubCups.progress.has("color_index"):
+		color_index = 0  # or keep last selection
 	else:
-		Cars.load_progress()
+		color_index = ClubCups.progress["color_index"]
+	# Always load dealership + championship progress
+	Cars.load_progress()
+	ClubCups.load_progress()
+
+	# Handle game mode specifics
+	match GameMode.game_mode:
+		"Club Cups":
+			# dealership uses money + purchases
+			Cars.load_progress()
+		"Free Race":
+			# Free Race ignores unlocks, shows all cars
+			pass
+		"Road Challenge":
+			RoadChallengeSave.load()
+			Cars.unlocked_cars = RoadChallengeSave.unlocked_cars
+		_:
+			Cars.load_progress()
+
+	# 🔑 Sync unlocked cars between systems AFTER all loads
+	for car_name in ClubCups.progress.get("unlocked_cars", []):
+		if not Cars.unlocked_cars.has(car_name):
+			Cars.unlocked_cars.append(car_name)
 
 	disable_dealership_mode()
 	MusicManager.play_menu_music()
 	$Control/ColorSelector.visible = false
 
 	_update_class_locks()
+	_update_money_display()
+	_reset_color()
+
+
 
 func disable_dealership_mode():
 	dealership_mode = false
@@ -682,26 +703,24 @@ func _get_filtered_list(raw_list: Array) -> Array:
 	if dealership_mode:
 		return raw_list
 
+	# ⭐ Free Race mode: show ALL cars, ignore unlocks
+	if GameMode.game_mode == "Free Race":
+		return raw_list
+
 	# ⭐ ClubCups mode: show only unlocked AND allowed cars
-	if GameMode.game_mode == "ClubCups":
+	if GameMode.game_mode == "Club Cups":
 		var filtered := []
 
-		# If championship mode is active, filter by cup rules
 		if ChampionshipState.championship_mode:
 			var allowed := ClubCups.get_available_cars(ChampionshipState.active_cup)
-
 			for car_name in raw_list:
 				if allowed.has(car_name) and Cars.unlocked_cars.has(car_name):
 					filtered.append(car_name)
-
 			return filtered
 
-		# If NOT in championship mode (just browsing cars)
-		# show ONLY unlocked cars
 		for car_name in raw_list:
 			if Cars.unlocked_cars.has(car_name):
 				filtered.append(car_name)
-
 		return filtered
 
 	# ⭐ Normal mode: only unlocked cars
@@ -709,7 +728,6 @@ func _get_filtered_list(raw_list: Array) -> Array:
 	for car_name in raw_list:
 		if Cars.unlocked_cars.has(car_name):
 			filtered.append(car_name)
-
 	return filtered
 
 
@@ -763,20 +781,33 @@ func load_preview_car(path: String):
 
 	var car = car_scene.instantiate()
 
-	# Force unique materials so preview never inherits AI colors
+	# Force unique materials
 	if car.has_node("ModelRoot/Body"):
 		var body = car.get_node("ModelRoot/Body")
 		for child in body.get_children():
 			if child is MeshInstance3D:
 				var base_mat = child.get_active_material(0)
 				if base_mat:
-					child.material_override = base_mat.duplicate()
+					child.material_override = base_mat
 
 	preview_holder.add_child(car)
 	preview_car = car
-
+	_reset_color()
 
 	var model_root: Node3D = null
+	if car.has_node("ModelRoot"):
+		model_root = car.get_node("ModelRoot")
+	else:
+		model_root = car
+
+	model_root.scale = Vector3.ONE * 1.5
+	model_root.position = Vector3.ZERO
+
+	# 🔑 Apply selected color immediately
+	_reset_color()
+
+
+
 	if car.has_node("ModelRoot"):
 		model_root = car.get_node("ModelRoot")
 	else:
@@ -1009,6 +1040,8 @@ func _reset_color():
 	$Control/ColorSelector.visible = true
 	apply_color_to_preview(car_colors[car_name][0])
 	update_color_ui()
+	print("Applying color index:", color_index, "for", car_name)
+
 
 
 func change_color(direction):
