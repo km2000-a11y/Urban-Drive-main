@@ -10,6 +10,7 @@ var car_index := 0
 var color_index := 0
 var dealership_mode := false
 @onready var money_label = $Control/MoneyLabel
+#Hi
 
 
 
