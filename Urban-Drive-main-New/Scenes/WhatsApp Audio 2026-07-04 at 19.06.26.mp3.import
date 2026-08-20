@@ -1,0 +1,18 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://u5vhh5bbrv6v"
+valid=false
+
+[deps]
+
+source_file="res://Scenes/WhatsApp Audio 2026-07-04 at 19.06.26.mp3"
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
