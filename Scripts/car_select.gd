@@ -583,34 +583,12 @@ var track_cars = {
 # -------------------------
 # SCENE PATHS
 # -------------------------
+
 func _ready():
 	dealership_mode = false
-	if not ClubCups.progress.has("color_index"):
-		color_index = 0  # or keep last selection
-	else:
-		color_index = ClubCups.progress["color_index"]
-	# Always load dealership + championship progress
+
+	# Just load dealership progress
 	Cars.load_progress()
-	ClubCups.load_progress()
-
-	# Handle game mode specifics
-	match GameMode.game_mode:
-		"Club Cups":
-			# dealership uses money + purchases
-			Cars.load_progress()
-		"Free Race":
-			# Free Race ignores unlocks, shows all cars
-			pass
-		"Road Challenge":
-			RoadChallengeSave.load()
-			Cars.unlocked_cars = RoadChallengeSave.unlocked_cars
-		_:
-			Cars.load_progress()
-
-	# 🔑 Sync unlocked cars between systems AFTER all loads
-	for car_name in ClubCups.progress.get("unlocked_cars", []):
-		if not Cars.unlocked_cars.has(car_name):
-			Cars.unlocked_cars.append(car_name)
 
 	disable_dealership_mode()
 	MusicManager.play_menu_music()
@@ -618,9 +596,6 @@ func _ready():
 
 	_update_class_locks()
 	_update_money_display()
-	_reset_color()
-
-
 
 func disable_dealership_mode():
 	dealership_mode = false
@@ -703,24 +678,26 @@ func _get_filtered_list(raw_list: Array) -> Array:
 	if dealership_mode:
 		return raw_list
 
-	# ⭐ Free Race mode: show ALL cars, ignore unlocks
-	if GameMode.game_mode == "Free Race":
-		return raw_list
-
 	# ⭐ ClubCups mode: show only unlocked AND allowed cars
-	if GameMode.game_mode == "Club Cups":
+	if GameMode.game_mode == "ClubCups":
 		var filtered := []
 
+		# If championship mode is active, filter by cup rules
 		if ChampionshipState.championship_mode:
 			var allowed := ClubCups.get_available_cars(ChampionshipState.active_cup)
+
 			for car_name in raw_list:
 				if allowed.has(car_name) and Cars.unlocked_cars.has(car_name):
 					filtered.append(car_name)
+
 			return filtered
 
+		# If NOT in championship mode (just browsing cars)
+		# show ONLY unlocked cars
 		for car_name in raw_list:
 			if Cars.unlocked_cars.has(car_name):
 				filtered.append(car_name)
+
 		return filtered
 
 	# ⭐ Normal mode: only unlocked cars
@@ -728,6 +705,7 @@ func _get_filtered_list(raw_list: Array) -> Array:
 	for car_name in raw_list:
 		if Cars.unlocked_cars.has(car_name):
 			filtered.append(car_name)
+
 	return filtered
 
 
@@ -765,7 +743,6 @@ func update_car_ui(stats: Array, name: String):
 	else:
 		# Hide dealership info in normal mode
 		$Control/CarStats/PriceLabel.text = ""
-		$Control/CarStats/OwnedLabel.text = ""
 
 # -------------------------
 # 3D PREVIEW LOADING
@@ -781,33 +758,20 @@ func load_preview_car(path: String):
 
 	var car = car_scene.instantiate()
 
-	# Force unique materials
+	# Force unique materials so preview never inherits AI colors
 	if car.has_node("ModelRoot/Body"):
 		var body = car.get_node("ModelRoot/Body")
 		for child in body.get_children():
 			if child is MeshInstance3D:
 				var base_mat = child.get_active_material(0)
 				if base_mat:
-					child.material_override = base_mat
+					child.material_override = base_mat.duplicate()
 
 	preview_holder.add_child(car)
 	preview_car = car
-	_reset_color()
+
 
 	var model_root: Node3D = null
-	if car.has_node("ModelRoot"):
-		model_root = car.get_node("ModelRoot")
-	else:
-		model_root = car
-
-	model_root.scale = Vector3.ONE * 1.5
-	model_root.position = Vector3.ZERO
-
-	# 🔑 Apply selected color immediately
-	_reset_color()
-
-
-
 	if car.has_node("ModelRoot"):
 		model_root = car.get_node("ModelRoot")
 	else:
@@ -1040,8 +1004,6 @@ func _reset_color():
 	$Control/ColorSelector.visible = true
 	apply_color_to_preview(car_colors[car_name][0])
 	update_color_ui()
-	print("Applying color index:", color_index, "for", car_name)
-
 
 
 func change_color(direction):
@@ -1149,22 +1111,56 @@ func _update_class_locks():
 		btn.disabled = false
 func is_car_unlocked(name: String) -> bool:
 	return Cars.unlocked_cars.has(name)
+# ============================
+# CAR SELECT HELPERS
+# ============================
 
+# Get stats dictionary for current class
+func _get_stats_dict() -> Dictionary:
+	match car_class:
+		"suv": return suv
+		"compact": return compact
+		"muscle": return muscle
+		"urban": return urban_racers
+		"sedans": return sedans
+		"sport": return sport
+		"sport_racing": return sport_racing
+		"supercars": return supercars
+		"track_cars": return track_cars
+		_:
+			return {}
 
-func _on_buy_button_pressed() -> void:
-	if not dealership_mode:
-		return
+# Get list for current class
+func _get_class_list() -> Array:
+	match car_class:
+		"suv": return suv_list
+		"compact": return compact_list
+		"muscle": return muscle_list
+		"urban": return urban_list
+		"sedans": return sedans_list
+		"sport": return sport_list
+		"sport_racing": return sport_racing_list
+		"supercars": return supercars_list
+		"track_cars": return track_cars_list
+		_:
+			return []
+func get_current_car_name() -> String:
+	return car_name
 
-	if not Cars.car_prices.has(car_name):
-		print("Car has no price:", car_name)
-		return
+func get_current_class() -> String:
+	return car_class
 
-	var success := Cars.buy_car(car_name)
-
-	if success:
-		print("Purchased:", car_name)
-		_update_class_locks()
-		$Control/MoneyLabel.text = "Money: $" + str(Cars.money)
-	else:
-		print("Purchase failed")
-	_update_money_display()
+func get_current_color() -> Color:
+	var colors = Cars.get_colors(car_name)
+	if colors.is_empty():
+		return Color.WHITE
+	return colors[color_index]
+func get_current_stats() -> Array:
+	var stats_dict = Cars.get_stats_dict(car_class)
+	if stats_dict.has(car_name):
+		return stats_dict[car_name]
+	return []
+func get_current_scene_path() -> String:
+	return Cars.get_scene_path(car_name)
+func is_current_car_unlocked() -> bool:
+	return Cars.is_unlocked(car_name)

@@ -5,14 +5,6 @@ extends Node
 # ============================================================
 
 var unlocked_cars := ["Colossus Behemoth"]  # ONLY H2 unlocked
-var save_path := "user://career_save.json"
-
-# Always initialize with safe defaults
-var progress := {
-	"unlocked_cars": unlocked_cars,
-	"completed_cups": [],
-	"money": 0
-}
 
 var class_lists: Dictionary = {
 	"suv": [
@@ -464,103 +456,7 @@ var rewards := {
 	"supercars": "Bartoli Track Cruiser",
 	"track_cars": "Mir Cars Athletic C70"
 }
-var championship_order := [
-	"colossus",
-	"street_tuners",
-	"muscle_hustle",
-	"v6_engines",
-	"zenith_competition",
-	"businessman_racers",
-	"speedster_tournament",
-	"kuro_cup",
-	"all_wheel_grip",
-	"eisenach_cup",
-	"under_400_hp",
-	"stingray_competition",
-	"schroder_cup",
-	"gentleman_racers",
-	"japanese_cup",
-	"german_cup",
-	"kestrel_max",
-	"v12_engines",
-	"sport_racing",
-	"supercars",
-	"track_cars"
-]
-# ============================================================
-#  SAVE / LOAD ADD-ON
-# ============================================================
-
-# ============================================================
-#  GLOBAL PROGRESSION STATE
-# ============================================================
-
-
-# ============================================================
-
-func save_progress() -> void:
-	var file := FileAccess.open(save_path, FileAccess.WRITE)
-	if file:
-		file.store_string(JSON.stringify(progress))
-		file.close()
-		print("ClubCups: Progress saved.")
-
-func load_progress() -> void:
-	if not FileAccess.file_exists(save_path):
-		print("ClubCups: No save file found, creating new one.")
-		save_progress()
-		return
-
-	var file := FileAccess.open(save_path, FileAccess.READ)
-	if file:
-		var text := file.get_as_text()
-		var result :Dictionary= JSON.parse_string(text)
-		if typeof(result) == TYPE_DICTIONARY:
-			progress = result
-
-			# Guarantee keys exist
-			if not progress.has("unlocked_cars"):
-				progress["unlocked_cars"] = unlocked_cars
-			if not progress.has("completed_cups"):
-				progress["completed_cups"] = []
-			if not progress.has("money"):
-				progress["money"] = 0
-
-			unlocked_cars = progress["unlocked_cars"]
-			print("ClubCups: Progress loaded.")
-		file.close()
-
-# ============================================================
-#  CUP COMPLETION + REWARDS
-# ============================================================
-
-func complete_cup(cup_id: String) -> void:
-	if not progress.has("completed_cups"):
-		progress["completed_cups"] = []
-
-	if not progress["completed_cups"].has(cup_id):
-		progress["completed_cups"].append(cup_id)
-
-		var reward := get_reward(cup_id)
-		if reward != "" and not unlocked_cars.has(reward):
-			unlocked_cars.append(reward)
-			progress["unlocked_cars"] = unlocked_cars
-			print("ClubCups: Reward car unlocked →", reward)
-
-		save_progress()
-
 func get_reward(cup_id: String) -> String:
-	return rewards.get(cup_id, "")
-
-# ============================================================
-#  SAFE ACCESS HELPERS
-# ============================================================
-
-func is_cup_completed(cup_id: String) -> bool:
-	return progress.has("completed_cups") and progress["completed_cups"].has(cup_id)
-
-func get_completed_cups() -> Array:
-	return progress.get("completed_cups", [])
-
-
-# Call this when a cup is completed
+	if rewards.has(cup_id):
+		return rewards[cup_id]
+	return ""

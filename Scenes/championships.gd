@@ -1,77 +1,7 @@
 extends CanvasLayer
 
-var cup_buttons = {}
-
 func _ready():
-	# Play menu music
 	MusicManager.play_menu_music()
-
-	# Load career progress
-	ClubCups.load_progress()
-
-	# Build dictionary AFTER nodes exist
-	cup_buttons = {
-		"colossus": $Control/ScrollContainer/VBoxContainer/Colossus,
-		"street_tuners": $Control/ScrollContainer/VBoxContainer/StreetTuners,
-		"muscle_hustle": $Control/ScrollContainer/VBoxContainer/MuscleHustle,
-		"v6_engines": $Control/ScrollContainer/VBoxContainer/V6Engines,
-		"zenith_competition": $Control/ScrollContainer/VBoxContainer/ZenithCompetition,
-		"businessman_racers": $Control/ScrollContainer/VBoxContainer/BusinessmanRacers,
-		"speedster_tournament": $Control/ScrollContainer/VBoxContainer/SpeedsterTournament,
-		"all_wheel_grip": $Control/ScrollContainer/VBoxContainer/AllWheelGrip,
-		"eisenach_cup": $Control/ScrollContainer/VBoxContainer/EisenachCup,
-		"under_400_hp": $Control/ScrollContainer/VBoxContainer/Under400HP,
-		"stingray_competition": $Control/ScrollContainer/VBoxContainer/StingrayCompetition,
-		"schroder_cup": $Control/ScrollContainer/VBoxContainer/SchroderCup,
-		"gentleman_racers": $Control/ScrollContainer/VBoxContainer/GentlemanRacers,
-		"japanese_cup": $Control/ScrollContainer/VBoxContainer/JapaneseCup,
-		"kestrel_max": $Control/ScrollContainer/VBoxContainer/KestrelMax,
-		"v12_engines": $Control/ScrollContainer/VBoxContainer/V12Engines,
-		"supercars": $Control/ScrollContainer/VBoxContainer/Supercars,
-		"track_cars": $Control/ScrollContainer/VBoxContainer/TrackCars,
-		"sport_racing": $Control/ScrollContainer/VBoxContainer/SportRacing
-	}
-
-	# Now update buttons safely
-	_update_buttons()
-
-
-func _process(delta):
-	# Debug shortcut: press M to auto-complete current cup
-	if Input.is_action_just_pressed("debug_complete_championship"):
-		if ChampionshipState.active_cup != "":
-			ClubCups.complete_cup(ChampionshipState.active_cup)
-			_update_buttons()
-func _update_buttons():
-	for cup_id in cup_buttons.keys():
-		var btn = cup_buttons[cup_id]
-		if btn == null:
-			continue  # skip if node not found
-
-		btn.disabled = !_is_unlocked(cup_id)
-
-		# Mark completed visually
-		if ClubCups.progress.has("completed_cups") and ClubCups.progress["completed_cups"].has(cup_id):
-			if not btn.text.ends_with("✔"):
-				btn.text += " ✔"
-
-
-
-func _is_unlocked(cup_id: String) -> bool:
-	var idx = ClubCups.championship_order.find(cup_id)
-	if idx == -1:
-		return false
-	if idx == 0:
-		return true # first cup always unlocked
-	var prev_cup = ClubCups.championship_order[idx - 1]
-
-	if ClubCups.progress.has("completed_cups"):
-		return ClubCups.progress["completed_cups"].has(prev_cup)
-	return false
-
-# ============================================================
-# Existing Button Handlers (unchanged)
-# ============================================================
 
 func _on_colossus_pressed() -> void:
 	GameMode.game_mode = "Club Cups"

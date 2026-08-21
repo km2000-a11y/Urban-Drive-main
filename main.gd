@@ -22,9 +22,6 @@ func safe_get(node: Node, path: String) -> Node:
 	return null
 
 func _ready():
-	Cars.load_progress()
-	ClubCups.load_progress()
-	ChampionshipState.load_progress()
 	if GameMode.game_mode == "Road Challenge" or Modes.mode == "Free Race":
 		RoadChallengeSave.load()
 		Cars.unlocked_cars = RoadChallengeSave.unlocked_cars
@@ -502,27 +499,16 @@ func show_finish(player_won: bool):
 		)
 
 		if completed:
-			var reward :String = ClubCups.get_reward(cup_id)
+			var reward :String= ClubCups.get_reward(cup_id)
 			if reward != "":
-				# Unlock in Cars
 				Cars.unlock_car(reward)
+				print("Reward granted:", reward)
 
-				# Also sync into ClubCups progression
-				if not ClubCups.progress["unlocked_cars"].has(reward):
-					ClubCups.progress["unlocked_cars"].append(reward)
-					print("ClubCups: Reward car added to progression →", reward)
-
-			# Mark cup complete
-				if not ClubCups.progress["completed_cups"].has(cup_id):
-					ClubCups.progress["completed_cups"].append(cup_id)
-
-				ChampionshipState.completed_cups.append(cup_id)
+			ChampionshipState.completed_cups.append(cup_id)
 			ChampionshipState.reset()
 
-			# Save both systems
-			Cars.save_progress()
-			ClubCups.save_progress()
-			ChampionshipState.save_progress()
+		Cars.save_progress()
+		ChampionshipState.save_progress()
 
 
 func _face_away_from_lap_line(car: CarController, root: Node):
