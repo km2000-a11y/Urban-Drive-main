@@ -587,19 +587,15 @@ var track_cars = {
 func _ready():
 	dealership_mode = false
 
-	if GameMode.game_mode == "Club Cups":
-		Cars.load_progress()  # dealership uses money + purchases
-	elif GameMode.game_mode == "Free Race" or GameMode.game_mode == "Road Challenge":
-		RoadChallengeSave.load()
-		Cars.unlocked_cars = RoadChallengeSave.unlocked_cars
-	else:
-		Cars.load_progress()
+	# Just load dealership progress
+	Cars.load_progress()
 
 	disable_dealership_mode()
 	MusicManager.play_menu_music()
 	$Control/ColorSelector.visible = false
 
 	_update_class_locks()
+	_update_money_display()
 
 func disable_dealership_mode():
 	dealership_mode = false
@@ -747,7 +743,6 @@ func update_car_ui(stats: Array, name: String):
 	else:
 		# Hide dealership info in normal mode
 		$Control/CarStats/PriceLabel.text = ""
-		$Control/CarStats/OwnedLabel.text = ""
 
 # -------------------------
 # 3D PREVIEW LOADING
@@ -1116,22 +1111,3 @@ func _update_class_locks():
 		btn.disabled = false
 func is_car_unlocked(name: String) -> bool:
 	return Cars.unlocked_cars.has(name)
-
-
-func _on_buy_button_pressed() -> void:
-	if not dealership_mode:
-		return
-
-	if not Cars.car_prices.has(car_name):
-		print("Car has no price:", car_name)
-		return
-
-	var success := Cars.buy_car(car_name)
-
-	if success:
-		print("Purchased:", car_name)
-		_update_class_locks()
-		$Control/MoneyLabel.text = "Money: $" + str(Cars.money)
-	else:
-		print("Purchase failed")
-	_update_money_display()
