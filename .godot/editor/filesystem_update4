@@ -1,5 +1,4 @@
 res://main.tscn
-res://main.gd
 res://Scenes/hummer_h1.tscn
 res://Scenes/new_beetle.tscn
 res://Scenes/audi_tt.tscn
@@ -62,10 +61,5 @@ res://Scenes/bmw_1m.tscn
 res://Scenes/lanui.tscn
 res://Scenes/lexus_sc.tscn
 res://Scenes/clk_55.tscn
-res://Scripts/car_select.gd
-res://cars.gd
-res://championship_state.gd
-res://club_cups.gd
-res://normal_race_manager.gd
 res://Scenes/championships.gd
-res://Scenes/pause_menu.gd
+res://Scripts/car_select.gd
